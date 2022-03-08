@@ -8,7 +8,7 @@
 require_once('../app/partials/head.php');
 ?>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-image: url('../assets/upload/background.jpg'); background-repeat: no-repeat; background-size: cover; ">
     <div class="login-box">
         <div class="login-logo">
             <a href=""><b>HOUSE RENTAL</b> MIS </a>
