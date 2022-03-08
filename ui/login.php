@@ -1,4 +1,10 @@
 <?php
+/*
+ * Created on Tue Mar 08 2022
+ *
+ * Copyright (c) 2022 MartMbithi
+ */
+/* Handle Login */
 require_once('../app/partials/head.php');
 ?>
 
@@ -14,7 +20,7 @@ require_once('../app/partials/head.php');
 
                 <form method="post">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" name="user_email" class="form-control" placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -22,7 +28,7 @@ require_once('../app/partials/head.php');
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" name="user_password" class="form-control" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -32,25 +38,25 @@ require_once('../app/partials/head.php');
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
+                                <a href="reset_password">I forgot my password</a>
                             </div>
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" name="login" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
-                <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
-                </p>
-                <p class="mb-0">
-                    <a href="register.html" class="text-center">Register a new membership</a>
-                </p>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <a href="register?access=landlord" class="text-left">Join as landlord</a>
+                    </div>
+                    <div class="col-6">
+                        <a href="register?access=tenant" class="text-right">Join as tenant</a>
+                    </div>
+                </div>
             </div>
             <!-- /.login-card-body -->
         </div>
