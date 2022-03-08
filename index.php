@@ -11,5 +11,5 @@ if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
 }
 $uri .= $_SERVER['HTTP_HOST'];
 /* Redirect To Index Under Views */
-header('Location: ' . $uri . '/ui/login');
+header('Location: ' . $uri . '/HRMS/ui/login');
 exit;
