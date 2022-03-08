@@ -11,7 +11,7 @@ require_once('../app/partials/head.php');
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href=""><b>Admin</b>LTE</a>
+            <a href=""><b>HOUSE RENTAL</b> MIS </a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -51,10 +51,10 @@ require_once('../app/partials/head.php');
                 <hr>
                 <div class="row">
                     <div class="col-6">
-                        <a href="register?access=landlord" class="text-left">Join as landlord</a>
+                        <a href="register?access=landlord" class="text-left">Join as tenant</a>
                     </div>
                     <div class="col-6">
-                        <a href="register?access=tenant" class="text-right">Join as tenant</a>
+                        <a href="register?access=tenant" class="text-right">Join as landlord</a>
                     </div>
                 </div>
             </div>
