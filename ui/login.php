@@ -54,7 +54,7 @@ require_once('../app/partials/head.php');
                         <a href="register?access=tenant" class="text-left">Join as tenant</a>
                     </div>
                     <div class="col-6">
-                        <a href="register?access=tenant" class="text-right">Join as landlord</a>
+                        <a href="register?access=landlord" class="text-right">Join as landlord</a>
                     </div>
                 </div>
             </div>

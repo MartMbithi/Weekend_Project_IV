@@ -72,7 +72,7 @@ require_once('../app/partials/head.php');
                         </div>
                     </div>
                 </form>
-                <a href="login" class="text-center">I already have a membership</a>
+                <a href="login" class="text-center">I already have a <?php echo $_GET['access']; ?> account</a>
             </div>
         </div>
     </div>
