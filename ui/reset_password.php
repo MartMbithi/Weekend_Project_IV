@@ -19,7 +19,7 @@ require_once('../app/partials/head.php');
                 <p class="login-box-msg">Enter your email to reset password</p>
                 <form method="post">
                     <div class="input-group mb-3">
-                        <input type="email" name="user_email" class="form-control" placeholder="Email">
+                        <input type="email" name="user_email" required class="form-control" placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>

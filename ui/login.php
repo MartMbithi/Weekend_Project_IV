@@ -20,7 +20,7 @@ require_once('../app/partials/head.php');
 
                 <form method="post">
                     <div class="input-group mb-3">
-                        <input type="email" name="user_email" class="form-control" placeholder="Email">
+                        <input type="email" name="user_email" required class="form-control" placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -28,7 +28,7 @@ require_once('../app/partials/head.php');
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="user_password" class="form-control" placeholder="Password">
+                        <input type="password" name="user_password" required class="form-control" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -51,7 +51,7 @@ require_once('../app/partials/head.php');
                 <hr>
                 <div class="row">
                     <div class="col-6">
-                        <a href="register?access=landlord" class="text-left">Join as tenant</a>
+                        <a href="register?access=tenant" class="text-left">Join as tenant</a>
                     </div>
                     <div class="col-6">
                         <a href="register?access=tenant" class="text-right">Join as landlord</a>
