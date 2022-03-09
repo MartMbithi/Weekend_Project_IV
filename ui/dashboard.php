@@ -218,7 +218,6 @@ require_once('../app/partials/head.php');
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->
-
                         <!-- /.card -->
                     </div>
                     <div class="row">
