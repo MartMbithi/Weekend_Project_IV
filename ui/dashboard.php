@@ -164,7 +164,7 @@ require_once('../app/partials/head.php');
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card card-warning card-outline">
                                 <div class="card-header">
                                     <h5 class="card-title text-bold">
                                         <?php echo date('M, Y', strtotime('-1 month', strtotime(date('d-m-Y')))); ?>
@@ -221,12 +221,39 @@ require_once('../app/partials/head.php');
 
                         <!-- /.card -->
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-warning card-outline">
+                                <div class="card-header border-transparent">
+                                    <h3 class="card-title text-bold">Recent Property Leases</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table m-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tenant Details</th>
+                                                    <th>Property Details</th>
+                                                    <th>Date Leased</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Name: </td>
+                                                    <td>Property</td>
+                                                    <td>Date</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.row -->
             </section>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
 
         <!-- Main Footer -->
         <?php require_once('../app/partials/footer.php'); ?>
