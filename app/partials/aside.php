@@ -132,7 +132,7 @@
                 <li class="nav-header text-warning">Reports</li>
                 <li class="nav-item">
                     <a href="reports_revenue" class="nav-link">
-                        <i class="nav-icon fas fa-hand-holding-usd"></i>
+                        <i class="nav-icon fas fa-funnel-dollar"></i>
                         <p>
                             Revenue Reports
                         </p>
@@ -140,7 +140,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="reports_expenditures" class="nav-link">
-                        <i class="nav-icon fas fa-hand-holding-usd"></i>
+                        <i class="nav-icon fas fa-money-check"></i>
                         <p>
                             Expenditure Reports
                         </p>
@@ -156,7 +156,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="reports_properties" class="nav-link">
-                        <i class="nav-icon fas fa-hand-holding-usd"></i>
+                        <i class="nav-icon fas fa-hotel"></i>
                         <p>
                             Properties
                         </p>
@@ -164,7 +164,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="reports_leases" class="nav-link">
-                        <i class="nav-icon fas fa-hand-holding-usd"></i>
+                        <i class="nav-icon fas fa-handshake"></i>
                         <p>
                             Leases
                         </p>
