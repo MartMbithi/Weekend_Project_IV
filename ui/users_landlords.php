@@ -1,0 +1,110 @@
+<?php
+/* Add Landlords */
+require_once('../app/partials/head.php');
+?>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <?php require_once('../app/partials/nav.php'); ?>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <?php require_once('../app/partials/aside.php'); ?>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Landlords Management Module</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+                                <li class="breadcrumb-item"><a href="">Users</a></li>
+                                <li class="breadcrumb-item active">Landlords</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+                <hr>
+                <div class="text-right">
+                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Register New Landlord</button>
+                </div>
+                <!-- Add Landlord Modal -->
+                <!-- Add Modal -->
+                <div class="modal fade fixed-right" id="add_modal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog  modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header align-items-center">
+                                <div class="text-center">
+                                    <h6 class="mb-0 text-bold">Register New Landlord</h6>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" enctype="multipart/form-data" role="form">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="">Full Name</label>
+                                            <input type="text" required name="user_name" class="form-control" id="exampleInputEmail1">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="">National ID Number</label>
+                                            <input type="text" required name="user_idno" class="form-control" id="exampleInputEmail1">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="">Access Rights</label>
+                                            <input type="text" readonly required name="user_access_level" value="landlord" class="form-control" id="exampleInputEmail1">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="">Phone Number</label>
+                                            <input type="text" required name="user_phoneno" class="form-control" id="exampleInputEmail1">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="">Email Address</label>
+                                            <input type="text" name="user_email" class="form-control" id="exampleInputEmail1">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="">Address</label>
+                                            <input type="text" name="user_address" class="form-control" id="exampleInputEmail1">
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <button type="submit" name="add_landlord" class="btn btn-warning">Register Landlord</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Info boxes -->
+                    <div class="row">
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Main Footer -->
+        <?php require_once('../app/partials/footer.php'); ?>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Scripts -->
+    <?php require_once('../app/partials/scripts.php'); ?>
+</body>
+
+</html>
