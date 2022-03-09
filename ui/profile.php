@@ -82,23 +82,29 @@ require_once('../app/partials/head.php');
                                         <div class="active tab-pane" id="activity">
                                             <form method="post" enctype="multipart/form-data" role="form">
                                                 <div class="row">
-                                                    <div class="form-group col-md-8">
+                                                    <div class="form-group col-md-12">
                                                         <label for="">Name</label>
-                                                        <input type="text" required name="category_name" class="form-control" id="exampleInputEmail1">
+                                                        <input type="text" required name="user_name" class="form-control" id="exampleInputEmail1">
                                                     </div>
                                                     <div class="form-group col-md-4">
-                                                        <label for="">Code</label>
-                                                        <input type="text" readonly value="<?php echo $a; ?>" required name="category_code" class="form-control">
+                                                        <label for="">Email</label>
+                                                        <input type="text" required name="user_email" class="form-control" id="exampleInputEmail1">
                                                     </div>
-                                                </div>
-                                                <div class="row">
+                                                    <div class="form-group col-md-4">
+                                                        <label for="">Phone Number</label>
+                                                        <input type="text" required name="user_phone" class="form-control" id="exampleInputEmail1">
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label for="">National ID Number</label>
+                                                        <input type="text" required name="user_idno" class="form-control" id="exampleInputEmail1">
+                                                    </div>
                                                     <div class="form-group col-md-12">
-                                                        <label for="exampleInputPassword1">Description</label>
-                                                        <textarea required name="category_desc" rows="2" class="form-control"></textarea>
+                                                        <label for="">Address</label>
+                                                        <textarea type="text" required name="user_adr" rows="2" class="form-control" id="exampleInputEmail1"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <button type="submit" name="add_category" class="btn btn-primary">Register Category</button>
+                                                    <button type="submit" name="add_category" class="btn btn-warning">Update Profile</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -120,7 +126,7 @@ require_once('../app/partials/head.php');
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <button type="submit" name="update_password" class="btn btn-primary">Update Password</button>
+                                                    <button type="submit" name="update_password" class="btn btn-warning">Update Password</button>
                                                 </div>
                                             </form>
                                         </div>
