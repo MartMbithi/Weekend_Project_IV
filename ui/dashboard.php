@@ -18,12 +18,12 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Dashboard v2</h1>
+                            <h1 class="m-0 text-dark">Dashboard</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v2</li>
+                                <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -38,7 +38,7 @@ require_once('../app/partials/head.php');
                     <div class="row">
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-cog"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-sitemap"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Property Categories</span>
@@ -53,7 +53,7 @@ require_once('../app/partials/head.php');
                         <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hotel"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Properties</span>
@@ -70,7 +70,7 @@ require_once('../app/partials/head.php');
 
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-edit"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Leased Properties</span>
@@ -80,7 +80,7 @@ require_once('../app/partials/head.php');
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Vacant Properties</span>
@@ -90,7 +90,7 @@ require_once('../app/partials/head.php');
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tie"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Staffs</span>
@@ -100,7 +100,7 @@ require_once('../app/partials/head.php');
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tag"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Landlords</span>
@@ -110,7 +110,7 @@ require_once('../app/partials/head.php');
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-cog"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Caretakers</span>
