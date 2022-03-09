@@ -1,10 +1,4 @@
 <?php
-/*
- * Created on Tue Mar 08 2022
- *
- * Copyright (c) 2022 MartMbithi
- */
-
 //---------Password Reset Token generator -------------------------------------------//
 $length = 30;
 $tk = substr(str_shuffle("qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM1234567890"), 1, $length);

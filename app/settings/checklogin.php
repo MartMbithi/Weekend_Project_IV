@@ -1,9 +1,4 @@
 <?php
-/*
- * Created on Tue Mar 08 2022
- *
- * Copyright (c) 2022 MartMbithi
- */
 function check_login()
 {
 	if ((strlen($_SESSION['user_id']) == 0)) {

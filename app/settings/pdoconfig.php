@@ -1,10 +1,4 @@
 <?php
-/*
- * Created on Tue Mar 08 2022
- *
- * Copyright (c) 2022 MartMbithi
- */
-
 $DB_host = "localhost";
 $DB_user = "root";
 $DB_pass = "";
