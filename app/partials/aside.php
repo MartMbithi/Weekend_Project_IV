@@ -122,7 +122,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="expenses" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-alt"></i>
                         <p>
                             Expenses
@@ -131,7 +131,7 @@
                 </li>
                 <li class="nav-header text-warning">Reports</li>
                 <li class="nav-item">
-                    <a href="rent_collections" class="nav-link">
+                    <a href="reports_revenue" class="nav-link">
                         <i class="nav-icon fas fa-hand-holding-usd"></i>
                         <p>
                             Revenue Reports
@@ -139,7 +139,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="rent_collections" class="nav-link">
+                    <a href="reports_expenditures" class="nav-link">
                         <i class="nav-icon fas fa-hand-holding-usd"></i>
                         <p>
                             Expenditure Reports
@@ -147,7 +147,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="rent_collections" class="nav-link">
+                    <a href="reports_income_statements" class="nav-link">
                         <i class="nav-icon fas fa-hand-holding-usd"></i>
                         <p>
                             Income Statements
@@ -155,7 +155,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="rent_collections" class="nav-link">
+                    <a href="reports_properties" class="nav-link">
                         <i class="nav-icon fas fa-hand-holding-usd"></i>
                         <p>
                             Properties
@@ -163,7 +163,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="rent_collections" class="nav-link">
+                    <a href="reports_leases" class="nav-link">
                         <i class="nav-icon fas fa-hand-holding-usd"></i>
                         <p>
                             Leases
