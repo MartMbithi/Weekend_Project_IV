@@ -38,13 +38,12 @@ require_once('../app/partials/head.php');
                     <div class="row">
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box">
-                                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-cog"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Property Categories</span>
                                     <span class="info-box-number">
                                         10
-                                        <small>%</small>
                                     </span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -54,7 +53,7 @@ require_once('../app/partials/head.php');
                         <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Properties</span>
@@ -71,7 +70,7 @@ require_once('../app/partials/head.php');
 
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Leased Properties</span>
@@ -94,8 +93,70 @@ require_once('../app/partials/head.php');
                                 <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
                                 <div class="info-box-content">
-                                    <span class="info-box-text">Vacant Properties</span>
+                                    <span class="info-box-text">Staffs</span>
                                     <span class="info-box-number">2,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Landlords</span>
+                                    <span class="info-box-number">2,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Caretakers</span>
+                                    <span class="info-box-number">2,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Tenants</span>
+                                    <span class="info-box-number">2,000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Incomes -->
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Total Rent Collections</span>
+                                    <span class="info-box-number">Ksh 2,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-money-bill-alt"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Expenses</span>
+                                    <span class="info-box-number">Ksh 2,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-funnel-dollar"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Overall P & L </span>
+                                    <span class="info-box-number">Ksh 2000</span>
                                 </div>
                             </div>
                         </div>
