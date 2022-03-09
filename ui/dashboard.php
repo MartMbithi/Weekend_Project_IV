@@ -176,10 +176,8 @@ require_once('../app/partials/head.php');
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="chart">
-                                                <!-- Sales Chart Canvas -->
-                                                <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
+                                                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 100%; max-width: 100%;"></canvas>
                                             </div>
-                                            <!-- /.chart-responsive -->
                                         </div>
                                     </div>
                                     <!-- /.row -->
