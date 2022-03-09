@@ -1,7 +1,7 @@
 <?php
-/* Add Landlords */
-/* Update Landlords */
-/* Delete Landlords */
+/* Add Caretaker */
+/* Update Caretaker */
+/* Delete Caretaker */
 require_once('../app/partials/head.php');
 ?>
 
@@ -21,20 +21,20 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Landlords Management Module</h1>
+                            <h1 class="m-0 text-dark">Caretakers Management Module</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
                                 <li class="breadcrumb-item"><a href="">Users</a></li>
-                                <li class="breadcrumb-item active">Landlords</li>
+                                <li class="breadcrumb-item active">Caretakers</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
                 <hr>
                 <div class="text-right">
-                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Register New Landlord</button>
+                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Register New Caretaker</button>
                 </div>
                 <!-- Add Landlord Modal -->
                 <!-- Add Modal -->
@@ -43,7 +43,7 @@ require_once('../app/partials/head.php');
                         <div class="modal-content">
                             <div class="modal-header align-items-center">
                                 <div class="text-center">
-                                    <h6 class="mb-0 text-bold">Register New Landlord</h6>
+                                    <h6 class="mb-0 text-bold">Register New Caretaker</h6>
                                 </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -62,7 +62,7 @@ require_once('../app/partials/head.php');
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="">Access Rights</label>
-                                            <input type="text" readonly required name="user_access_level" value="landlord" class="form-control" id="exampleInputEmail1">
+                                            <input type="text" readonly required name="user_access_level" value="caretaker" class="form-control" id="exampleInputEmail1">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="">Phone Number</label>
@@ -78,7 +78,7 @@ require_once('../app/partials/head.php');
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button type="submit" name="add_landlord" class="btn btn-warning">Register Landlord</button>
+                                        <button type="submit" name="add_caretaker" class="btn btn-warning">Register Caretaker</button>
                                     </div>
                                 </form>
                             </div>
@@ -145,7 +145,7 @@ require_once('../app/partials/head.php');
                                                                         </div>
                                                                         <div class="form-group col-md-4">
                                                                             <label for="">Access Rights</label>
-                                                                            <input type="text" readonly required name="user_access_level" value="landlord" class="form-control" id="exampleInputEmail1">
+                                                                            <input type="text" readonly required name="user_access_level" value="caretaker" class="form-control" id="exampleInputEmail1">
                                                                         </div>
                                                                         <div class="form-group col-md-4">
                                                                             <label for="">Phone Number</label>
@@ -161,7 +161,7 @@ require_once('../app/partials/head.php');
                                                                         </div>
                                                                     </div>
                                                                     <div class="text-right">
-                                                                        <button type="submit" name="update_landlord" class="btn btn-warning">Update Landlord</button>
+                                                                        <button type="submit" name="update_caretaker" class="btn btn-warning">Update Caretaker</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
