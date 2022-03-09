@@ -8,3 +8,9 @@
 <script src="../assets/app_js/pages/dashboard2.js"></script>
 <!-- overlayScrollbars -->
 <script src="../assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- Tool Tips Init -->
+<script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
