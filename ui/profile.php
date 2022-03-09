@@ -80,11 +80,49 @@ require_once('../app/partials/head.php');
                                 <div class="card-body">
                                     <div class="tab-content">
                                         <div class="active tab-pane" id="activity">
-
+                                            <form method="post" enctype="multipart/form-data" role="form">
+                                                <div class="row">
+                                                    <div class="form-group col-md-8">
+                                                        <label for="">Name</label>
+                                                        <input type="text" required name="category_name" class="form-control" id="exampleInputEmail1">
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label for="">Code</label>
+                                                        <input type="text" readonly value="<?php echo $a; ?>" required name="category_code" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col-md-12">
+                                                        <label for="exampleInputPassword1">Description</label>
+                                                        <textarea required name="category_desc" rows="2" class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <button type="submit" name="add_category" class="btn btn-primary">Register Category</button>
+                                                </div>
+                                            </form>
                                         </div>
                                         <!-- /.tab-pane -->
                                         <div class="tab-pane" id="timeline">
-
+                                            <form method="post" enctype="multipart/form-data" role="form">
+                                                <div class="row">
+                                                    <div class="form-group col-md-12">
+                                                        <label for="">Old Password</label>
+                                                        <input type="password" required name="old_password" class="form-control" id="exampleInputEmail1">
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label for="">New Password</label>
+                                                        <input type="password" required name="new_password" class="form-control">
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label for="">Confirm New Password</label>
+                                                        <input type="password" required name="confirm_new_password" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <button type="submit" name="update_password" class="btn btn-primary">Update Password</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                     <!-- /.tab-content -->
