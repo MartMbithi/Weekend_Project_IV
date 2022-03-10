@@ -20,21 +20,21 @@ require_once('../app/partials/head.php');
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Tenants Management Module</h1>
+                        <div class="col-sm-7">
+                            <h1 class="m-0 text-dark">Property Management Module - Assign Caretaker</h1>
                         </div><!-- /.col -->
-                        <div class="col-sm-6">
+                        <div class="col-sm-5">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                                <li class="breadcrumb-item"><a href="">Users</a></li>
-                                <li class="breadcrumb-item active">Tenants</li>
+                                <li class="breadcrumb-item"><a href="">Properties</a></li>
+                                <li class="breadcrumb-item active">Assign Caretaker</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
                 <hr>
                 <div class="text-right">
-                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Register New Tenant</button>
+                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Assign Property Caretaker</button>
                 </div>
                 <!-- Add Landlord Modal -->
                 <!-- Add Modal -->
@@ -43,7 +43,7 @@ require_once('../app/partials/head.php');
                         <div class="modal-content">
                             <div class="modal-header align-items-center">
                                 <div class="text-center">
-                                    <h6 class="mb-0 text-bold">Register New Tenant</h6>
+                                    <h6 class="mb-0 text-bold"> Assign Property Caretaker</h6>
                                 </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -52,33 +52,21 @@ require_once('../app/partials/head.php');
                             <div class="modal-body">
                                 <form method="post" enctype="multipart/form-data" role="form">
                                     <div class="row">
-                                        <div class="form-group col-md-12">
-                                            <label for="">Full Name</label>
-                                            <input type="text" required name="user_name" class="form-control" id="exampleInputEmail1">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="">National ID Number</label>
-                                            <input type="text" required name="user_idno" class="form-control" id="exampleInputEmail1">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="">Access Rights</label>
-                                            <input type="text" readonly required name="user_access_level" value="tenant" class="form-control" id="exampleInputEmail1">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="">Phone Number</label>
-                                            <input type="text" required name="user_phoneno" class="form-control" id="exampleInputEmail1">
+                                        <div class="form-group col-md-6">
+                                            <label for="">Caretaker</label>
+                                            <select class="form-control basic" name="assignment_caretaker_id">
+                                                <option>Select Category</option>
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="">Email Address</label>
-                                            <input type="text" name="user_email" class="form-control" id="exampleInputEmail1">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="">Address</label>
-                                            <input type="text" name="user_address" class="form-control" id="exampleInputEmail1">
+                                            <label for="">Property Details</label>
+                                            <select class="form-control basic" name="assignment_property_id">
+                                                <option>Select Category</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button type="submit" name="register_tenant" class="btn btn-warning">Register Tenant</button>
+                                        <button type="submit" name="assign_property" class="btn btn-warning">Assign Property</button>
                                     </div>
                                 </form>
                             </div>
@@ -100,11 +88,9 @@ require_once('../app/partials/head.php');
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Names</th>
-                                                <th>ID No</th>
-                                                <th>Email</th>
-                                                <th>Phone No</th>
-                                                <th>Address</th>
+                                                <th>Caretaker Details</th>
+                                                <th>Property Details</th>
+                                                <th>Date Assigned</th>
                                                 <th>Manage</th>
                                             </tr>
                                         </thead>
@@ -114,8 +100,6 @@ require_once('../app/partials/head.php');
                                                 <td>Name</td>
                                                 <td>IDNO</td>
                                                 <td>Email</td>
-                                                <td>Phone</td>
-                                                <td>Address</td>
                                                 <td>
                                                     <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
                                                     <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
@@ -126,14 +110,32 @@ require_once('../app/partials/head.php');
                                                         <div class="modal-content">
                                                             <div class="modal-header align-items-center">
                                                                 <div class="text-bold">
-                                                                    <h6 class="text-bold">Update</h6>
+                                                                    <h6 class="text-bold">Update </h6>
                                                                 </div>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-
+                                                                <form method="post" enctype="multipart/form-data" role="form">
+                                                                    <div class="row">
+                                                                        <div class="form-group col-md-6">
+                                                                            <label for="">Caretaker</label>
+                                                                            <select class="form-control basic" name="assignment_caretaker_id">
+                                                                                <option>Select Category</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group col-md-6">
+                                                                            <label for="">Property Details</label>
+                                                                            <select class="form-control basic" name="assignment_property_id">
+                                                                                <option>Select Category</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="text-right">
+                                                                        <button type="submit" name="update_assign" class="btn btn-warning">Update</button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -157,7 +159,7 @@ require_once('../app/partials/head.php');
                                                                     <!-- Hide This -->
                                                                     <input type="hidden" name="user_id" value="">
                                                                     <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                    <input type="submit" name="delete_staff" value="Delete" class="text-center btn btn-danger">
+                                                                    <input type="submit" name="delete_assign" value="Delete" class="text-center btn btn-danger">
                                                                 </div>
                                                             </form>
                                                         </div>
