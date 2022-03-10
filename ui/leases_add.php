@@ -50,7 +50,7 @@ require_once('../app/partials/head.php');
                                                     <option>Select Property</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-md-12">
+                                            <div class="form-group col-md-8">
                                                 <label for="">Tenant Details</label>
                                                 <select class="form-control basic" name="lease_tenant_id">
                                                     <option>Select Tenant</option>
@@ -73,19 +73,9 @@ require_once('../app/partials/head.php');
                                                     <option>12</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="">Property Landlord / Manager</label>
-                                                <select class="form-control basic" name="property_landlord_id">
-                                                    <option>Select Landlord / Manager</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label for="">Property Address</label>
-                                                <textarea type="text" name="property_address" class="form-control"></textarea>
-                                            </div>
                                         </div>
                                         <div class="text-right">
-                                            <button type="submit" name="add_property" class="btn btn-warning">Add Property</button>
+                                            <button type="submit" name="add_lease" class="btn btn-warning">Lease Property</button>
                                         </div>
                                     </form>
                                 </div>
