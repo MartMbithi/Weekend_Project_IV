@@ -46,16 +46,22 @@ require_once('../app/partials/head.php');
                                         <div class="row">
                                             <div class="form-group col-md-4">
                                                 <label for="">Property Code</label>
-                                                <input type="text" required name="property_code" class="form-control">
+                                                <input type="text" readonly required name="property_code" class="form-control">
                                             </div>
-                                            <div class="form-group col-md-4">
+                                            <div class="form-group col-md-8">
                                                 <label for="">Property Name</label>
                                                 <input type="text" required name="property_name" class="form-control">
                                             </div>
-                                            <div class="form-group col-md-4">
+                                            <div class="form-group col-md-6">
                                                 <label for="">Property Category</label>
                                                 <select class="form-control basic" name="property_category_id">
                                                     <option>Select Category</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Property Landlord / Manager</label>
+                                                <select class="form-control basic" name="property_landlord_id">
+                                                    <option>Select Landlord / Manager</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-12">
