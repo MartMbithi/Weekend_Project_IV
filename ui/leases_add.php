@@ -54,7 +54,7 @@ require_once('../app/partials/head.php');
                                                 <label for="">Tenant Details</label>
                                                 <select class="form-control basic" name="lease_tenant_id">
                                                     <option>Select Tenant</option>
-                                                </select>
+                                                </select> 
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Lease Duration (Months)</label>
