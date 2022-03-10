@@ -20,14 +20,14 @@ require_once('../app/partials/head.php');
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Property Management Module</h1>
+                        <div class="col-sm-8">
+                            <h1 class="m-0 text-dark">Property Leases Module - Manage Leases</h1>
                         </div><!-- /.col -->
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                                <li class="breadcrumb-item"><a href="">Properties</a></li>
-                                <li class="breadcrumb-item active">Manage</li>
+                                <li class="breadcrumb-item"><a href="">Property Leases</a></li>
+                                <li class="breadcrumb-item active">Manage Leases</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -47,24 +47,18 @@ require_once('../app/partials/head.php');
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Code</th>
-                                                <th>Name</th>
-                                                <th>Category</th>
-                                                <th>Property Landlord</th>
-                                                <th>Assigned Caretaker</th>
-                                                <th>Location</th>
+                                                <th>Property Details</th>
+                                                <th>Tenant Details</th>
+                                                <th>Lease Agreement Details</th>
                                                 <th>Manage</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
                                             <tr>
-                                                <td>Code</td>
-                                                <td>Name</td>
-                                                <td>Code</td>
-                                                <td>Code</td>
-                                                <td>Code</td>
-                                                <td>5</td>
+                                                <td>Property</td>
+                                                <td>Tenant</td>
+                                                <td>Ageement</td>
                                                 <td>
                                                     <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
                                                     <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
@@ -84,33 +78,32 @@ require_once('../app/partials/head.php');
                                                             <div class="modal-body">
                                                                 <form method="post" enctype="multipart/form-data" role="form">
                                                                     <div class="row">
+                                                                        <div class="form-group col-md-10">
+                                                                            <label for="">Property Details</label>
+                                                                            <select class="form-control basic" name="lease_property_id">
+                                                                                <option>Select Property</option>
+                                                                            </select>
+                                                                        </div>
                                                                         <div class="form-group col-md-4">
-                                                                            <label for="">Property Code</label>
-                                                                            <input type="text" readonly required name="property_code" class="form-control">
-                                                                        </div>
-                                                                        <div class="form-group col-md-8">
-                                                                            <label for="">Property Name</label>
-                                                                            <input type="text" required name="property_name" class="form-control">
-                                                                        </div>
-                                                                        <div class="form-group col-md-6">
-                                                                            <label for="">Property Category</label>
-                                                                            <select class="form-control basic" name="property_category_id">
-                                                                                <option>Select Category</option>
+                                                                            <label for="">Lease Duration (Months)</label>
+                                                                            <select class="form-control basic" name="lease_duration">
+                                                                                <option>1</option>
+                                                                                <option>2</option>
+                                                                                <option>3</option>
+                                                                                <option>4</option>
+                                                                                <option>5</option>
+                                                                                <option>6</option>
+                                                                                <option>7</option>
+                                                                                <option>8</option>
+                                                                                <option>9</option>
+                                                                                <option>10</option>
+                                                                                <option>11</option>
+                                                                                <option>12</option>
                                                                             </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-6">
-                                                                            <label for="">Property Landlord / Manager</label>
-                                                                            <select class="form-control basic" name="property_landlord_id">
-                                                                                <option>Select Landlord / Manager</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-12">
-                                                                            <label for="">Property Address</label>
-                                                                            <textarea type="text" name="property_address" class="form-control"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="text-right">
-                                                                        <button type="submit" name="update_property" class="btn btn-warning">Update Property</button>
+                                                                        <button type="submit" name="update_lease" class="btn btn-warning">Lease Property</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -136,7 +129,7 @@ require_once('../app/partials/head.php');
                                                                     <!-- Hide This -->
                                                                     <input type="hidden" name="property_id" value="">
                                                                     <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                    <input type="submit" name="delete_property" value="Delete" class="text-center btn btn-danger">
+                                                                    <input type="submit" name="delete_leasegi" value="Delete" class="text-center btn btn-danger">
                                                                 </div>
                                                             </form>
                                                         </div>
