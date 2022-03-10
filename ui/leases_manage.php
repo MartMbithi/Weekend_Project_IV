@@ -61,6 +61,7 @@ require_once('../app/partials/head.php');
                                                 <td>Ageement</td>
                                                 <td>
                                                     <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                                    <a data-toggle="modal" href="#vacate_" class="badge badge-warning"><i class="fas fa-ban"></i> Evict</a>
                                                     <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                                 </td>
                                                 <!-- Update Modal -->
@@ -78,13 +79,13 @@ require_once('../app/partials/head.php');
                                                             <div class="modal-body">
                                                                 <form method="post" enctype="multipart/form-data" role="form">
                                                                     <div class="row">
-                                                                        <div class="form-group col-md-10">
+                                                                        <div class="form-group col-md-9">
                                                                             <label for="">Property Details</label>
                                                                             <select class="form-control basic" name="lease_property_id">
                                                                                 <option>Select Property</option>
                                                                             </select>
                                                                         </div>
-                                                                        <div class="form-group col-md-4">
+                                                                        <div class="form-group col-md-3">
                                                                             <label for="">Lease Duration (Months)</label>
                                                                             <select class="form-control basic" name="lease_duration">
                                                                                 <option>1</option>
@@ -112,6 +113,29 @@ require_once('../app/partials/head.php');
                                                 </div>
                                                 <!-- End Modal -->
 
+                                                <!-- Vacate Modal -->
+                                                <div class="modal fade" id="vacate_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">CONFIRM EVICTION</h5>
+                                                                <button type="button" class="close" data-dismiss="modal">
+                                                                    <span>&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form method="POST">
+                                                                <div class="modal-body text-center text-danger">
+                                                                    <h4>Evict Tenant?</h4>
+                                                                    <br>
+                                                                    <!-- Hide This -->
+                                                                    <input type="hidden" name="property_id" value="">
+                                                                    <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                    <input type="submit" name="evict" value="Yes" class="text-center btn btn-danger">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <!-- Delete Modal -->
                                                 <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -129,7 +153,7 @@ require_once('../app/partials/head.php');
                                                                     <!-- Hide This -->
                                                                     <input type="hidden" name="property_id" value="">
                                                                     <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                    <input type="submit" name="delete_leasegi" value="Delete" class="text-center btn btn-danger">
+                                                                    <input type="submit" name="delete_lease" value="Delete" class="text-center btn btn-danger">
                                                                 </div>
                                                             </form>
                                                         </div>
