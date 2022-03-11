@@ -1,5 +1,35 @@
 <?php
-/* Handle Password Confirmations */
+session_start();
+require_once '../app/settings/config.php';
+require_once '../app/settings/codeGen.php';
+/* Handle Password Reset */
+if (isset($_POST['reset_password'])) {
+    $user_email = $_SESSION['user_email'];
+    $new_password = sha1(md5($_POST['new_password']));
+    $confirm_password = sha1(md5($_POST['confirm_password']));
+
+    /* Check If They Match */
+    if ($new_password != $confirm_password) {
+        $err = "Passwords Does Not Match";
+    } else {
+        $sql = "UPDATE users SET user_password =? WHERE user_email = ?";
+        $prepare = $mysqli->prepare($sql);
+        $bind  = $prepare->bind_param(
+            'ss',
+            $confirm_password,
+            $user_email
+        );
+        $prepare->execute();
+        if ($prepare) {
+            /* Pass This Alert Via Session */
+            $_SESSION['success'] = 'Your Password Has Been Reset Proceed To Login';
+            header('Location: login');
+            exit;
+        } else {
+            $err = "Failed!, Please Try Again";
+        }
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
@@ -17,7 +47,7 @@ require_once('../app/partials/head.php');
                         <input type="password" name="new_password" required class="form-control" placeholder="New Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-lock text-primary"></span>
                             </div>
                         </div>
                     </div>
@@ -25,14 +55,14 @@ require_once('../app/partials/head.php');
                         <input type="password" name="confirm_password" required class="form-control" placeholder="Confirm Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-lock text-primary"></span>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
-                            <button type="submit" name="confirm_password" class="btn btn-primary btn-block">Confirm Password</button>
+                            <button type="submit" name="reset_password" class="btn btn-primary btn-block">Confirm Password</button>
                         </div>
                         <!-- /.col -->
                     </div>

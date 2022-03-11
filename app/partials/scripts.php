@@ -8,6 +8,8 @@
 <script src="../assets/app_js/pages/dashboard2.js"></script>
 <!-- overlayScrollbars -->
 <script src="../assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- Toastr -->
+<script src="../assets/plugins/toastr/toastr.min.js"></script>
 <!-- Chart Js -->
 <script src="../assets/plugins/chart.js/Chart.min.js"></script>
 <!-- Data Tables CDN -->
@@ -83,3 +85,22 @@
         })
     })
 </script>
+<!-- Init Sweet Alerts -->
+<?php if (isset($success)) { ?>
+    <!-- Pop Success Alert -->
+    <script>
+        toastr.success('<?php echo $success; ?>')
+    </script>
+
+<?php }
+if (isset($err)) { ?>
+    <script>
+        toastr.error('<?php echo $err; ?>')
+    </script>
+<?php }
+if (isset($info)) { ?>
+    <script>
+        toastr.error('<?php echo $info; ?>')
+    </script>
+<?php }
+?>

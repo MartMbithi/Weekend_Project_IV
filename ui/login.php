@@ -1,5 +1,36 @@
 <?php
-/* Handle Login */
+session_start();
+require_once '../app/settings/config.php';
+
+/* Handle Login  */
+if (isset($_POST['login'])) {
+    $user_email = $_POST['user_email'];
+    $user_password = sha1(md5($_POST['user_password']));
+
+    $stmt = $mysqli->prepare("SELECT user_name, user_password, user_email, user_access_level, user_id FROM users WHERE user_email =? AND user_password =?");
+    $stmt->bind_param('ss', $user_email, $user_password);
+    $stmt->execute();
+    $stmt->bind_result($user_name, $user_password, $user_email, $user_access_level, $user_id);
+    $rs = $stmt->fetch();
+
+    /* Session Variables */
+    $_SESSION['user_id'] = $user_id;
+    $_SESSION['user_access_level'] = $user_access_level;
+    $_SESSION['user_name'] = $user_name;
+
+    if ($rs && $user_access_level == "admin") {
+        /* Pass This Alert Via Session */
+        $_SESSION['success'] = 'You Have Successfully Logged In To Administrator Dashboard';
+        header('Location: dashboard');
+        exit;
+    } elseif ($rs && $user_access_level == "tenant") {
+        $_SESSION['success'] = 'You Have Successfully Logged In To Tenant Dashboard';
+        header('Location: my_dashboard');
+        exit;
+    } else {
+        $err = "Access Denied Please Check Your Email Or Password";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
@@ -17,8 +48,8 @@ require_once('../app/partials/head.php');
                     <div class="input-group mb-3">
                         <input type="email" name="user_email" required class="form-control" placeholder="Email">
                         <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                            <div class="input-group-text ">
+                                <span class="fas fa-envelope text-primary"></span>
                             </div>
                         </div>
                     </div>
@@ -26,7 +57,7 @@ require_once('../app/partials/head.php');
                         <input type="password" name="user_password" required class="form-control" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-lock text-primary"></span>
                             </div>
                         </div>
                     </div>
