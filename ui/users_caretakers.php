@@ -3,7 +3,7 @@ session_start();
 require_once('../app/settings/config.php');
 require_once('../app/settings/checklogin.php');
 
-/* Add Caretakers */
+/* Add  */
 if (isset($_POST['add_caretaker'])) {
     $user_name = $_POST['user_name'];
     $user_email = $_POST['user_email'];
@@ -35,7 +35,7 @@ if (isset($_POST['add_caretaker'])) {
     }
 }
 
-/* Update Landlords */
+/* Update  */
 if (isset($_POST['update_caretaker'])) {
     $user_name = $_POST['user_name'];
     $user_email = $_POST['user_email'];
