@@ -69,12 +69,12 @@ if (isset($_POST['delete_landlord'])) {
     $user_id = $_POST['user_id'];
 
     /* Persist */
-    $sql = "DELETE FROM uses WHERES user_id =?";
+    $sql = "DELETE FROM users WHERE user_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param('s', $user_id);
     $prepare->execute();
     if ($prepare) {
-        $success = "Landlord Account Deleted";
+        $info = "Landlord Account Deleted";
     } else {
         $err = "Failed!, Please Try  Again";
     }
