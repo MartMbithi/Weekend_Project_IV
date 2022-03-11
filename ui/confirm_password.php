@@ -3,7 +3,7 @@ session_start();
 require_once '../app/settings/config.php';
 require_once '../app/settings/codeGen.php';
 /* Handle Password Reset */
-if (isset($_POST['reset_passwordg'])) {
+if (isset($_POST['reset_password'])) {
     $user_email = $_SESSION['user_email'];
     $new_password = sha1(md5($_POST['new_password']));
     $confirm_password = sha1(md5($_POST['confirm_password']));
@@ -22,7 +22,7 @@ if (isset($_POST['reset_passwordg'])) {
         $prepare->execute();
         if ($prepare) {
             /* Pass This Alert Via Session */
-            $_SESSION['success'] = 'Your Account Has Been Created, Proceed To Login';
+            $_SESSION['success'] = 'Your Password Has Been Reset Proceed To Login';
             header('Location: login');
             exit;
         } else {
@@ -47,7 +47,7 @@ require_once('../app/partials/head.php');
                         <input type="password" name="new_password" required class="form-control" placeholder="New Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-lock text-primary"></span>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@ require_once('../app/partials/head.php');
                         <input type="password" name="confirm_password" required class="form-control" placeholder="Confirm Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-lock text-primary"></span>
                             </div>
                         </div>
                     </div>
