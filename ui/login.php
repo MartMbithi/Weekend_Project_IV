@@ -20,11 +20,11 @@ if (isset($_POST['login'])) {
 
     if ($rs && $user_access_level == "admin") {
         /* Pass This Alert Via Session */
-        $_SESSION['success'] = 'Login Successfully';
+        $_SESSION['success'] = 'You Have Successfully Logged in to Administrator Dashboard';
         header('Location: dashboard');
         exit;
     } elseif ($rs && $user_access_level == "tenant") {
-        $_SESSION['success'] = 'Login Successfully';
+        $_SESSION['success'] = 'You Have Successfully Logged in to Tenant Dashboard';
         header('Location: my_dashboard');
         exit;
     } else {
