@@ -22,6 +22,7 @@ if (isset($_POST['add_landlord'])) {
         $user_name,
         $user_email,
         $user_password,
+        $user_idno,
         $user_phoneno,
         $user_address,
         $user_access_level
@@ -94,8 +95,8 @@ require_once('../app/partials/head.php');
                                             <input type="text" required name="user_idno" class="form-control" id="exampleInputEmail1">
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="">Access Rights</label>
-                                            <input type="text" readonly required name="user_access_level" value="landlord" class="form-control" id="exampleInputEmail1">
+                                            <label for="">Password</label>
+                                            <input type="password" required name="user_password" class="form-control" id="exampleInputEmail1">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="">Phone Number</label>
