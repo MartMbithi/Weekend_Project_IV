@@ -19,11 +19,16 @@ if (isset($_POST['login'])) {
     $_SESSION['user_name'] = $user_name;
 
     if ($rs && $user_access_level == "admin") {
-        header("location:dashboard");
+        /* Pass This Alert Via Session */
+        $_SESSION['success'] = 'Login Successfully';
+        header('Location: dashboard');
+        exit;
     } elseif ($rs && $user_access_level == "tenant") {
-        header("location:my_dashboard");
+        $_SESSION['success'] = 'Login Successfully';
+        header('Location: my_dashboard');
+        exit;
     } else {
-        $err = "Access Denied Please Check Your National ID Number Or Password";
+        $err = "Access Denied Please Check Your Email Or Password";
     }
 }
 require_once('../app/partials/head.php');
