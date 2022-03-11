@@ -36,7 +36,7 @@ if (isset($_POST['add_caretaker'])) {
 }
 
 /* Update Landlords */
-if (isset($_POST['update_caretakers'])) {
+if (isset($_POST['update_caretaker'])) {
     $user_name = $_POST['user_name'];
     $user_email = $_POST['user_email'];
     $user_idno = $_POST['user_idno'];
@@ -187,7 +187,7 @@ require_once('../app/partials/head.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ret = "SELECT * FROM users WHERE user_access_level = 'landlord' ";
+                                            $ret = "SELECT * FROM users WHERE user_access_level = 'caretaker' ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
@@ -204,7 +204,7 @@ require_once('../app/partials/head.php');
                                                         <a data-toggle="modal" href="#delete_<?php echo $caretaker->user_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                                     </td>
                                                     <!-- Update Modal -->
-                                                    <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal fade fixed-right" id="update_<?php echo $caretaker->user_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog  modal-xl" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header align-items-center">
