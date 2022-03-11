@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once '../app/settings/config.php';
-require_once '../app/settings/codeGen.php';
 
 /* Handle Sign In */
 if (isset($_POST['create_account'])) {
@@ -11,14 +10,15 @@ if (isset($_POST['create_account'])) {
     $new_password = sha1(md5($_POST['new_password']));
     $confirm_password = sha1(md5($_POST['confirm_password']));
     $user_phoneno = $_POST['user_phoneno'];
+    $user_access_level = $_GET['access'];
 
     /* Check If Passwords Match */
     if ($new_password != $confirm_password) {
         $err = "Passwords Does Not Match";
     } else {
         /* Avoid Data Replication Exists */
-        $sql = "SELECT * FROM  users  
-    WHERE user_idno = '$user_idno' || user_phoneno = '$user_phoneno' || user_email = '$user_email'";
+        $sql = "SELECT * FROM  users WHERE user_idno = '$user_idno' 
+        || user_phoneno = '$user_phoneno' || user_email = '$user_email'";
         $res = mysqli_query($mysqli, $sql);
         if (mysqli_num_rows($res) > 0) {
             $users = mysqli_fetch_assoc($res);
@@ -32,15 +32,14 @@ if (isset($_POST['create_account'])) {
             }
         } else {
             /* Insert Details */
-            $sql = "INSERT INTO users (user_name, user_idno, user_email, user_password, user_phoneno, user_access_level)
-            VALUES(?,?,?,?,?,?)";
+            $sql = "INSERT INTO users(user_name, user_idno, user_email, user_password, user_phoneno, user_access_level) VALUES(?,?,?,?,?,?)";
             $prepare = $mysqli->prepare($sql);
             $bind = $prepare->bind_param(
                 'ssssss',
                 $user_name,
                 $user_idno,
                 $user_email,
-                $user_password,
+                $confirm_password,
                 $user_phoneno,
                 $user_access_level
             );
@@ -48,7 +47,7 @@ if (isset($_POST['create_account'])) {
             if ($prepare) {
                 /* Pass This Alert Via Session */
                 $_SESSION['success'] = 'Your Account Has Been Created, Proceed To Login';
-                header('Location: index');
+                header('Location: login');
                 exit;
             } else {
                 $err = "Failed!, Please Try Again";
@@ -78,7 +77,7 @@ require_once('../app/partials/head.php');
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" required name="user_phone" class="form-control" placeholder="Phone Number">
+                        <input type="text" required name="user_phoneno" class="form-control" placeholder="Phone Number">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-phone"></span>
@@ -94,7 +93,7 @@ require_once('../app/partials/head.php');
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="email" required name="user_idno" class="form-control" placeholder="National ID Number">
+                        <input type="text" required name="user_idno" class="form-control" placeholder="National ID Number">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user-tag"></span>
@@ -127,7 +126,7 @@ require_once('../app/partials/head.php');
                             </div>
                         </div>
                         <div class="col-4">
-                            <button type="submit" name="register" class="btn btn-primary btn-block">Register</button>
+                            <button type="submit" name="create_account" class="btn btn-primary btn-block">Register</button>
                         </div>
                     </div>
                 </form>
