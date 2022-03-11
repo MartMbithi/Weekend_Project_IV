@@ -139,7 +139,7 @@ require_once('../app/partials/head.php');
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="">Password</label>
-                                            <input type="text" required name="user_password" class="form-control" id="exampleInputEmail1">
+                                            <input type="password" required name="user_password" class="form-control" id="exampleInputEmail1">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="">Phone Number</label>
@@ -155,7 +155,7 @@ require_once('../app/partials/head.php');
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button type="submit" name="register_tenant" class="btn btn-warning">Register Tenant</button>
+                                        <button type="submit" name="add_tenant" class="btn btn-warning">Register Tenant</button>
                                     </div>
                                 </form>
                             </div>
@@ -187,7 +187,7 @@ require_once('../app/partials/head.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ret = "SELECT * FROM users WHERE user_access_level = 'tenants' ";
+                                            $ret = "SELECT * FROM users WHERE user_access_level = 'tenant' ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
