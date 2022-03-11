@@ -36,7 +36,7 @@ if (isset($_POST['add_staff'])) {
 }
 
 /* Update  */
-if (isset($_POST['udpate_staff'])) {
+if (isset($_POST['update_staff'])) {
     $user_name = $_POST['user_name'];
     $user_email = $_POST['user_email'];
     $user_idno = $_POST['user_idno'];
@@ -187,7 +187,7 @@ require_once('../app/partials/head.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ret = "SELECT * FROM users WHERE user_access_level = 'staffs' ";
+                                            $ret = "SELECT * FROM users WHERE user_access_level = 'staff' ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
@@ -204,7 +204,7 @@ require_once('../app/partials/head.php');
                                                         <a data-toggle="modal" href="#delete_<?php echo $staffs->user_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                                     </td>
                                                     <!-- Update Modal -->
-                                                    <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal fade fixed-right" id="update_<?php echo $staffs->user_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog  modal-xl" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header align-items-center">
@@ -220,7 +220,7 @@ require_once('../app/partials/head.php');
                                                                         <div class="row">
                                                                             <div class="form-group col-md-12">
                                                                                 <label for="">Full Name</label>
-                                                                                <input type="text" required name="user_id" value="<?php echo $staffs->user_id; ?>" class="form-control" id="exampleInputEmail1">
+                                                                                <input type="hidden" required name="user_id" value="<?php echo $staffs->user_id; ?>" class="form-control" id="exampleInputEmail1">
                                                                                 <input type="text" required name="user_name" value="<?php echo $staffs->user_name; ?>" class="form-control" id="exampleInputEmail1">
                                                                             </div>
                                                                             <div class="form-group col-md-4">
