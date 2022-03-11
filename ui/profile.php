@@ -1,4 +1,36 @@
 <?php
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/checklogin.php');
+
+/* Update Profile */
+if (isset($_POST['update_profile'])) {
+    $user_id = $_SESSION['user_id'];
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_phoneno = $_POST['user_phoneno'];
+    $user_idno = $_POST['user_idno'];
+    $user_address = $_POST['user_address'];
+
+    /* Persist */
+    $sql = "UPDATE users SET user_name =?, user_email =?, user_phoneno =?, user_idno =?, user_address =? WHERE user_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssssss',
+        $user_name,
+        $user_email,
+        $user_phoneno,
+        $user_idno,
+        $user_address
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "$user_name Account Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+/* Change Password */
 /* Head Partial */
 require_once('../app/partials/head.php');
 ?>
@@ -100,7 +132,7 @@ require_once('../app/partials/head.php');
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label for="">Address</label>
-                                                        <textarea type="text" required name="user_adr" rows="2" class="form-control" id="exampleInputEmail1"></textarea>
+                                                        <textarea type="text" required name="user_address" rows="2" class="form-control" id="exampleInputEmail1"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
