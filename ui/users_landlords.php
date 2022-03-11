@@ -1,5 +1,38 @@
 <?php
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/checklogin.php');
+
 /* Add Landlords */
+if (isset($_POST['add_landlord'])) {
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_password = sha1(md5($_POST['user_password']));
+    $user_idno = $_POST['user_idno'];
+    $user_phoneno = $_POST['user_phoneno'];
+    $user_address = $_POST['user_address'];
+    $user_access_level = 'landlord';
+
+    /* Persist */
+    $sql = "INSERT INTO users (user_name, user_email, user_password, user_idno, user_phoneno, user_address, user_access_level)
+    VALUES(?,?,?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssssss',
+        $user_name,
+        $user_email,
+        $user_password,
+        $user_phoneno,
+        $user_address,
+        $user_access_level
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "$user_name Account Created";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 /* Update Landlords */
 /* Delete Landlords */
 require_once('../app/partials/head.php');
