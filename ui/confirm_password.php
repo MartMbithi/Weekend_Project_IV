@@ -1,5 +1,35 @@
 <?php
-/* Handle Password Confirmations */
+session_start();
+require_once '../app/settings/config.php';
+require_once '../app/settings/codeGen.php';
+/* Handle Password Reset */
+if (isset($_POST['reset_passwordg'])) {
+    $user_email = $_SESSION['user_email'];
+    $new_password = sha1(md5($_POST['new_password']));
+    $confirm_password = sha1(md5($_POST['confirm_password']));
+
+    /* Check If They Match */
+    if ($new_password != $confirm_password) {
+        $err = "Passwords Does Not Match";
+    } else {
+        $sql = "UPDATE users SET user_password =? WHERE user_email = ?";
+        $prepare = $mysqli->prepare($sql);
+        $bind  = $prepare->bind_param(
+            'ss',
+            $confirm_password,
+            $user_email
+        );
+        $prepare->execute();
+        if ($prepare) {
+            /* Pass This Alert Via Session */
+            $_SESSION['success'] = 'Your Account Has Been Created, Proceed To Login';
+            header('Location: login');
+            exit;
+        } else {
+            $err = "Failed!, Please Try Again";
+        }
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
@@ -32,7 +62,7 @@ require_once('../app/partials/head.php');
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
-                            <button type="submit" name="confirm_password" class="btn btn-primary btn-block">Confirm Password</button>
+                            <button type="submit" name="reset_password" class="btn btn-primary btn-block">Confirm Password</button>
                         </div>
                         <!-- /.col -->
                     </div>
