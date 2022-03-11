@@ -17,8 +17,8 @@ require_once('../app/partials/head.php');
                     <div class="input-group mb-3">
                         <input type="email" name="user_email" required class="form-control" placeholder="Email">
                         <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                            <div class="input-group-text ">
+                                <span class="fas fa-envelope text-primary"></span>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@ require_once('../app/partials/head.php');
                         <input type="password" name="user_password" required class="form-control" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-lock text-primary"></span>
                             </div>
                         </div>
                     </div>

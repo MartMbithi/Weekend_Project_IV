@@ -72,7 +72,7 @@ require_once('../app/partials/head.php');
                         <input type="text" required name="user_name" class="form-control" placeholder="Full Name">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                                <span class="fas fa-user text-primary"></span>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@ require_once('../app/partials/head.php');
                         <input type="text" required name="user_phoneno" class="form-control" placeholder="Phone Number">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-phone"></span>
+                                <span class="fas fa-phone text-primary"></span>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@ require_once('../app/partials/head.php');
                         <input type="email" required name="user_email" class="form-control" placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <span class="fas fa-envelope text-primary"></span>
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@ require_once('../app/partials/head.php');
                         <input type="text" required name="user_idno" class="form-control" placeholder="National ID Number">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-user-tag"></span>
+                                <span class="fas fa-user-tag text-primary"></span>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@ require_once('../app/partials/head.php');
                         <input type="password" required name="new_password" class="form-control" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-lock text-primary text-primary"></span>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@ require_once('../app/partials/head.php');
                         <input type="password" required name="confirm_password" class="form-control" placeholder="Confirm Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-lock text-primary"></span>
                             </div>
                         </div>
                     </div>
