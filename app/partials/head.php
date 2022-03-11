@@ -23,3 +23,10 @@
     <!-- Toastr -->
     <link rel="stylesheet" href="../assets/plugins/toastr/toastr.min.css">
 </head>
+<?php
+/* Alert Sesion Via Alerts */
+if (isset($_SESSION['success'])) {
+    $success = $_SESSION['success'];
+    unset($_SESSION['success']);
+}
+?>
