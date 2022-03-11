@@ -34,7 +34,35 @@ if (isset($_POST['add_landlord'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
 /* Update Landlords */
+if (isset($_POST['update_landlord'])) {
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_idno = $_POST['user_idno'];
+    $user_phoneno = $_POST['user_phoneno'];
+    $user_address = $_POST['user_address'];
+    $user_id = $_POST['user_id'];
+
+    /* Persist */
+    $sql = "UPDATE  users  SET user_name =?, user_email =?, user_idno =?, user_phoneno =?, user_address =? WHERE user_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssssss',
+        $user_name,
+        $user_email,
+        $user_idno,
+        $user_phoneno,
+        $user_address,
+        $user_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "$user_name Account Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 /* Delete Landlords */
 require_once('../app/partials/head.php');
 ?>
@@ -178,6 +206,7 @@ require_once('../app/partials/head.php');
                                                                             <div class="form-group col-md-12">
                                                                                 <label for="">Full Name</label>
                                                                                 <input type="text" required name="user_name" value="<?php echo $landlords->user_name; ?>" class="form-control" id="exampleInputEmail1">
+                                                                                <input type="hidden" required name="user_id" value="<?php echo $landlords->user_id; ?>" class="form-control" id="exampleInputEmail1">
                                                                             </div>
                                                                             <div class="form-group col-md-4">
                                                                                 <label for="">National ID Number</label>
