@@ -1,7 +1,84 @@
 <?php
-/* Add Staff */
-/* Update Staff */
-/* Delete Staff */
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/checklogin.php');
+
+/* Add  */
+if (isset($_POST['add_staff'])) {
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_password = sha1(md5($_POST['user_password']));
+    $user_idno = $_POST['user_idno'];
+    $user_phoneno = $_POST['user_phoneno'];
+    $user_address = $_POST['user_address'];
+    $user_access_level = 'staff';
+
+    /* Persist */
+    $sql = "INSERT INTO users (user_name, user_email, user_password, user_idno, user_phoneno, user_address, user_access_level)
+    VALUES(?,?,?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssssss',
+        $user_name,
+        $user_email,
+        $user_password,
+        $user_idno,
+        $user_phoneno,
+        $user_address,
+        $user_access_level
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "$user_name Account Created";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
+/* Update  */
+if (isset($_POST['udpate_staff'])) {
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_idno = $_POST['user_idno'];
+    $user_phoneno = $_POST['user_phoneno'];
+    $user_address = $_POST['user_address'];
+    $user_id = $_POST['user_id'];
+
+    /* Persist */
+    $sql = "UPDATE  users  SET user_name =?, user_email =?, user_idno =?, user_phoneno =?, user_address =? WHERE user_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssssss',
+        $user_name,
+        $user_email,
+        $user_idno,
+        $user_phoneno,
+        $user_address,
+        $user_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "$user_name Account Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
+/* Delete */
+if (isset($_POST['delete_staff'])) {
+    $user_id = $_POST['user_id'];
+
+    /* Persist */
+    $sql = "DELETE FROM users WHERE user_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $user_id);
+    $prepare->execute();
+    if ($prepare) {
+        $info = "Staff Account Deleted";
+    } else {
+        $err = "Failed!, Please Try  Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
@@ -61,8 +138,8 @@ require_once('../app/partials/head.php');
                                             <input type="text" required name="user_idno" class="form-control" id="exampleInputEmail1">
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="">Access Rights</label>
-                                            <input type="text" readonly required name="user_access_level" value="staff" class="form-control" id="exampleInputEmail1">
+                                            <label for="">Password</label>
+                                            <input type="password" required name="user_password" class="form-control" id="exampleInputEmail1">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="">Phone Number</label>
@@ -109,93 +186,100 @@ require_once('../app/partials/head.php');
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>IDNO</td>
-                                                <td>Email</td>
-                                                <td>Phone</td>
-                                                <td>Address</td>
-                                                <td>
-                                                    <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
-                                                    <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
-                                                </td>
-                                                <!-- Update Modal -->
-                                                <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="modal-dialog  modal-xl" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header align-items-center">
-                                                                <div class="text-bold">
-                                                                    <h6 class="text-bold">Update</h6>
-                                                                </div>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form method="post" enctype="multipart/form-data" role="form">
-                                                                    <div class="row">
-                                                                        <div class="form-group col-md-12">
-                                                                            <label for="">Full Name</label>
-                                                                            <input type="text" required name="user_name" class="form-control" id="exampleInputEmail1">
-                                                                        </div>
-                                                                        <div class="form-group col-md-4">
-                                                                            <label for="">National ID Number</label>
-                                                                            <input type="text" required name="user_idno" class="form-control" id="exampleInputEmail1">
-                                                                        </div>
-                                                                        <div class="form-group col-md-4">
-                                                                            <label for="">Access Rights</label>
-                                                                            <input type="text" readonly required name="user_access_level" value="staff" class="form-control" id="exampleInputEmail1">
-                                                                        </div>
-                                                                        <div class="form-group col-md-4">
-                                                                            <label for="">Phone Number</label>
-                                                                            <input type="text" required name="user_phoneno" class="form-control" id="exampleInputEmail1">
-                                                                        </div>
-                                                                        <div class="form-group col-md-6">
-                                                                            <label for="">Email Address</label>
-                                                                            <input type="text" name="user_email" class="form-control" id="exampleInputEmail1">
-                                                                        </div>
-                                                                        <div class="form-group col-md-6">
-                                                                            <label for="">Address</label>
-                                                                            <input type="text" name="user_address" class="form-control" id="exampleInputEmail1">
-                                                                        </div>
+                                            <?php
+                                            $ret = "SELECT * FROM users WHERE user_access_level = 'staffs' ";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($staffs = $res->fetch_object()) {
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $staffs->user_name; ?></td>
+                                                    <td><?php echo $staffs->user_idno; ?></td>
+                                                    <td><?php echo $staffs->user_email; ?></td>
+                                                    <td><?php echo $staffs->user_phoneno; ?></td>
+                                                    <td><?php echo $staffs->user_address; ?></td>
+                                                    <td>
+                                                        <a data-toggle="modal" href="#update_<?php echo $staffs->user_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                                        <a data-toggle="modal" href="#delete_<?php echo $staffs->user_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                    </td>
+                                                    <!-- Update Modal -->
+                                                    <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog  modal-xl" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header align-items-center">
+                                                                    <div class="text-bold">
+                                                                        <h6 class="text-bold">Update <?php echo $staffs->user_name; ?></h6>
                                                                     </div>
-                                                                    <div class="text-right">
-                                                                        <button type="submit" name="update_staff" class="btn btn-warning">Update Staff</button>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-md-12">
+                                                                                <label for="">Full Name</label>
+                                                                                <input type="text" required name="user_id" value="<?php echo $staffs->user_id; ?>" class="form-control" id="exampleInputEmail1">
+                                                                                <input type="text" required name="user_name" value="<?php echo $staffs->user_name; ?>" class="form-control" id="exampleInputEmail1">
+                                                                            </div>
+                                                                            <div class="form-group col-md-4">
+                                                                                <label for="">National ID Number</label>
+                                                                                <input type="text" value="<?php echo $staffs->user_idno; ?>" required name="user_idno" class="form-control" id="exampleInputEmail1">
+                                                                            </div>
+                                                                            <div class="form-group col-md-4">
+                                                                                <label for="">Access Rights</label>
+                                                                                <input type="text" readonly required name="user_access_level" value="staff" class="form-control" id="exampleInputEmail1">
+                                                                            </div>
+                                                                            <div class="form-group col-md-4">
+                                                                                <label for="">Phone Number</label>
+                                                                                <input type="text" value="<?php echo $staffs->user_phoneno; ?>" required name="user_phoneno" class="form-control" id="exampleInputEmail1">
+                                                                            </div>
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="">Email Address</label>
+                                                                                <input type="text" value="<?php echo $staffs->user_email; ?>" name="user_email" class="form-control" id="exampleInputEmail1">
+                                                                            </div>
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="">Address</label>
+                                                                                <input type="text" value="<?php echo $staffs->user_address; ?>" name="user_address" class="form-control" id="exampleInputEmail1">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-right">
+                                                                            <button type="submit" name="update_staff" class="btn btn-warning">Update Staff</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal -->
+
+                                                    <!-- Delete Modal -->
+                                                    <div class="modal fade" id="delete_<?php echo $staffs->user_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal">
+                                                                        <span>&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form method="POST">
+                                                                    <div class="modal-body text-center text-danger">
+                                                                        <h4>Delete <?php echo $staffs->user_name; ?></h4>
+                                                                        <br>
+                                                                        <!-- Hide This -->
+                                                                        <input type="hidden" name="user_id" value="<?php echo $staffs->user_id; ?>">
+                                                                        <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                        <input type="submit" name="delete_staff" value="Delete" class="text-center btn btn-danger">
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- End Modal -->
-
-                                                <!-- Delete Modal -->
-                                                <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
-                                                                <button type="button" class="close" data-dismiss="modal">
-                                                                    <span>&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form method="POST">
-                                                                <div class="modal-body text-center text-danger">
-                                                                    <h4>Delete </h4>
-                                                                    <br>
-                                                                    <!-- Hide This -->
-                                                                    <input type="hidden" name="user_id" value="">
-                                                                    <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                    <input type="submit" name="delete_staff" value="Delete" class="text-center btn btn-danger">
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End Modal -->
-                                            </tr>
-
+                                                    <!-- End Modal -->
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
