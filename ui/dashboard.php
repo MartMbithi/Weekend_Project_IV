@@ -3,6 +3,7 @@ session_start();
 require_once('../app/settings/config.php');
 require_once('../app/settings/checklogin.php');
 check_login();
+require_once('../app/helpers/admin_analytics.php');
 require_once('../app/partials/head.php');
 ?>
 
@@ -98,7 +99,7 @@ require_once('../app/partials/head.php');
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Staffs</span>
-                                    <span class="info-box-number">2,000</span>
+                                    <span class="info-box-number"><?php echo $staffs; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +109,7 @@ require_once('../app/partials/head.php');
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Landlords</span>
-                                    <span class="info-box-number">2,000</span>
+                                    <span class="info-box-number"><?php echo $landlords; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +119,7 @@ require_once('../app/partials/head.php');
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Caretakers</span>
-                                    <span class="info-box-number">2,000</span>
+                                    <span class="info-box-number"><?php echo $caretakers; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +129,7 @@ require_once('../app/partials/head.php');
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Tenants</span>
-                                    <span class="info-box-number">2,000</span>
+                                    <span class="info-box-number"><?php echo $tenants; ?></span>
                                 </div>
                             </div>
                         </div>
