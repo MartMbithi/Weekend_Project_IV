@@ -48,7 +48,7 @@ require_once('../app/partials/head.php');
                                 <div class="info-box-content">
                                     <span class="info-box-text">Property Categories</span>
                                     <span class="info-box-number">
-                                        10
+                                        <?php echo $categories; ?>
                                     </span>
                                 </div>
                                 <!-- /.info-box-content -->

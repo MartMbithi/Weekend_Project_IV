@@ -35,3 +35,11 @@ $stmt->execute();
 $stmt->bind_result($caretakers);
 $stmt->fetch();
 $stmt->close();
+
+/* Property Categories */
+$query = "SELECT COUNT(*)  FROM categories ";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($categories);
+$stmt->fetch();
+$stmt->close();
