@@ -34,6 +34,22 @@ if (isset($_POST['update_property'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
+/* Delete */
+if (isset($_POST['delete_property'])) {
+    $property_id = $_POST['property_id'];
+
+    /* Delete */
+    $sql = "DELETE FROM properties WHERE property_id = ?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $property_id);
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Property Deleted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
