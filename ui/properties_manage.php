@@ -1,6 +1,39 @@
 <?php
-/* Update Properties */
-/* Delete Properties */
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/codeGen.php');
+require_once('../app/settings/checklogin.php');
+check_login();
+
+/* Add Property */
+if (isset($_POST['update_property'])) {
+    $property_code = $_POST['property_code'];
+    $property_name = $_POST['property_name'];
+    $property_cost = $_POST['property_cost'];
+    $property_category_id = $_POST['property_category_id'];
+    $property_landlord_id = $_POST['property_landlord_id'];
+    $property_address = $_POST['property_address'];
+
+    /* Perisist */
+    $sql = "UPDATE properties SET property_name =?, property_cost =?, property_category_id =?, property_landlord_id =?, property_address =?
+    WHERE  property_code =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssssss',
+        $property_name,
+        $property_cost,
+        $property_category_id,
+        $property_landlord_id,
+        $property_address,
+        $property_code
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Rental Property Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
