@@ -1,5 +1,39 @@
 <?php
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/codeGen.php');
+require_once('../app/settings/checklogin.php');
+check_login();
+
 /* Add Property */
+if (isset($_POST['add_property'])) {
+    $property_code = $_POST['property_code'];
+    $property_name = $_POST['property_name'];
+    $property_cost = $_POST['property_cost'];
+    $property_category_id = $_POST['property_category_id'];
+    $property_landlord_id = $_POST['property_landlord_id'];
+    $property_address = $_POST['property_address'];
+
+    /* Perisist */
+    $sql = "INSERT INTO  properties (property_code, property_name, property_cost, property_category_id, property_landlord_id, property_address)
+    VALUES(?,?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssssss',
+        $property_code,
+        $property_name,
+        $property_cost,
+        $property_category_id,
+        $property_landlord_id,
+        $property_address,
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Rental Property Added";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
@@ -50,22 +84,40 @@ require_once('../app/partials/head.php');
                                             </div>
                                             <div class="form-group col-md-2">
                                                 <label for="">Property Code</label>
-                                                <input type="text" readonly required name="property_code" class="form-control">
+                                                <input type="text" readonly value="<?php echo $a . $b; ?>" required name="property_code" class="form-control">
                                             </div>
                                             <div class="form-group col-md-2">
-                                                <label for="">Property Monthly Rent</label>
+                                                <label for="">Property Monthly Rent (Ksh)</label>
                                                 <input type="text" required name="property_cost" class="form-control">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="">Property Category</label>
                                                 <select class="form-control basic" name="property_category_id">
                                                     <option>Select Category</option>
+                                                    <?php
+                                                    $ret = "SELECT * FROM categories  ";
+                                                    $stmt = $mysqli->prepare($ret);
+                                                    $stmt->execute(); //ok
+                                                    $res = $stmt->get_result();
+                                                    while ($cat = $res->fetch_object()) {
+                                                    ?>
+                                                        <option value="<?php echo $cat->category_id; ?>"><?php echo $cat->category_code . ' - ' . $cat->category_name; ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="">Property Landlord / Manager</label>
                                                 <select class="form-control basic" name="property_landlord_id">
                                                     <option>Select Landlord / Manager</option>
+                                                    <?php
+                                                    $ret = "SELECT * FROM users WHERE user_access_level  = 'landlord'  ";
+                                                    $stmt = $mysqli->prepare($ret);
+                                                    $stmt->execute(); //ok
+                                                    $res = $stmt->get_result();
+                                                    while ($users = $res->fetch_object()) {
+                                                    ?>
+                                                        <option value="<?php echo $users->user_id; ?>"><?php echo $users->user_idno . ' - ' . $users->user_name; ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-12">

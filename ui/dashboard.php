@@ -48,7 +48,7 @@ require_once('../app/partials/head.php');
                                 <div class="info-box-content">
                                     <span class="info-box-text">Property Categories</span>
                                     <span class="info-box-number">
-                                        10
+                                        <?php echo $categories; ?>
                                     </span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -62,7 +62,7 @@ require_once('../app/partials/head.php');
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Properties</span>
-                                    <span class="info-box-number">41,410</span>
+                                    <span class="info-box-number"><?php echo $properties; ?></span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -79,7 +79,7 @@ require_once('../app/partials/head.php');
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Leased Properties</span>
-                                    <span class="info-box-number">760</span>
+                                    <span class="info-box-number"><?php echo $properties_leased; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@ require_once('../app/partials/head.php');
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Vacant Properties</span>
-                                    <span class="info-box-number">2,000</span>
+                                    <span class="info-box-number"><?php echo $properties_vacant; ?></span>
                                 </div>
                             </div>
                         </div>
