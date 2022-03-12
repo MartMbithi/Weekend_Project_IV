@@ -208,10 +208,10 @@ require_once('../app/partials/head.php');
                                                                 </div>
                                                                 <form method="POST">
                                                                     <div class="modal-body text-center text-danger">
-                                                                        <h4>Delete </h4>
+                                                                        <h4>Delete <?php echo $cat->category_name; ?></h4>
                                                                         <br>
                                                                         <!-- Hide This -->
-                                                                        <input type="hidden" name="category_id" value="">
+                                                                        <input type="hidden" name="category_id" value="<?php echo $cat->category_id; ?>">
                                                                         <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
                                                                         <input type="submit" name="delete_category" value="Delete" class="text-center btn btn-danger">
                                                                     </div>
