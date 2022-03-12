@@ -38,6 +38,7 @@ if (isset($_POST['add_assign'])) {
         }
     }
 }
+
 /* Update */
 if (isset($_POST['add_assign'])) {
     $assignment_caretaker_id = $_POST['assignment_caretaker_id'];
@@ -62,6 +63,19 @@ if (isset($_POST['add_assign'])) {
 }
 
 /* Delete */
+if (isset($_POST['delete_assign'])) {
+    $assignment_id = $_POST['assignment_id'];
+
+    /* Delete */
+    $sql = "DELETE FROM caretaker_assigns WHERE assignment_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $assignment_id);
+    if ($prepare) {
+        $success = "Property Assignment Deleted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
