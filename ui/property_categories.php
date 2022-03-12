@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('../app/settings/config.php');
-require_once('../app/settings/config.php');
+require_once('../app/settings/codeGen.php');
 require_once('../app/settings/checklogin.php');
 check_login();
 
@@ -76,7 +76,7 @@ require_once('../app/partials/head.php');
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="">Category Code</label>
-                                            <input type="text" required name="category_code" readonly class="form-control" id="exampleInputEmail1">
+                                            <input type="text" required name="category_code" value="<?php echo $a . $b; ?>" readonly class="form-control" id="exampleInputEmail1">
                                         </div>
                                         <div class="form-group col-md-8">
                                             <label for="">Category Name</label>
