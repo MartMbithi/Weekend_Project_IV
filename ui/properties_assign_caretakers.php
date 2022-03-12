@@ -16,9 +16,9 @@ if (isset($_POST['assign_property'])) {
     $res = mysqli_query($mysqli, $sql);
     if (mysqli_num_rows($res) > 0) {
         $assigns = mysqli_fetch_assoc($res);
-        /* If ID Number Already Exists Exit */
+        /* Check If Assign Exists */
         if (
-            $assigns['user_idno'] == $assignment_caretaker_id &&  $assigns['assignment_property_id'] == $assignment_property_id
+            $assigns['assignment_caretaker_id'] == $assignment_caretaker_id &&  $assigns['assignment_property_id'] == $assignment_property_id
         ) {
             $err = "Property Already Assigned Caretaker";
         }
@@ -144,14 +144,14 @@ require_once('../app/partials/head.php');
                                         <div class="form-group col-md-6">
                                             <label for="">Property Details</label>
                                             <select class="form-control basic" name="assignment_property_id">
-                                                <option>Select Category</option>
+                                                <option>Select Property</option>
                                                 <?php
-                                                $ret = "SELECT * FROM categories  ";
+                                                $ret = "SELECT * FROM properties  ";
                                                 $stmt = $mysqli->prepare($ret);
                                                 $stmt->execute(); //ok
                                                 $res = $stmt->get_result();
                                                 while ($cat = $res->fetch_object()) { ?>
-                                                    <option value="<?php echo $cat->category_name; ?>"><?php echo $cat->category_code . ' ' . $cat->category_name; ?></option>
+                                                    <option value="<?php echo $cat->property_id; ?>"><?php echo $cat->property_code . ' ' . $cat->property_name; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
