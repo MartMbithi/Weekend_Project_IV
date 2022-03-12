@@ -1,7 +1,30 @@
 <?php
-/* Add Category */
-/* Update Category */
-/* Delete Category */
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/config.php');
+require_once('../app/settings/checklogin.php');
+check_login();
+
+/* Add */
+if (isset($_POST['add_category'])) {
+    $category_code = $_POST['category_code'];
+    $category_name = $_POST['category_name'];
+
+    /* Persist */
+    $sql = "INSERT INTO categories(category_code, category_name) VALUES(?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ss',
+        $category_code,
+        $category_name
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Property Category Added";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
