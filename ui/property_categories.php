@@ -152,11 +152,19 @@ require_once('../app/partials/head.php');
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
                                             while ($cat = $res->fetch_object()) {
+                                                $category_id = $cat->category_id;
+                                                /* Number Of Properties Per Category */
+                                                $query = "SELECT COUNT(*)  FROM properties WHERE property_category_id  = '$category_id' ";
+                                                $stmt = $mysqli->prepare($query);
+                                                $stmt->execute();
+                                                $stmt->bind_result($registered_properties);
+                                                $stmt->fetch();
+                                                $stmt->close();
                                             ?>
                                                 <tr>
                                                     <td><?php echo $cat->category_code; ?></td>
                                                     <td><?php echo $cat->category_name; ?></td>
-                                                    <td>5</td>
+                                                    <td><?php echo $registered_properties; ?></td>
                                                     <td>
                                                         <a data-toggle="modal" href="#update_<?php echo $cat->category_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
                                                         <a data-toggle="modal" href="#delete_<?php echo $cat->category_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
