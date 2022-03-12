@@ -1,7 +1,46 @@
 <?php
-/* Add Assign */
-/* Update Assign */
-/* Delete Assign */
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/codeGen.php');
+require_once('../app/settings/checklogin.php');
+check_login();
+
+/* Add  */
+if (isset($_POST['add_assign'])) {
+    $assignment_caretaker_id = $_POST['assignment_caretaker_id'];
+    $assignment_property_id = $_POST['assignment_property_id'];
+
+    /* Prevent Double Entries */
+    $sql = "SELECT * FROM  caretaker_assigns WHERE assignment_caretaker_id = '$assignment_caretaker_id' 
+    || assignment_property_id = '$assignment_property_id'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        $assigns = mysqli_fetch_assoc($res);
+        /* If ID Number Already Exists Exit */
+        if (
+            $assigns['user_idno'] == $assignment_caretaker_id &&  $assigns['assignment_property_id'] == $assignment_property_id
+        ) {
+            $err = "Property Already Assigned Caretaker";
+        }
+    } else {
+        $sql = "INSERT INTO  caretaker_assigns(assignment_caretaker_id, assignment_property_id) VALUES(?,?)";
+        $prepare = $mysqli->prepare($sql);
+        $bind = $prepare->bind_param(
+            'ss',
+            $assignment_caretaker_id,
+            $assignment_property_id
+        );
+        $prepare->execute();
+        if ($prepare) {
+            $success = "Property Assigned Caretaker";
+        } else {
+            $err = "Failed!, Please Try Again Later!";
+        }
+    }
+}
+/* Update */
+
+/* Delete */
 require_once('../app/partials/head.php');
 ?>
 
