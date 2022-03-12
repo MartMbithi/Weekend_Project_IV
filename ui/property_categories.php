@@ -42,6 +42,22 @@ if (isset($_POST['update_category'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
+/* Delete */
+if (isset($_POST['delete_category'])) {
+    $category_id = $_POST['category_id'];
+
+    /* Delete */
+    $sql = "DELETE FROM categories WHERE category_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $category_id);
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Property Category Deleted";
+    } else {
+        $err = "Failed, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
