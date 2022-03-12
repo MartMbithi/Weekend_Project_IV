@@ -99,100 +99,106 @@ require_once('../app/partials/head.php');
                                                 <th>Name</th>
                                                 <th>Category</th>
                                                 <th>Property Landlord</th>
-                                                <th>Assigned Caretaker</th>
                                                 <th>Location</th>
                                                 <th>Manage</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                <td>Code</td>
-                                                <td>Name</td>
-                                                <td>Code</td>
-                                                <td>Code</td>
-                                                <td>Code</td>
-                                                <td>5</td>
-                                                <td>
-                                                    <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
-                                                    <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
-                                                </td>
-                                                <!-- Update Modal -->
-                                                <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="modal-dialog  modal-xl" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header align-items-center">
-                                                                <div class="text-bold">
-                                                                    <h6 class="text-bold">Update </h6>
-                                                                </div>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form method="post" enctype="multipart/form-data" role="form">
-                                                                    <div class="row">
-                                                                        <div class="form-group col-md-4">
-                                                                            <label for="">Property Code</label>
-                                                                            <input type="text" readonly required name="property_code" class="form-control">
-                                                                        </div>
-                                                                        <div class="form-group col-md-8">
-                                                                            <label for="">Property Name</label>
-                                                                            <input type="text" required name="property_name" class="form-control">
-                                                                        </div>
-                                                                        <div class="form-group col-md-6">
-                                                                            <label for="">Property Category</label>
-                                                                            <select class="form-control basic" name="property_category_id">
-                                                                                <option>Select Category</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-6">
-                                                                            <label for="">Property Landlord / Manager</label>
-                                                                            <select class="form-control basic" name="property_landlord_id">
-                                                                                <option>Select Landlord / Manager</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-12">
-                                                                            <label for="">Property Address</label>
-                                                                            <textarea type="text" name="property_address" class="form-control"></textarea>
-                                                                        </div>
+                                            <?php
+                                            $ret = "SELECT * FROM properties p 
+                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
+                                            INNER JOIN users u ON u.user_id = p.property_landlord_id";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($properties = $res->fetch_object()) {
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $properties->property_code; ?></td>
+                                                    <td><?php echo $properties->property_name; ?></td>
+                                                    <td><?php echo $properties->category_name; ?></td>
+                                                    <td><?php echo $properties->user_name; ?></td>
+                                                    <td><?php echo $properties->property_address; ?></td>
+                                                    <td>
+                                                        <a data-toggle="modal" href="#update_<?php echo $properties->property_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                                        <a data-toggle="modal" href="#delete_<?php echo $properties->property_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                    </td>
+                                                    <!-- Update Modal -->
+                                                    <div class="modal fade fixed-right" id="update_<?php echo $properties->property_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog  modal-xl" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header align-items-center">
+                                                                    <div class="text-bold">
+                                                                        <h6 class="text-bold">Update </h6>
                                                                     </div>
-                                                                    <div class="text-right">
-                                                                        <button type="submit" name="update_property" class="btn btn-warning">Update Property</button>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-md-4">
+                                                                                <label for="">Property Code</label>
+                                                                                <input type="text" readonly required name="property_code" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group col-md-8">
+                                                                                <label for="">Property Name</label>
+                                                                                <input type="text" required name="property_name" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="">Property Category</label>
+                                                                                <select class="form-control basic" name="property_category_id">
+                                                                                    <option>Select Category</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="">Property Landlord / Manager</label>
+                                                                                <select class="form-control basic" name="property_landlord_id">
+                                                                                    <option>Select Landlord / Manager</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group col-md-12">
+                                                                                <label for="">Property Address</label>
+                                                                                <textarea type="text" name="property_address" class="form-control"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-right">
+                                                                            <button type="submit" name="update_property" class="btn btn-warning">Update Property</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal -->
+
+                                                    <!-- Delete Modal -->
+                                                    <div class="modal fade" id="delete_<?php echo $properties->property_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal">
+                                                                        <span>&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form method="POST">
+                                                                    <div class="modal-body text-center text-danger">
+                                                                        <h4>Delete <?php echo $properties->property_code . ' ' . $properties->property_name; ?></h4>
+                                                                        <br>
+                                                                        <!-- Hide This -->
+                                                                        <input type="hidden" name="property_id" value="<?php echo $properties->property_id; ?>">
+                                                                        <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                        <input type="submit" name="delete_property" value="Delete" class="text-center btn btn-danger">
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- End Modal -->
-
-                                                <!-- Delete Modal -->
-                                                <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
-                                                                <button type="button" class="close" data-dismiss="modal">
-                                                                    <span>&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form method="POST">
-                                                                <div class="modal-body text-center text-danger">
-                                                                    <h4>Delete </h4>
-                                                                    <br>
-                                                                    <!-- Hide This -->
-                                                                    <input type="hidden" name="property_id" value="">
-                                                                    <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                    <input type="submit" name="delete_property" value="Delete" class="text-center btn btn-danger">
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End Modal -->
-                                            </tr>
-
+                                                    <!-- End Modal -->
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
