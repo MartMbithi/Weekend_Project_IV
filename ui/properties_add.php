@@ -1,5 +1,40 @@
 <?php
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/codeGen.php');
+require_once('../app/settings/checklogin.php');
+check_login();
+
 /* Add Property */
+if (isset($_POST['add_property'])) {
+    $property_code = $_POST['property_code'];
+    $property_name = $_POST['property_name'];
+    $property_cost = $_POST['property_cost'];
+    $property_category_id = $_POST['property_category_id'];
+    $property_landlord_id = $_POST['property_landlord_id'];
+    $property_address = $_POST['property_status'];
+
+    /* Perisist */
+    $sql = "INSERT INTO  properties (property_code, property_name, property_cost, property_category_id, property_landlord_id, property_address)
+    VALUES(?,?,?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssssss',
+        $property_code,
+        $property_name,
+        $property_cost,
+        $property_category_id,
+        $property_landlord_id,
+        $property_address,
+        $property_status
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Rental Property Added";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
