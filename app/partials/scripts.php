@@ -100,7 +100,7 @@ if (isset($err)) { ?>
 <?php }
 if (isset($info)) { ?>
     <script>
-        toastr.error('<?php echo $info; ?>')
+        toastr.warning('<?php echo $info; ?>')
     </script>
 <?php }
 ?>

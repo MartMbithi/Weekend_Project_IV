@@ -70,8 +70,9 @@ if (isset($_POST['delete_assign'])) {
     $sql = "DELETE FROM caretaker_assigns WHERE assignment_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param('s', $assignment_id);
+    $prepare->execute();
     if ($prepare) {
-        $success = "Property Assignment Deleted";
+        $info = "Property Assignment Deleted";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -181,84 +182,98 @@ require_once('../app/partials/head.php');
                                             <tr>
                                                 <th>Caretaker Details</th>
                                                 <th>Property Details</th>
-                                                <th>Date Assigned</th>
                                                 <th>Manage</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>IDNO</td>
-                                                <td>Email</td>
-                                                <td>
-                                                    <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
-                                                    <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
-                                                </td>
-                                                <!-- Update Modal -->
-                                                <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="modal-dialog  modal-xl" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header align-items-center">
-                                                                <div class="text-bold">
-                                                                    <h6 class="text-bold">Update </h6>
-                                                                </div>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form method="post" enctype="multipart/form-data" role="form">
-                                                                    <div class="row">
-                                                                        <div class="form-group col-md-6">
-                                                                            <label for="">Caretaker</label>
-                                                                            <select class="form-control basic" name="assignment_caretaker_id">
-                                                                                <option>Select Category</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-6">
-                                                                            <label for="">Property Details</label>
-                                                                            <select class="form-control basic" name="assignment_property_id">
-                                                                                <option>Select Category</option>
-                                                                            </select>
-                                                                        </div>
+                                            <?php
+                                            $ret = "SELECT * FROM caretaker_assigns ca 
+                                            INNER JOIN users u ON ca.assignment_caretaker_id = u.user_id
+                                            INNER JOIN properties p ON p.property_id = ca.assignment_property_id  ";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($assn = $res->fetch_object()) {
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        Name: <?php echo $assn->user_name; ?> <br>
+                                                        IDNO : <?php echo $assn->user_idno; ?> <br>
+                                                        Email: <?php echo $assn->user_email; ?>
+                                                    </td>
+                                                    <td>
+                                                        Code: <?php echo $assn->property_code; ?><br>
+                                                        Name: <?php echo $assn->property_name; ?><br>
+                                                        Location: <?php echo $assn->property_address ?>
+                                                    </td>
+                                                    <td>
+                                                        <a data-toggle="modal" href="#update_<?php echo $assn->assignment_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                                        <a data-toggle="modal" href="#delete_<?php echo $assn->assignment_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                    </td>
+                                                    <!-- Update Modal -->
+                                                    <div class="modal fade fixed-right" id="update_<?php echo $assn->assignment_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog  modal-xl" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header align-items-center">
+                                                                    <div class="text-bold">
+                                                                        <h6 class="text-bold">Update <?php echo $assn->user_name . '' . $assn->property_name; ?> Allocation </h6>
                                                                     </div>
-                                                                    <div class="text-right">
-                                                                        <button type="submit" name="update_assign" class="btn btn-warning">Update</button>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="">Caretaker</label>
+                                                                                <select class="form-control basic" name="assignment_caretaker_id">
+                                                                                    <option>Select Category</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="">Property Details</label>
+                                                                                <select class="form-control basic" name="assignment_property_id">
+                                                                                    <option>Select Category</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-right">
+                                                                            <button type="submit" name="update_assign" class="btn btn-warning">Update</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal -->
+
+                                                    <!-- Delete Modal -->
+                                                    <div class="modal fade" id="delete_<?php echo $assn->assignment_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal">
+                                                                        <span>&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form method="POST">
+                                                                    <div class="modal-body text-center text-danger">
+                                                                        <h4>Delete <?php echo $assn->user_name . '' . $assn->property_name; ?> Allocation </h4>
+                                                                        <br>
+                                                                        <!-- Hide This -->
+                                                                        <input type="hidden" name="assignment_id" value="<?php echo $assn->assignment_id; ?>">
+                                                                        <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                        <input type="submit" name="delete_assign" value="Delete" class="text-center btn btn-danger">
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- End Modal -->
-
-                                                <!-- Delete Modal -->
-                                                <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
-                                                                <button type="button" class="close" data-dismiss="modal">
-                                                                    <span>&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form method="POST">
-                                                                <div class="modal-body text-center text-danger">
-                                                                    <h4>Delete </h4>
-                                                                    <br>
-                                                                    <!-- Hide This -->
-                                                                    <input type="hidden" name="user_id" value="">
-                                                                    <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                    <input type="submit" name="delete_assign" value="Delete" class="text-center btn btn-danger">
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End Modal -->
-                                            </tr>
-
+                                                    <!-- End Modal -->
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
