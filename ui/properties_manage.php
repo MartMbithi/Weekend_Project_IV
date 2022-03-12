@@ -140,27 +140,45 @@ require_once('../app/partials/head.php');
                                                                         <div class="row">
                                                                             <div class="form-group col-md-4">
                                                                                 <label for="">Property Code</label>
-                                                                                <input type="text" readonly required name="property_code" class="form-control">
+                                                                                <input type="text" value="<?php echo $properties->property_code; ?>" readonly required name="property_code" class="form-control">
                                                                             </div>
                                                                             <div class="form-group col-md-8">
                                                                                 <label for="">Property Name</label>
-                                                                                <input type="text" required name="property_name" class="form-control">
+                                                                                <input type="text" value="<?php echo $properties->property_name; ?>" required name="property_name" class="form-control">
                                                                             </div>
                                                                             <div class="form-group col-md-6">
                                                                                 <label for="">Property Category</label>
                                                                                 <select class="form-control basic" name="property_category_id">
-                                                                                    <option>Select Category</option>
+                                                                                    <option value="<?php echo $properties->property_category_id; ?>"><?php echo $properties->category_code . ' - ' . $properties->category_name; ?></option>
+                                                                                    <?php
+                                                                                    $categories_ret = "SELECT * FROM categories  ";
+                                                                                    $categories_stmt = $mysqli->prepare($categories_ret);
+                                                                                    $categories_stmt->execute(); //ok
+                                                                                    $categories_res = $categories_stmt->get_result();
+                                                                                    while ($categories_cat = $categories_res->fetch_object()) {
+                                                                                    ?>
+                                                                                        <option value="<?php echo $categories_cat->category_id; ?>"><?php echo $categories_cat->category_code . ' - ' . $categories_cat->category_name; ?></option>
+                                                                                    <?php } ?>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group col-md-6">
                                                                                 <label for="">Property Landlord / Manager</label>
                                                                                 <select class="form-control basic" name="property_landlord_id">
-                                                                                    <option>Select Landlord / Manager</option>
+                                                                                    <option value="<?php echo $properties->property_landlord_id; ?>"><?php echo $properties->user_idno . ' - ' . $properties->user_name; ?></option>
+                                                                                    <?php
+                                                                                    $landlord_ret = "SELECT * FROM users WHERE user_access_level  = 'landlord'  ";
+                                                                                    $landlord_stmt = $mysqli->prepare($landlord_ret);
+                                                                                    $landlord_stmt->execute(); //ok
+                                                                                    $landlord_res = $landlord_stmt->get_result();
+                                                                                    while ($landlord_users = $landlord_res->fetch_object()) {
+                                                                                    ?>
+                                                                                        <option value="<?php echo $landlord_users->user_id; ?>"><?php echo $landlord_users->user_idno . ' - ' . $landlord_users->user_name; ?></option>
+                                                                                    <?php } ?>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group col-md-12">
                                                                                 <label for="">Property Address</label>
-                                                                                <textarea type="text" name="property_address" class="form-control"></textarea>
+                                                                                <textarea type="text" name="property_address" class="form-control"><?php echo $properties->property_address; ?></textarea>
                                                                             </div>
                                                                         </div>
                                                                         <div class="text-right">
