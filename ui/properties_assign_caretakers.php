@@ -40,7 +40,7 @@ if (isset($_POST['assign_property'])) {
 }
 
 /* Update */
-if (isset($_POST['add_assign'])) {
+if (isset($_POST['update_assign'])) {
     $assignment_caretaker_id = $_POST['assignment_caretaker_id'];
     $assignment_property_id = $_POST['assignment_property_id'];
     $assignment_id = $_POST['assignment_id'];
@@ -228,13 +228,30 @@ require_once('../app/partials/head.php');
                                                                             <div class="form-group col-md-6">
                                                                                 <label for="">Caretaker</label>
                                                                                 <select class="form-control basic" name="assignment_caretaker_id">
-                                                                                    <option>Select Category</option>
+                                                                                    <option value="<?php echo $assn->assignment_caretaker_id; ?>"><?php echo $assn->user_idno . ' ' . $assn->user_name; ?></option>
+                                                                                    <?php
+                                                                                    $caretaker_ret = "SELECT * FROM users WHERE user_access_level = 'caretaker'  ";
+                                                                                    $caretaker_stmt = $mysqli->prepare($caretaker_ret);
+                                                                                    $caretaker_stmt->execute(); //ok
+                                                                                    $caretaker_res = $caretaker_stmt->get_result();
+                                                                                    while ($caretaker_user = $caretaker_res->fetch_object()) {
+                                                                                    ?>
+                                                                                        <option value="<?php echo $caretaker_user->user_id; ?>"><?php echo $caretaker_user->user_idno . ' ' . $caretaker_user->user_name; ?></option>
+                                                                                    <?php } ?>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group col-md-6">
                                                                                 <label for="">Property Details</label>
                                                                                 <select class="form-control basic" name="assignment_property_id">
-                                                                                    <option>Select Category</option>
+                                                                                    <option value="<?php echo $assn->assignment_property_id; ?>"><?php echo $assn->property_code . ' ' . $assn->property_name; ?></option>
+                                                                                    <?php
+                                                                                    $properties_ret = "SELECT * FROM properties  ";
+                                                                                    $properties_stmt = $mysqli->prepare($properties_ret);
+                                                                                    $properties_stmt->execute(); //ok
+                                                                                    $properties_res = $properties_stmt->get_result();
+                                                                                    while ($properties_cat = $properties_res->fetch_object()) { ?>
+                                                                                        <option value="<?php echo $properties_cat->property_id; ?>"><?php echo $properties_cat->property_code . ' ' . $properties_cat->property_name; ?></option>
+                                                                                    <?php } ?>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
