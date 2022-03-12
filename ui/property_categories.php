@@ -86,11 +86,7 @@ require_once('../app/partials/head.php');
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
-                </div><!-- /.container-fluid $ret = "SELECT * FROM categories  ";
-                                            $stmt = $mysqli->prepare($ret);
-                                            $stmt->execute(); //ok
-                                            $res = $stmt->get_result();
-                                            while ($cat = $res->fetch_object()) {-->
+                </div><!-- /.container-fluid -->
                 <hr>
                 <div class="text-right">
                     <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Register New Category</button>

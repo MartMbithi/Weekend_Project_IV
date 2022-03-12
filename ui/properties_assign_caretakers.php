@@ -6,7 +6,7 @@ require_once('../app/settings/checklogin.php');
 check_login();
 
 /* Add  */
-if (isset($_POST['add_assign'])) {
+if (isset($_POST['assign_property'])) {
     $assignment_caretaker_id = $_POST['assignment_caretaker_id'];
     $assignment_property_id = $_POST['assignment_property_id'];
 
@@ -129,13 +129,30 @@ require_once('../app/partials/head.php');
                                         <div class="form-group col-md-6">
                                             <label for="">Caretaker</label>
                                             <select class="form-control basic" name="assignment_caretaker_id">
-                                                <option>Select Category</option>
+                                                <option>Select Caretaker</option>
+                                                <?php
+                                                $ret = "SELECT * FROM users WHERE user_access_level = 'caretaker'  ";
+                                                $stmt = $mysqli->prepare($ret);
+                                                $stmt->execute(); //ok
+                                                $res = $stmt->get_result();
+                                                while ($user = $res->fetch_object()) {
+                                                ?>
+                                                    <option value="<?php echo $user->user_id; ?>"><?php echo $user->user_idno . ' ' . $user->user_name; ?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="">Property Details</label>
                                             <select class="form-control basic" name="assignment_property_id">
                                                 <option>Select Category</option>
+                                                <?php
+                                                $ret = "SELECT * FROM categories  ";
+                                                $stmt = $mysqli->prepare($ret);
+                                                $stmt->execute(); //ok
+                                                $res = $stmt->get_result();
+                                                while ($cat = $res->fetch_object()) { ?>
+                                                    <option value="<?php echo $cat->category_name; ?>"><?php echo $cat->category_code . ' ' . $cat->category_name; ?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                     </div>
