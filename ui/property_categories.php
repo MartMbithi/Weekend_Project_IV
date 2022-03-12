@@ -25,6 +25,23 @@ if (isset($_POST['add_category'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
+/* Update */
+if (isset($_POST['update_category'])) {
+    $category_id = $_POST['category_id'];
+    $category_name = $_POST['category_name'];
+
+    /* Persit */
+    $sql = "UPDATE categories SET category_name =? WHERE category_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('ss', $category_name, $category_id);
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Property Category Added";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
