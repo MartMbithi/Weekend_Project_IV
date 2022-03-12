@@ -87,7 +87,7 @@ require_once('../app/partials/head.php');
                                                 <input type="text" readonly value="<?php echo $a . $b; ?>" required name="property_code" class="form-control">
                                             </div>
                                             <div class="form-group col-md-2">
-                                                <label for="">Property Monthly Rent (Ksh)</label>
+                                                <label for="">Monthly Rent (Ksh)</label>
                                                 <input type="text" required name="property_cost" class="form-control">
                                             </div>
                                             <div class="form-group col-md-6">
