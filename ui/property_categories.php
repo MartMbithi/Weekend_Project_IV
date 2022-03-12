@@ -53,7 +53,7 @@ if (isset($_POST['delete_category'])) {
     $bind = $prepare->bind_param('s', $category_id);
     $prepare->execute();
     if ($prepare) {
-        $success = "Property Category Deleted";
+        $info = "Property Category Deleted";
     } else {
         $err = "Failed, Please Try Again";
     }
