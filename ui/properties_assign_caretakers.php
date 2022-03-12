@@ -197,14 +197,14 @@ require_once('../app/partials/head.php');
                                             ?>
                                                 <tr>
                                                     <td>
-                                                        Name: <?php echo $assn->user_name; ?> <br>
-                                                        IDNO : <?php echo $assn->user_idno; ?> <br>
-                                                        Email: <?php echo $assn->user_email; ?>
+                                                        <b>Name: </b> <?php echo $assn->user_name; ?> <br>
+                                                        <b>IDNO : </b> <?php echo $assn->user_idno; ?> <br>
+                                                        <b>Email: </b> <?php echo $assn->user_email; ?>
                                                     </td>
                                                     <td>
-                                                        Code: <?php echo $assn->property_code; ?><br>
-                                                        Name: <?php echo $assn->property_name; ?><br>
-                                                        Location: <?php echo $assn->property_address ?>
+                                                        <b>Code: </b> <?php echo $assn->property_code; ?><br>
+                                                        <b>Name: </b> <?php echo $assn->property_name; ?><br>
+                                                        <b>Location: </b> <?php echo $assn->property_address ?>
                                                     </td>
                                                     <td>
                                                         <a data-toggle="modal" href="#update_<?php echo $assn->assignment_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
@@ -227,6 +227,8 @@ require_once('../app/partials/head.php');
                                                                         <div class="row">
                                                                             <div class="form-group col-md-6">
                                                                                 <label for="">Caretaker</label>
+                                                                                <!-- Hide This -->
+                                                                                <input type="hidden" required name="assignment_id" value="<?php echo $assn->assignment_id; ?>" readonly class="form-control" id="exampleInputEmail1">
                                                                                 <select class="form-control basic" name="assignment_caretaker_id">
                                                                                     <option value="<?php echo $assn->assignment_caretaker_id; ?>"><?php echo $assn->user_idno . ' ' . $assn->user_name; ?></option>
                                                                                     <?php
