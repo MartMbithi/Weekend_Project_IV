@@ -39,6 +39,27 @@ if (isset($_POST['add_assign'])) {
     }
 }
 /* Update */
+if (isset($_POST['add_assign'])) {
+    $assignment_caretaker_id = $_POST['assignment_caretaker_id'];
+    $assignment_property_id = $_POST['assignment_property_id'];
+    $assignment_id = $_POST['assignment_id'];
+
+
+    $sql = "UPDATE  caretaker_assigns SET assignment_caretaker_id =?, assignment_property_id =? WHERE assignment_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sss',
+        $assignment_caretaker_id,
+        $assignment_property_id,
+        $assignment_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Property Caretaker Assignment Updated";
+    } else {
+        $err = "Failed!, Please Try Again Later!";
+    }
+}
 
 /* Delete */
 require_once('../app/partials/head.php');
