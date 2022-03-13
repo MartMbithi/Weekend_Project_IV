@@ -22,6 +22,7 @@ if (isset($_POST['evict'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
 /* Update Lease */
 if (isset($_POST['update_lease'])) {
     $lease_id = $_POST['lease_id'];
@@ -174,23 +175,12 @@ require_once('../app/partials/head.php');
                                                                         <div class="row">
                                                                             <div class="form-group col-md-9">
                                                                                 <label for="">Property Details</label>
+                                                                                <!-- Hide This -->
+                                                                                <input type="hidden" required name="lease_id" value="<?php echo $leases->lease_id; ?>" class="form-control">
                                                                                 <select class="form-control basic" name="lease_property_id">
                                                                                     <option value="<?php echo $leases->lease_property_id; ?>">
                                                                                         Code: <?php echo $leases->property_code . ', Name: ' . $leases->property_name . ', Location: ' . $leases->property_address; ?>
                                                                                     </option>
-                                                                                    <?php
-                                                                                    $properties_ret = "SELECT * FROM properties p 
-                                                                                    INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                                                                    INNER JOIN users u ON u.user_id = p.property_landlord_id
-                                                                                    WHERE p.property_status = 'Vacant'";
-                                                                                    $properties_stmt = $mysqli->prepare($properties_ret);
-                                                                                    $properties_stmt->execute(); //ok
-                                                                                    $properties_res = $properties_stmt->get_result();
-                                                                                    while ($properties = $properties_res->fetch_object()) { ?>
-                                                                                        <option value="<?php echo $properties->property_id; ?>">
-                                                                                            Code: <?php echo $properties->property_code . ', Name: ' . $properties->property_name . ', Location: ' . $properties->property_address; ?>
-                                                                                        </option>
-                                                                                    <?php } ?>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group col-md-3">
