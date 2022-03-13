@@ -168,87 +168,95 @@ require_once('../app/partials/head.php');
                                         <thead>
                                             <tr>
                                                 <th>REF NO</th>
-                                                <th>Expense Amt</th>
+                                                <th>Name</th>
+                                                <th>Amount</th>
                                                 <th>Desc</th>
                                                 <th>Manage</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>IDNO</td>
-                                                <td>Email</td>
-                                                <td>
-                                                    <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
-                                                    <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
-                                                </td>
-                                                <!-- Update Modal -->
-                                                <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="modal-dialog  modal-xl" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header align-items-center">
-                                                                <div class="text-bold">
-                                                                    <h6 class="text-bold">Update Expense</h6>
-                                                                </div>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form method="post" enctype="multipart/form-data" role="form">
-                                                                    <div class="row">
-                                                                        <div class="form-group col-md-6">
-                                                                            <label for="">Expense Ref Code</label>
-                                                                            <input type="text" required name="expense_ref_code" readonly class="form-control">
-                                                                            <!-- Hide This -->
-                                                                            <input type="hidden" required name="expense_id" readonly class="form-control">
-                                                                        </div>
-                                                                        <div class="form-group col-md-6">
-                                                                            <label for="">Expense Amount (Ksh)</label>
-                                                                            <input type="text" required name="expense_amount" class="form-control">
-                                                                        </div>
-                                                                        <div class="form-group col-md-12">
-                                                                            <label for="">Expense Description</label>
-                                                                            <textarea type="text" required name="expense_desc" class="form-control"></textarea>
-                                                                        </div>
+                                            <?php
+                                            $ret = "SELECT * FROM expenses";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($exp = $res->fetch_object()) {
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $exp->exepense_ref; ?></td>
+                                                    <td><?php echo $exp->expense_name; ?></td>
+                                                    <td><?php echo number_format($exp->expense_amount); ?></td>
+                                                    <td><?php echo $exp->$expense_desc; ?></td>
+                                                    <td>
+                                                        <a data-toggle="modal" href="#update_<?php echo $exp->expense_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                                        <a data-toggle="modal" href="#delete_<?php echo $exp->expense_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                    </td>
+                                                    <!-- Update Modal -->
+                                                    <div class="modal fade fixed-right" id="update_<?php echo $exp->expense_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog  modal-xl" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header align-items-center">
+                                                                    <div class="text-bold">
+                                                                        <h6 class="text-bold">Update Expense Ref #<?php echo $exp->expense_ref; ?></h6>
                                                                     </div>
-                                                                    <div class="text-right">
-                                                                        <button type="submit" name="add_expense" class="btn btn-warning">Add Expense</button>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="">Expense Ref Code</label>
+                                                                                <input type="text" required name="expense_ref_code" readonly class="form-control">
+                                                                                <!-- Hide This -->
+                                                                                <input type="hidden" required name="expense_id" readonly class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="">Expense Amount (Ksh)</label>
+                                                                                <input type="text" required name="expense_amount" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group col-md-12">
+                                                                                <label for="">Expense Description</label>
+                                                                                <textarea type="text" required name="expense_desc" class="form-control"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-right">
+                                                                            <button type="submit" name="update_expense" class="btn btn-warning">Add Expense</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal -->
+
+                                                    <!-- Delete Modal -->
+                                                    <div class="modal fade" id="delete_<?php echo $exp->expense_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal">
+                                                                        <span>&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form method="POST">
+                                                                    <div class="modal-body text-center text-danger">
+                                                                        <h4>Delete Expense Ref #<?php echo $exp->expense_ref; ?> </h4>
+                                                                        <br>
+                                                                        <!-- Hide This -->
+                                                                        <input type="hidden" name="expense_id" value="<?php echo $exp->expense_id; ?>">
+                                                                        <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                        <input type="submit" name="delete_expense" value="Delete" class="text-center btn btn-danger">
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- End Modal -->
-
-                                                <!-- Delete Modal -->
-                                                <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
-                                                                <button type="button" class="close" data-dismiss="modal">
-                                                                    <span>&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form method="POST">
-                                                                <div class="modal-body text-center text-danger">
-                                                                    <h4>Delete </h4>
-                                                                    <br>
-                                                                    <!-- Hide This -->
-                                                                    <input type="hidden" name="expense_id" value="">
-                                                                    <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                    <input type="submit" name="delete_expense" value="Delete" class="text-center btn btn-danger">
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End Modal -->
-                                            </tr>
-
+                                                    <!-- End Modal -->
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
