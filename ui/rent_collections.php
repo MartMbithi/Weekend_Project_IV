@@ -10,22 +10,24 @@ if (isset($_POST['pay_lease'])) {
     $payment_lease_id = $_POST['payment_lease_id'];
     $payment_amount = $_POST['payment_amount'];
     $payment_mode = $_POST['payment_mode'];
+    $payment_date = date('d M Y g:ia');
     $lease_payment_status = 'Paid';
 
     /* Persist */
-    $sql = "INSERT INTO payments (payment_ref, payment_lease_id, payment_amount, payment_mode) 
-    VALUES(?,?,?,?)";
+    $sql = "INSERT INTO payments (payment_ref, payment_lease_id, payment_amount, payment_mode, payment_date) 
+    VALUES(?,?,?,?, ?)";
     $lease_sql = "UPDATE property_leases SET lease_payment_status =? WHERE lease_id =?";
 
     $prepare = $mysqli->prepare($sql);
     $lease_prepare = $mysqli->prepare($lease_sql);
 
     $bind = $prepare->bind_param(
-        'ssss',
+        'sssss',
         $payment_ref,
         $payment_lease_id,
         $payment_amount,
         $payment_mode,
+        $payment_date
     );
     $lease_bind = $lease_prepare->bind_param(
         'ss',
