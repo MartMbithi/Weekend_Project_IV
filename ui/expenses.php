@@ -61,6 +61,19 @@ if (isset($_POST['update_expense'])) {
 }
 
 /* Delete Expenses */
+if (isset($_POST['delete_expenses'])) {
+    $expense_id = $_POST['expense_id'];
+
+    /* Delete */
+    $sql = "DELETE FROM expenses WHERE expense_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $expense_id);
+    if ($prepare) {
+        $success = "Expense Deleted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
