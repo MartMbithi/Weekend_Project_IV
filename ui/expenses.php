@@ -123,13 +123,21 @@ require_once('../app/partials/head.php');
                             <div class="modal-body">
                                 <form method="post" enctype="multipart/form-data" role="form">
                                     <div class="row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label for="">Expense Ref Code</label>
-                                            <input type="text" required name="expense_ref_code" readonly class="form-control">
+                                            <input type="text" required name="expense_ref" value="<?php echo $a . $b; ?>" readonly class="form-control">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label for="">Expense Amount (Ksh)</label>
                                             <input type="text" required name="expense_amount" class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="">Expense Date</label>
+                                            <input type="date" required name="expense_date_added" class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="">Expense Name</label>
+                                            <input type="text" required name="expense_name" class="form-control">
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label for="">Expense Description</label>
