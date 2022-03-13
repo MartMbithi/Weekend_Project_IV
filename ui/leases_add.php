@@ -95,7 +95,8 @@ require_once('../app/partials/head.php');
                                                     <?php
                                                     $ret = "SELECT * FROM properties p 
                                                     INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                                    INNER JOIN users u ON u.user_id = p.property_landlord_id";
+                                                    INNER JOIN users u ON u.user_id = p.property_landlord_id
+                                                    WHERE p.property_status = 'Vacant'";
                                                     $stmt = $mysqli->prepare($ret);
                                                     $stmt->execute(); //ok
                                                     $res = $stmt->get_result();
@@ -110,6 +111,16 @@ require_once('../app/partials/head.php');
                                                 <label for="">Tenant Details</label>
                                                 <select class="form-control basic" name="lease_tenant_id">
                                                     <option>Select Tenant</option>
+                                                    <?php
+                                                    $ret = "SELECT * FROM users WHERE user_access_level = 'tenant' 
+                                                    ORDER BY user_name ASC ";
+                                                    $stmt = $mysqli->prepare($ret);
+                                                    $stmt->execute(); //ok
+                                                    $res = $stmt->get_result();
+                                                    while ($tenants = $res->fetch_object()) {
+                                                    ?>
+                                                        <option value="<?php echo $tenants->user_id; ?>">IDNO: <?php echo $tenants->user_idno . ',  Names: ' . $tenants->user_name; ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
