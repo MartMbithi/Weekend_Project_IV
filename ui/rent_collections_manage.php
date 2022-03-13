@@ -29,17 +29,17 @@ if (isset($_POST['delete_payment'])) {
 
     /* Persist */
     $sql = "DELETE FROM payments WHERE payment_id =?";
-    $leaase_sql = "UPDATE property_leases SET lease_payment_status ='Pending' WHERE lease_id = '$payment_lease_id'";
+    $lease_sql = "UPDATE property_leases SET lease_payment_status ='Pending' WHERE lease_id = '$payment_lease_id'";
 
     $prepare = $mysqli->prepare($sql);
-    $lease_prepare = $mysqli->prepare($sql);
+    $lease_prepare = $mysqli->prepare($lease_sql);
 
     $bind = $prepare->bind_param('s', $payment_id);
 
     $prepare->execute();
     $lease_prepare->execute();
 
-    if ($success && $lease_prepare) {
+    if ($prepare && $lease_prepare) {
         $success = "Payment Reversed";
     } else {
         $err = "Failed!, Please Try Again";
@@ -206,7 +206,7 @@ require_once('../app/partials/head.php');
                                                     <!-- End Modal -->
 
                                                     <!-- Delete Modal -->
-                                                    <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="delete_<?php echo $leases->payment_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -217,10 +217,11 @@ require_once('../app/partials/head.php');
                                                                 </div>
                                                                 <form method="POST">
                                                                     <div class="modal-body text-center text-danger">
-                                                                        <h4>Delete Payment </h4>
+                                                                        <h4>Delete Payment <?php echo $leases->payment_ref; ?></h4>
                                                                         <br>
                                                                         <!-- Hide This -->
-                                                                        <input type="hidden" name="property_id" value="">
+                                                                        <input type="hidden" name="payment_id" value="<?php echo $leases->payment_id; ?>">
+                                                                        <input type="hidden" name="lease_id" value="<?php echo $leases->lease_id; ?>">
                                                                         <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
                                                                         <input type="submit" name="delete_payment" value="Delete" class="text-center btn btn-danger">
                                                                     </div>
