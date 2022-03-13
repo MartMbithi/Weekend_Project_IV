@@ -15,7 +15,7 @@ if (isset($_POST['pay_lease'])) {
     /* Persist */
     $sql = "INSERT INTO payments (payment_ref, payment_lease_id, payment_amount, payment_mode) 
     VALUES(?,?,?,?)";
-    $lease_sql = "UPDATE leases SET lease_payment_status =? WHERE lease_id =?";
+    $lease_sql = "UPDATE property_leases SET lease_payment_status =? WHERE lease_id =?";
 
     $prepare = $mysqli->prepare($sql);
     $lease_prepare = $mysqli->prepare($lease_sql);
@@ -126,7 +126,12 @@ require_once('../app/partials/head.php');
                                                         <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
                                                     </td>
                                                     <td>
-                                                        <a data-toggle="modal" href="#update_<?php echo $leases->lease_id; ?>" class="badge badge-success"><i class="fas fa-hand-holding-usd"></i> Collect Rent</a>
+                                                        <?php
+                                                        if ($leases->lease_payment_status != 'Paid') { ?>
+                                                            <a data-toggle="modal" href="#update_<?php echo $leases->lease_id; ?>" class="badge badge-success"><i class="fas fa-hand-holding-usd"></i> Collect Rent</a>
+                                                        <?php  } else { ?>
+                                                            <a data-toggle="modal" href="#receipt_<?php echo $leases->lease_id; ?>" class="badge badge-primary"><i class="fas fa-receipt"></i> Get Receipt</a>
+                                                        <?php } ?>
                                                     </td>
                                                     <!-- Update Modal -->
                                                     <div class="modal fade fixed-right" id="update_<?php echo $leases->lease_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
