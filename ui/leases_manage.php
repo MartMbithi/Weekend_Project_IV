@@ -20,7 +20,6 @@ if (isset($_POST['evict'])) {
 
     $bind = $prepare->bind_param('ss', $lease_eviction_status, $lease_id);
 
-
     $prepare->execute();
     $property_prepare->execute();
 
@@ -256,7 +255,8 @@ require_once('../app/partials/head.php');
                                                                         <h4>Delete </h4>
                                                                         <br>
                                                                         <!-- Hide This -->
-                                                                        <input type="hidden" name="property_id" value="">
+                                                                        <input type="hidden" name="lease_id" value="<?php echo $leases->lease_id; ?>">
+                                                                        <input type="hidden" name="lease_property_id" value="<?php echo $leases->lease_property_id; ?>">
                                                                         <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
                                                                         <input type="submit" name="delete_lease" value="Delete" class="text-center btn btn-danger">
                                                                     </div>

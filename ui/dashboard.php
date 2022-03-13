@@ -244,7 +244,8 @@ require_once('../app/partials/head.php');
                                             $ret = "SELECT * FROM property_leases pl
                                             INNER JOIN  properties p on p.property_id = pl.lease_property_id
                                             INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                            INNER JOIN users u ON u.user_id = pl.lease_tenant_id";
+                                            INNER JOIN users u ON u.user_id = pl.lease_tenant_id
+                                            WHERE pl.lease_eviction_status = '0'";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
