@@ -1,5 +1,35 @@
 <?php
-/* Add Rent Collections */
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/codeGen.php');
+require_once('../app/settings/checklogin.php');
+check_login();
+/* Add Payment */
+if (isset($_POST['add_payment'])) {
+    $payment_ref = $_POST['payment_ref'];
+    $payment_lease_id = $_POST['payment_lease_id'];
+    $payment_amount = $_POST['payment_amount'];
+    $payment_mode = $_POST['payment_mode'];
+    $lease_payment_status = 'Paid';
+
+    /* Persist */
+    $sql = "INSERT INTO payments (payment_ref, payment_lease_id, payment_amount, payment_mode) 
+    VALUES(?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssss',
+        $payment_ref,
+        $payment_lease_id,
+        $payment_amount,
+        $payment_mode,
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Payment $payment_ref Posted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
