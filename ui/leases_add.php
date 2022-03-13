@@ -1,5 +1,48 @@
 <?php
-/* Leases Add */
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/codeGen.php');
+require_once('../app/settings/checklogin.php');
+check_login();
+
+/* Add Lease */
+if (isset($_POST['add_lease'])) {
+    $lease_ref = $a . $b;
+    $lease_property_id = $_POST['lease_property_id'];
+    $lease_tenant_id = $_POST['lease_tenant_id'];
+    $lease_duration = $_POST['lease_duration'];
+    $lease_date_added = date('d M Y g:ia');
+
+    /* Persist */
+    $sql = "INSERT INTO property_leases (lease_ref, lease_property_id, lease_tenant_id, lease_duration, lease_date_added)
+    VALUES(?,?,?,?,?)";
+    $property_sql = "UPDATE properties SET property_status = 'Leased' WHERE property_id =?";
+
+    $prepare = $mysqli->prepare($sql);
+    $property_prepare  = $mysqli->prepare($property_sql);
+
+    $bind = $prepare->bind_param(
+        'sssss',
+        $lease_ref,
+        $lease_property_id,
+        $lease_tenant_id,
+        $lease_duration,
+        $lease_date_added
+    );
+    $property_bind  = $property_prepare->bind_param(
+        's',
+        $lease_property_id
+    );
+
+    $prepare->execute();
+    $property_prepare->execute();
+
+    if ($prepare  && $property_prepare) {
+        $success = "Tenant Lease Record Added";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
@@ -48,13 +91,36 @@ require_once('../app/partials/head.php');
                                                 <label for="">Property Details</label>
                                                 <select class="form-control basic" name="lease_property_id">
                                                     <option>Select Property</option>
+                                                    <?php
+                                                    $ret = "SELECT * FROM properties p 
+                                                    INNER JOIN categories c ON c.category_id  = p.property_category_id
+                                                    INNER JOIN users u ON u.user_id = p.property_landlord_id
+                                                    WHERE p.property_status = 'Vacant'";
+                                                    $stmt = $mysqli->prepare($ret);
+                                                    $stmt->execute(); //ok
+                                                    $res = $stmt->get_result();
+                                                    while ($properties = $res->fetch_object()) { ?>
+                                                        <option value="<?php echo $properties->property_id; ?>">
+                                                            Code: <?php echo $properties->property_code . ', Name: ' . $properties->property_name . ', Location: ' . $properties->property_address; ?>
+                                                        </option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-8">
                                                 <label for="">Tenant Details</label>
                                                 <select class="form-control basic" name="lease_tenant_id">
                                                     <option>Select Tenant</option>
-                                                </select> 
+                                                    <?php
+                                                    $ret = "SELECT * FROM users WHERE user_access_level = 'tenant' 
+                                                    ORDER BY user_name ASC ";
+                                                    $stmt = $mysqli->prepare($ret);
+                                                    $stmt->execute(); //ok
+                                                    $res = $stmt->get_result();
+                                                    while ($tenants = $res->fetch_object()) {
+                                                    ?>
+                                                        <option value="<?php echo $tenants->user_id; ?>">IDNO: <?php echo $tenants->user_idno . ',  Names: ' . $tenants->user_name; ?></option>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Lease Duration (Months)</label>

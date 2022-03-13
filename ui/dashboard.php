@@ -141,7 +141,7 @@ require_once('../app/partials/head.php');
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Total Rent Collections</span>
-                                    <span class="info-box-number">Ksh 2,000</span>
+                                    <span class="info-box-number">kSH <?php echo number_format($payments, 2); ?></span>
                                 </div>
                             </div>
                         </div>
@@ -151,20 +151,35 @@ require_once('../app/partials/head.php');
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Expenses</span>
-                                    <span class="info-box-number">Ksh 2,000</span>
+                                    <span class="info-box-number"><?php echo number_format($expenses, 2); ?></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-funnel-dollar"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Overall P & L </span>
-                                    <span class="info-box-number">Ksh 2000</span>
+                        <?php
+                        if ($payments >= $expenses) {
+                            $pl = $payments - $expenses;
+                        ?>
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="info-box mb-3">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-funnel-dollar"></i></span>
+                                    <div class="info-box-content text-success">
+                                        <span class="info-box-text">Overall Profit </span>
+                                        <span class="info-box-number">Ksh <?php echo number_format($pl, 2); ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php } else {
+                            $pl =  $expenses - $payments; ?>
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="info-box mb-3">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-funnel-dollar"></i></span>
+                                    <div class="info-box-content text-danger">
+                                        <span class="info-box-text ">Overall Loss </span>
+                                        <span class="info-box-number">Ksh <?php echo number_format($pl, 2); ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
 
                     <div class="row">
@@ -236,15 +251,43 @@ require_once('../app/partials/head.php');
                                             <tr>
                                                 <th>Tenant Details</th>
                                                 <th>Property Details</th>
-                                                <th>Date Leased</th>
+                                                <th>Lease Details</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Name: </td>
-                                                <td>Property</td>
-                                                <td>Date</td>
-                                            </tr>
+                                            <?php
+                                            $ret = "SELECT * FROM property_leases pl
+                                            INNER JOIN  properties p on p.property_id = pl.lease_property_id
+                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
+                                            INNER JOIN users u ON u.user_id = pl.lease_tenant_id
+                                            WHERE pl.lease_eviction_status = '0'";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($leases = $res->fetch_object()) {
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <b>Name: </b> <?php echo $leases->user_name; ?> <br>
+                                                        <b>IDNO: </b> <?php echo $leases->user_idno; ?> <br>
+                                                        <b>Phone No : </b> <?php echo $leases->user_phoneno; ?> <br>
+                                                        <b>Email : </b> <?php echo $leases->user_email; ?>
+
+                                                    </td>
+                                                    <td>
+                                                        <b>Code: </b> <?php echo $leases->property_code; ?> <br>
+                                                        <b>Name: </b> <?php echo $leases->property_name; ?> <br>
+                                                        <b>Category: </b> <?php echo $leases->category_name; ?> <br>
+                                                        <b>Location : </b> <?php echo $leases->property_address; ?>
+                                                    </td>
+                                                    <td>
+                                                        <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
+                                                        <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
+                                                        <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
+                                                        <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
