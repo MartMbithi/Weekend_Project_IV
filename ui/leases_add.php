@@ -15,7 +15,11 @@ if (isset($_POST['add_lease'])) {
     /* Persist */
     $sql = "INSERT INTO property_leases (lease_ref, lease_property_id, lease_tenant_id, lease_duration, lease_date_added)
     VALUES(?,?,?,?,?)";
+    $property_sql = "UPDATE properties SET property_status = 'Leased' WHERE property_id =?";
+
     $prepare = $mysqli->prepare($sql);
+    $property_prepare  = $mysqli->prepare($property_sql);
+
     $bind = $prepare->bind_param(
         'sssss',
         $lease_ref,
@@ -25,8 +29,15 @@ if (isset($_POST['add_lease'])) {
         $lease_duration,
         $lease_date_added
     );
+    $property_bind  = $property_prepare->bind_param(
+        's',
+        $lease_property_id
+    );
+
     $prepare->execute();
-    if ($prepare) {
+    $property_prepare->execute();
+
+    if ($prepare  && $property_prepare) {
         $success = "Tenant Lease Record Added";
     } else {
         $err = "Failed!, Please Try Again";
