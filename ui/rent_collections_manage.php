@@ -154,82 +154,182 @@ require_once('../app/partials/head.php');
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    
+                                                                    <div class="text-center text-bold">
+                                                                        Lease Ref #<?php echo $leases->lease_ref; ?> Payment Receipt
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="card border border-success">
+                                                                                <div class="card-header">
+                                                                                    <h3 class="card-title">
+                                                                                        <i class="fas fa-user-tag"></i>
+                                                                                        Tenant Details
+                                                                                    </h3>
+                                                                                </div>
+                                                                                <!-- /.card-header -->
+                                                                                <div class="card-body">
+                                                                                    <dl class="row">
+                                                                                        <dt class="col-sm-4">Name</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->user_name; ?></dd>
+                                                                                        <dt class="col-sm-4">IDNO </dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->user_idno; ?></dd>
+                                                                                        <dt class="col-sm-4">Phone Number</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->user_phoneno; ?></dd>
+                                                                                        <dt class="col-sm-4">Email</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->user_email; ?></dd>
+                                                                                    </dl>
+                                                                                </div>
+                                                                                <!-- /.card-body -->
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="card border border-success">
+                                                                                <div class="card-header">
+                                                                                    <h3 class="card-title">
+                                                                                        <i class="fas fa-hotel"></i>
+                                                                                        Property Details
+                                                                                    </h3>
+                                                                                </div>
+                                                                                <!-- /.card-header -->
+                                                                                <div class="card-body">
+                                                                                    <dl class="row">
+                                                                                        <dt class="col-sm-4">Code</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->property_code; ?></dd>
+                                                                                        <dt class="col-sm-4">Name</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->property_name; ?></dd>
+                                                                                        <dt class="col-sm-4">Category</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->category_name; ?></dd>
+                                                                                        <dt class="col-sm-4">Location</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->property_address; ?></dd>
+                                                                                    </dl>
+                                                                                </div>
+                                                                                <!-- /.card-body -->
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="card border border-success">
+                                                                                <div class="card-header">
+                                                                                    <h3 class="card-title">
+                                                                                        <i class="fas fa-edit"></i>
+                                                                                        Lease Details
+                                                                                    </h3>
+                                                                                </div>
+                                                                                <!-- /.card-header -->
+                                                                                <div class="card-body">
+                                                                                    <dl class="row">
+                                                                                        <dt class="col-sm-4">REF</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->lease_ref; ?></dd>
+                                                                                        <dt class="col-sm-4">Leased Duration</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->lease_duration; ?> Months</dd>
+                                                                                        <dt class="col-sm-4">Payment Status</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->lease_payment_status; ?></dd>
+                                                                                        <dt class="col-sm-4">Date Leased</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->lease_date_added; ?></dd>
+                                                                                    </dl>
+                                                                                </div>
+                                                                                <!-- /.card-body -->
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="card border border-success">
+                                                                                <div class="card-header">
+                                                                                    <h3 class="card-title">
+                                                                                        <i class="fas fa-hand-holding-usd"></i>
+                                                                                        Payment Details
+                                                                                    </h3>
+                                                                                </div>
+                                                                                <!-- /.card-header -->
+                                                                                <div class="card-body">
+                                                                                    <dl class="row">
+                                                                                        <dt class="col-sm-4">REF</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->payment_ref; ?></dd>
+                                                                                        <dt class="col-sm-4">Amount Paid</dt>
+                                                                                        <dd class="col-sm-8">Ksh <?php echo number_format($leases->payment_amount, 2); ?></dd>
+                                                                                        <dt class="col-sm-4">Payment Mode</dt>
+                                                                                        <dd class="col-sm-8"><?php echo $leases->payment_mode; ?></dd>
+                                                                                        <dt class="col-sm-4">Date Paid</dt>
+                                                                                        <dd class="col-sm-8"><?php echo date('d M Y g:ia', strtotime($leases->payment_date)); ?></dd>
+                                                                                    </dl>
+                                                                                </div>
+                                                                                <!-- /.card-body -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- End Print -->
-                                                    <!-- Update Modal -->
-                                                    <div class="modal fade fixed-right" id="update_<?php echo $leases->payment_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                                        <div class="modal-dialog  modal-xl" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header align-items-center">
-                                                                    <div class="text-bold">
-                                                                        <h6 class="text-bold">Update <?php echo $leases->payment_ref; ?> </h6>
-                                                                    </div>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form method="post" enctype="multipart/form-data" role="form">
-                                                                        <div class="row">
-                                                                            <div class="form-group col-md-4">
-                                                                                <label for="">Payment Ref Code</label>
-                                                                                <input type="text" required value="<?php echo $leases->payment_ref; ?>" name="payment_ref_code" readonly class="form-control">
-                                                                                <!-- Hidden Values -->
-                                                                                <input type="hidden" required name="payment_id" value="<?php echo $leases->payment_id; ?>" readonly class="form-control">
-                                                                            </div>
-                                                                            <div class="form-group col-md-4">
-                                                                                <label for="">Amount (Ksh)</label>
-                                                                                <input type="text" required value="<?php echo number_format($leases->payment_amount, 2); ?>" name="payment_amount" readonly class="form-control">
-                                                                            </div>
-                                                                            <div class="form-group col-md-4">
-                                                                                <label for="">Mode</label>
-                                                                                <select name="payment_mode" class="form-control basic">
-                                                                                    <option><?php echo $leases->payment_mode; ?></option>
-                                                                                    <option>Cash</option>
-                                                                                    <option>MPESA</option>
-                                                                                    <option>Debit/Credit Card</option>
-                                                                                </select>
-                                                                            </div>
+                                                        <!-- End Print -->
+                                                        <!-- Update Modal -->
+                                                        <div class="modal fade fixed-right" id="update_<?php echo $leases->payment_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog  modal-xl" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header align-items-center">
+                                                                        <div class="text-bold">
+                                                                            <h6 class="text-bold">Update <?php echo $leases->payment_ref; ?> </h6>
                                                                         </div>
-                                                                        <div class="text-right">
-                                                                            <button type="submit" name="update_payment" class="btn btn-warning">Update Payment</button>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form method="post" enctype="multipart/form-data" role="form">
+                                                                            <div class="row">
+                                                                                <div class="form-group col-md-4">
+                                                                                    <label for="">Payment Ref Code</label>
+                                                                                    <input type="text" required value="<?php echo $leases->payment_ref; ?>" name="payment_ref_code" readonly class="form-control">
+                                                                                    <!-- Hidden Values -->
+                                                                                    <input type="hidden" required name="payment_id" value="<?php echo $leases->payment_id; ?>" readonly class="form-control">
+                                                                                </div>
+                                                                                <div class="form-group col-md-4">
+                                                                                    <label for="">Amount (Ksh)</label>
+                                                                                    <input type="text" required value="<?php echo number_format($leases->payment_amount, 2); ?>" name="payment_amount" readonly class="form-control">
+                                                                                </div>
+                                                                                <div class="form-group col-md-4">
+                                                                                    <label for="">Mode</label>
+                                                                                    <select name="payment_mode" class="form-control basic">
+                                                                                        <option><?php echo $leases->payment_mode; ?></option>
+                                                                                        <option>Cash</option>
+                                                                                        <option>MPESA</option>
+                                                                                        <option>Debit/Credit Card</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="text-right">
+                                                                                <button type="submit" name="update_payment" class="btn btn-warning">Update Payment</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- End Modal -->
+
+                                                        <!-- Delete Modal -->
+                                                        <div class="modal fade" id="delete_<?php echo $leases->payment_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal">
+                                                                            <span>&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form method="POST">
+                                                                        <div class="modal-body text-center text-danger">
+                                                                            <h4>Delete Payment <?php echo $leases->payment_ref; ?></h4>
+                                                                            <br>
+                                                                            <!-- Hide This -->
+                                                                            <input type="hidden" name="payment_id" value="<?php echo $leases->payment_id; ?>">
+                                                                            <input type="hidden" name="lease_id" value="<?php echo $leases->lease_id; ?>">
+                                                                            <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                            <input type="submit" name="delete_payment" value="Delete" class="text-center btn btn-danger">
                                                                         </div>
                                                                     </form>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- End Modal -->
-
-                                                    <!-- Delete Modal -->
-                                                    <div class="modal fade" id="delete_<?php echo $leases->payment_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal">
-                                                                        <span>&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <form method="POST">
-                                                                    <div class="modal-body text-center text-danger">
-                                                                        <h4>Delete Payment <?php echo $leases->payment_ref; ?></h4>
-                                                                        <br>
-                                                                        <!-- Hide This -->
-                                                                        <input type="hidden" name="payment_id" value="<?php echo $leases->payment_id; ?>">
-                                                                        <input type="hidden" name="lease_id" value="<?php echo $leases->lease_id; ?>">
-                                                                        <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                        <input type="submit" name="delete_payment" value="Delete" class="text-center btn btn-danger">
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Modal -->
+                                                        <!-- End Modal -->
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
