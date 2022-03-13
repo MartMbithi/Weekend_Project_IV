@@ -91,111 +91,145 @@ require_once('../app/partials/head.php');
                                         <thead>
                                             <tr>
                                                 <th>Lease Details</th>
+                                                <th>Property Details</th>
+                                                <th>Tenant Details</th>
                                                 <th>Payment Details</th>
-                                                <th>Date Paid</th>
                                                 <th>Manage</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                <td>Code</td>
-                                                <td>Code</td>
-                                                <td>Code</td>
-                                                <td>
-                                                    <a data-toggle="modal" href="#print_" class="badge badge-success"><i class="fas fa-receipt"></i> Print Receipt</a>
-                                                    <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
-                                                    <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
-                                                </td>
-                                                <!-- Print -->
-                                                <div class="modal fade fixed-right" id="print_" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="modal-dialog  modal-xl" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header align-items-center">
-                                                                <div class="text-bold">
-                                                                    <h6 class="text-bold">Print Receipt</h6>
+                                            <?php
+                                            $ret = "SELECT * FROM property_leases pl
+                                            INNER JOIN  properties p on p.property_id = pl.lease_property_id
+                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
+                                            INNER JOIN users u ON u.user_id = pl.lease_tenant_id 
+                                            INNER JOIN payments pa ON pa.payment_lease_id = pl.lease_id 
+                                            WHERE pl.lease_eviction_status = '0'
+                                            ";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($leases = $res->fetch_object()) {
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
+                                                        <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
+                                                        <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
+                                                        <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
+                                                    </td>
+                                                    <td>
+                                                        <b>Code: </b> <?php echo $leases->property_code; ?> <br>
+                                                        <b>Name: </b> <?php echo $leases->property_name; ?> <br>
+                                                        <b>Category: </b> <?php echo $leases->category_name; ?> <br>
+                                                        <b>Location : </b> <?php echo $leases->property_address; ?>
+                                                    </td>
+                                                    <td>
+                                                        <b>Name: </b> <?php echo $leases->user_name; ?> <br>
+                                                        <b>IDNO: </b> <?php echo $leases->user_idno; ?> <br>
+                                                        <b>Phone No : </b> <?php echo $leases->user_phoneno; ?> <br>
+                                                        <b>Email : </b> <?php echo $leases->user_email; ?>
+                                                    </td>
+                                                    <td>
+                                                        <b>Ref: </b> <?php echo $leases->payment_ref; ?> <br>
+                                                        <b>Amount: </b> Ksh <?php echo number_format($leases->payment_amount, 2); ?> <br>
+                                                        <b>Mode : </b> <?php echo $leases->payment_mode; ?> <br>
+                                                        <b>Date : </b> <?php echo date('d M Y g:ia', strtotime($leases->payment_date)); ?>
+                                                    </td>
+                                                    <td>
+                                                        <a data-toggle="modal" href="#print_" class="badge badge-success"><i class="fas fa-receipt"></i> Print Receipt</a>
+                                                        <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                                        <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                    </td>
+                                                    <!-- Print -->
+                                                    <div class="modal fade fixed-right" id="print_" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog  modal-xl" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header align-items-center">
+                                                                    <div class="text-bold">
+                                                                        <h6 class="text-bold">Print Receipt</h6>
+                                                                    </div>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
                                                                 </div>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
+                                                                <div class="modal-body">
 
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- End Print -->
-                                                <!-- Update Modal -->
-                                                <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="modal-dialog  modal-xl" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header align-items-center">
-                                                                <div class="text-bold">
-                                                                    <h6 class="text-bold">Update </h6>
-                                                                </div>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form method="post" enctype="multipart/form-data" role="form">
-                                                                    <div class="row">
-                                                                        <div class="form-group col-md-4">
-                                                                            <label for="">Payment Ref Code</label>
-                                                                            <input type="text" required name="payment_ref_code" readonly class="form-control">
-                                                                            <!-- Hidden Values -->
-                                                                            <input type="hidden" required name="payment_id" readonly class="form-control">
-                                                                        </div>
-                                                                        <div class="form-group col-md-4">
-                                                                            <label for="">Amount (Ksh)</label>
-                                                                            <input type="text" required name="payment_amount" readonly class="form-control">
-                                                                        </div>
-                                                                        <div class="form-group col-md-4">
-                                                                            <label for="">Mode</label>
-                                                                            <select name="payment_mode" class="form-control basic">
-                                                                                <option>Cash</option>
-                                                                                <option>MPESA</option>
-                                                                                <option>Debit/Credit Card</option>
-                                                                            </select>
-                                                                        </div>
+                                                    <!-- End Print -->
+                                                    <!-- Update Modal -->
+                                                    <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog  modal-xl" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header align-items-center">
+                                                                    <div class="text-bold">
+                                                                        <h6 class="text-bold">Update </h6>
                                                                     </div>
-                                                                    <div class="text-right">
-                                                                        <button type="submit" name="update_payment" class="btn btn-warning">Update Payment</button>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-md-4">
+                                                                                <label for="">Payment Ref Code</label>
+                                                                                <input type="text" required name="payment_ref_code" readonly class="form-control">
+                                                                                <!-- Hidden Values -->
+                                                                                <input type="hidden" required name="payment_id" readonly class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group col-md-4">
+                                                                                <label for="">Amount (Ksh)</label>
+                                                                                <input type="text" required name="payment_amount" readonly class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group col-md-4">
+                                                                                <label for="">Mode</label>
+                                                                                <select name="payment_mode" class="form-control basic">
+                                                                                    <option>Cash</option>
+                                                                                    <option>MPESA</option>
+                                                                                    <option>Debit/Credit Card</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-right">
+                                                                            <button type="submit" name="update_payment" class="btn btn-warning">Update Payment</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal -->
+
+                                                    <!-- Delete Modal -->
+                                                    <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal">
+                                                                        <span>&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form method="POST">
+                                                                    <div class="modal-body text-center text-danger">
+                                                                        <h4>Delete Payment </h4>
+                                                                        <br>
+                                                                        <!-- Hide This -->
+                                                                        <input type="hidden" name="property_id" value="">
+                                                                        <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                        <input type="submit" name="delete_payment" value="Delete" class="text-center btn btn-danger">
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- End Modal -->
-
-                                                <!-- Delete Modal -->
-                                                <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
-                                                                <button type="button" class="close" data-dismiss="modal">
-                                                                    <span>&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form method="POST">
-                                                                <div class="modal-body text-center text-danger">
-                                                                    <h4>Delete Payment </h4>
-                                                                    <br>
-                                                                    <!-- Hide This -->
-                                                                    <input type="hidden" name="property_id" value="">
-                                                                    <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                    <input type="submit" name="delete_payment" value="Delete" class="text-center btn btn-danger">
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End Modal -->
-                                            </tr>
-
+                                                    <!-- End Modal -->
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
