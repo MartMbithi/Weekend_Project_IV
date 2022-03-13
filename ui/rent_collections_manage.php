@@ -154,107 +154,112 @@ require_once('../app/partials/head.php');
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <div class="text-center text-bold">
-                                                                        Lease Ref #<?php echo $leases->lease_ref; ?> Payment Receipt
+                                                                    <div id="print_receipt">
+                                                                        <div class="text-center text-bold">
+                                                                            Lease Ref #<?php echo $leases->lease_ref; ?> Payment Receipt
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="card border border-success">
+                                                                                    <div class="card-header">
+                                                                                        <h3 class="card-title">
+                                                                                            <i class="fas fa-user-tag"></i>
+                                                                                            Tenant Details
+                                                                                        </h3>
+                                                                                    </div>
+                                                                                    <!-- /.card-header -->
+                                                                                    <div class="card-body">
+                                                                                        <dl class="row">
+                                                                                            <dt class="col-sm-4">Name</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->user_name; ?></dd>
+                                                                                            <dt class="col-sm-4">IDNO </dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->user_idno; ?></dd>
+                                                                                            <dt class="col-sm-4">Phone Number</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->user_phoneno; ?></dd>
+                                                                                            <dt class="col-sm-4">Email</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->user_email; ?></dd>
+                                                                                        </dl>
+                                                                                    </div>
+                                                                                    <!-- /.card-body -->
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="card border border-success">
+                                                                                    <div class="card-header">
+                                                                                        <h3 class="card-title">
+                                                                                            <i class="fas fa-hotel"></i>
+                                                                                            Property Details
+                                                                                        </h3>
+                                                                                    </div>
+                                                                                    <!-- /.card-header -->
+                                                                                    <div class="card-body">
+                                                                                        <dl class="row">
+                                                                                            <dt class="col-sm-4">Code</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->property_code; ?></dd>
+                                                                                            <dt class="col-sm-4">Name</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->property_name; ?></dd>
+                                                                                            <dt class="col-sm-4">Category</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->category_name; ?></dd>
+                                                                                            <dt class="col-sm-4">Location</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->property_address; ?></dd>
+                                                                                        </dl>
+                                                                                    </div>
+                                                                                    <!-- /.card-body -->
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="card border border-success">
+                                                                                    <div class="card-header">
+                                                                                        <h3 class="card-title">
+                                                                                            <i class="fas fa-edit"></i>
+                                                                                            Lease Details
+                                                                                        </h3>
+                                                                                    </div>
+                                                                                    <!-- /.card-header -->
+                                                                                    <div class="card-body">
+                                                                                        <dl class="row">
+                                                                                            <dt class="col-sm-4">REF</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->lease_ref; ?></dd>
+                                                                                            <dt class="col-sm-4">Leased Duration</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->lease_duration; ?> Months</dd>
+                                                                                            <dt class="col-sm-4">Payment Status</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->lease_payment_status; ?></dd>
+                                                                                            <dt class="col-sm-4">Date Leased</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->lease_date_added; ?></dd>
+                                                                                        </dl>
+                                                                                    </div>
+                                                                                    <!-- /.card-body -->
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="card border border-success">
+                                                                                    <div class="card-header">
+                                                                                        <h3 class="card-title">
+                                                                                            <i class="fas fa-hand-holding-usd"></i>
+                                                                                            Payment Details
+                                                                                        </h3>
+                                                                                    </div>
+                                                                                    <!-- /.card-header -->
+                                                                                    <div class="card-body">
+                                                                                        <dl class="row">
+                                                                                            <dt class="col-sm-4">REF</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->payment_ref; ?></dd>
+                                                                                            <dt class="col-sm-4">Amount Paid</dt>
+                                                                                            <dd class="col-sm-8">Ksh <?php echo number_format($leases->payment_amount, 2); ?></dd>
+                                                                                            <dt class="col-sm-4">Payment Mode</dt>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->payment_mode; ?></dd>
+                                                                                            <dt class="col-sm-4">Date Paid</dt>
+                                                                                            <dd class="col-sm-8"><?php echo date('d M Y g:ia', strtotime($leases->payment_date)); ?></dd>
+                                                                                        </dl>
+                                                                                    </div>
+                                                                                    <!-- /.card-body -->
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <div class="card border border-success">
-                                                                                <div class="card-header">
-                                                                                    <h3 class="card-title">
-                                                                                        <i class="fas fa-user-tag"></i>
-                                                                                        Tenant Details
-                                                                                    </h3>
-                                                                                </div>
-                                                                                <!-- /.card-header -->
-                                                                                <div class="card-body">
-                                                                                    <dl class="row">
-                                                                                        <dt class="col-sm-4">Name</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->user_name; ?></dd>
-                                                                                        <dt class="col-sm-4">IDNO </dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->user_idno; ?></dd>
-                                                                                        <dt class="col-sm-4">Phone Number</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->user_phoneno; ?></dd>
-                                                                                        <dt class="col-sm-4">Email</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->user_email; ?></dd>
-                                                                                    </dl>
-                                                                                </div>
-                                                                                <!-- /.card-body -->
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="card border border-success">
-                                                                                <div class="card-header">
-                                                                                    <h3 class="card-title">
-                                                                                        <i class="fas fa-hotel"></i>
-                                                                                        Property Details
-                                                                                    </h3>
-                                                                                </div>
-                                                                                <!-- /.card-header -->
-                                                                                <div class="card-body">
-                                                                                    <dl class="row">
-                                                                                        <dt class="col-sm-4">Code</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->property_code; ?></dd>
-                                                                                        <dt class="col-sm-4">Name</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->property_name; ?></dd>
-                                                                                        <dt class="col-sm-4">Category</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->category_name; ?></dd>
-                                                                                        <dt class="col-sm-4">Location</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->property_address; ?></dd>
-                                                                                    </dl>
-                                                                                </div>
-                                                                                <!-- /.card-body -->
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="card border border-success">
-                                                                                <div class="card-header">
-                                                                                    <h3 class="card-title">
-                                                                                        <i class="fas fa-edit"></i>
-                                                                                        Lease Details
-                                                                                    </h3>
-                                                                                </div>
-                                                                                <!-- /.card-header -->
-                                                                                <div class="card-body">
-                                                                                    <dl class="row">
-                                                                                        <dt class="col-sm-4">REF</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->lease_ref; ?></dd>
-                                                                                        <dt class="col-sm-4">Leased Duration</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->lease_duration; ?> Months</dd>
-                                                                                        <dt class="col-sm-4">Payment Status</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->lease_payment_status; ?></dd>
-                                                                                        <dt class="col-sm-4">Date Leased</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->lease_date_added; ?></dd>
-                                                                                    </dl>
-                                                                                </div>
-                                                                                <!-- /.card-body -->
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="card border border-success">
-                                                                                <div class="card-header">
-                                                                                    <h3 class="card-title">
-                                                                                        <i class="fas fa-hand-holding-usd"></i>
-                                                                                        Payment Details
-                                                                                    </h3>
-                                                                                </div>
-                                                                                <!-- /.card-header -->
-                                                                                <div class="card-body">
-                                                                                    <dl class="row">
-                                                                                        <dt class="col-sm-4">REF</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->payment_ref; ?></dd>
-                                                                                        <dt class="col-sm-4">Amount Paid</dt>
-                                                                                        <dd class="col-sm-8">Ksh <?php echo number_format($leases->payment_amount, 2); ?></dd>
-                                                                                        <dt class="col-sm-4">Payment Mode</dt>
-                                                                                        <dd class="col-sm-8"><?php echo $leases->payment_mode; ?></dd>
-                                                                                        <dt class="col-sm-4">Date Paid</dt>
-                                                                                        <dd class="col-sm-8"><?php echo date('d M Y g:ia', strtotime($leases->payment_date)); ?></dd>
-                                                                                    </dl>
-                                                                                </div>
-                                                                                <!-- /.card-body -->
-                                                                            </div>
-                                                                        </div>
+                                                                    <div class="text-right">
+                                                                        <button class="btn btn-success"> <i class="fas fa-print"></i> Print</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
