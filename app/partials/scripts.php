@@ -84,6 +84,14 @@
             options: pieOptions
         })
     })
+    /* Print Inside Div */
+    function printContent(el) {
+        var restorepage = $('body').html();
+        var printcontent = $('#' + el).clone();
+        $('body').empty().html(printcontent);
+        window.print();
+        $('body').html(restorepage);
+    }
 </script>
 <!-- Init Sweet Alerts -->
 <?php if (isset($success)) { ?>

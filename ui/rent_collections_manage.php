@@ -259,7 +259,7 @@ require_once('../app/partials/head.php');
                                                                         </div>
                                                                     </div>
                                                                     <div class="text-right">
-                                                                        <button class="btn btn-success"> <i class="fas fa-print"></i> Print</button>
+                                                                        <button class="btn btn-success" id="print" onclick="printContent('print_receipt');"> <i class="fas fa-print"></i> Print</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
