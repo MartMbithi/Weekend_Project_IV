@@ -33,6 +33,33 @@ if (isset($_POST['add_expense'])) {
 }
 
 /* Update Expenses */
+if (isset($_POST['update_expense'])) {
+    $expense_id = $_POST['expense_id'];
+    $expense_name = $_POST['expense_name'];
+    $expense_amount = $_POST['expense_amount'];
+    $expense_desc = $_POST['expense_desc'];
+    $expense_date_added = $_POST['expense_date_added'];
+
+    /* Persist */
+    $sql = "UPDATE expenses SET expense_name =?, expense_amount =?, expense_desc =?, expense_date_added =? WHERE 
+    expense_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssss',
+        $exepense_name,
+        $expense_amount,
+        $expense_desc,
+        $expense_date_added,
+        $expense_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success  = "Expense Record Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
 /* Delete Expenses */
 require_once('../app/partials/head.php');
 ?>
