@@ -6,7 +6,7 @@ require_once('../app/settings/checklogin.php');
 check_login();
 
 /* Update Payments */
-if (isset($_POST['update'])) {
+if (isset($_POST['update_payment'])) {
     $payment_id = $_POST['payment_id'];
     $payment_mode = $_POST['payment_mode'];
 
@@ -137,12 +137,12 @@ require_once('../app/partials/head.php');
                                                         <b>Date : </b> <?php echo date('d M Y g:ia', strtotime($leases->payment_date)); ?>
                                                     </td>
                                                     <td>
-                                                        <a data-toggle="modal" href="#print_" class="badge badge-success"><i class="fas fa-receipt"></i> Print Receipt</a>
-                                                        <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
-                                                        <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                        <a data-toggle="modal" href="#print_<?php echo $leases->payment_id; ?>" class="badge badge-success"><i class="fas fa-receipt"></i> Print Receipt</a>
+                                                        <a data-toggle="modal" href="#update_<?php echo $leases->payment_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                                        <a data-toggle="modal" href="#delete_<?php echo $leases->payment_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                                     </td>
                                                     <!-- Print -->
-                                                    <div class="modal fade fixed-right" id="print_" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal fade fixed-right" id="print_<?php echo $leases->payment_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog  modal-xl" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header align-items-center">
@@ -161,12 +161,12 @@ require_once('../app/partials/head.php');
                                                     </div>
                                                     <!-- End Print -->
                                                     <!-- Update Modal -->
-                                                    <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal fade fixed-right" id="update_<?php echo $leases->payment_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog  modal-xl" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header align-items-center">
                                                                     <div class="text-bold">
-                                                                        <h6 class="text-bold">Update </h6>
+                                                                        <h6 class="text-bold">Update <?php echo $leases->payment_ref; ?> </h6>
                                                                     </div>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
@@ -177,17 +177,18 @@ require_once('../app/partials/head.php');
                                                                         <div class="row">
                                                                             <div class="form-group col-md-4">
                                                                                 <label for="">Payment Ref Code</label>
-                                                                                <input type="text" required name="payment_ref_code" readonly class="form-control">
+                                                                                <input type="text" required value="<?php echo $leases->payment_ref; ?>" name="payment_ref_code" readonly class="form-control">
                                                                                 <!-- Hidden Values -->
-                                                                                <input type="hidden" required name="payment_id" readonly class="form-control">
+                                                                                <input type="hidden" required name="payment_id" value="<?php echo $leases->payment_id; ?>" readonly class="form-control">
                                                                             </div>
                                                                             <div class="form-group col-md-4">
                                                                                 <label for="">Amount (Ksh)</label>
-                                                                                <input type="text" required name="payment_amount" readonly class="form-control">
+                                                                                <input type="text" required value="<?php echo number_format($leases->payment_amount, 2); ?>" name="payment_amount" readonly class="form-control">
                                                                             </div>
                                                                             <div class="form-group col-md-4">
                                                                                 <label for="">Mode</label>
                                                                                 <select name="payment_mode" class="form-control basic">
+                                                                                    <option><?php echo $leases->payment_mode; ?></option>
                                                                                     <option>Cash</option>
                                                                                     <option>MPESA</option>
                                                                                     <option>Debit/Credit Card</option>
