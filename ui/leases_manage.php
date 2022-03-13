@@ -13,10 +13,18 @@ if (isset($_POST['evict'])) {
 
     /* Persist */
     $sql = "UPDATE property_leases SET lease_eviction_status =? WHERE lease_id =?";
+    $property_sql = "UPDATE properties SET property_status = 'Vacant' WHERE property_id ='$lease_property_id'";
+
     $prepare = $mysqli->prepare($sql);
+    $property_prepare = $mysqli->prepare($property_sql);
+
     $bind = $prepare->bind_param('ss', $lease_eviction_status, $lease_id);
+
+
     $prepare->execute();
-    if ($prepare) {
+    $property_prepare->execute();
+
+    if ($prepare && $property_prepare) {
         $info = "Tenant Evicted";
     } else {
         $err = "Failed!, Please Try Again";
@@ -58,7 +66,6 @@ if (isset($_POST['delete_lease'])) {
     $property_prepare = $mysqli->prepare($property_sql);
 
     $bind = $prepare->bind_param('s', $lease_id);
-
 
     $prepare->execute();
     $property_prepare->execute();
@@ -211,7 +218,7 @@ require_once('../app/partials/head.php');
                                                     <!-- End Modal -->
 
                                                     <!-- Vacate Modal -->
-                                                    <div class="modal fade" id="vacate_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="vacate_<?php echo $leases->lease_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -225,7 +232,8 @@ require_once('../app/partials/head.php');
                                                                         <h4>Evict Tenant?</h4>
                                                                         <br>
                                                                         <!-- Hide This -->
-                                                                        <input type="hidden" name="property_id" value="">
+                                                                        <input type="hidden" name="lease_id" value="<?php echo $leases->lease_id; ?>">
+                                                                        <input type="hidden" name="lease_property_id" value="<?php echo $leases->lease_property_id; ?>">
                                                                         <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
                                                                         <input type="submit" name="evict" value="Yes" class="text-center btn btn-danger">
                                                                     </div>
@@ -234,7 +242,7 @@ require_once('../app/partials/head.php');
                                                         </div>
                                                     </div>
                                                     <!-- Delete Modal -->
-                                                    <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="delete_<?php echo $leases->lease_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
