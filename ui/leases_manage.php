@@ -1,7 +1,28 @@
 <?php
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/codeGen.php');
+require_once('../app/settings/checklogin.php');
+check_login();
 /* Update Lease */
-/* Delete Lease */
-/* Vacate Room */
+if (isset($_POST['evict'])) {
+    $lease_id = $_POST['lease_id'];
+    $lease_eviction_status = '1';
+    $lease_property_id = $_POST['lease_property_id'];
+
+    /* Persist */
+    $sql = "UPDATE property_leases SET lease_eviction_status =? WHERE lease_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('ss', $lease_eviction_status, $lease_id);
+    $prepare->execute();
+    if ($prepare) {
+        $info = "Tenant Evicted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+/* Evict */
+/* Delete */
 require_once('../app/partials/head.php');
 ?>
 
