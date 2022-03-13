@@ -138,7 +138,8 @@ require_once('../app/partials/head.php');
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
                                             while ($leases = $res->fetch_object()) {
-                                            ?> <tr>
+                                            ?>
+                                                <tr>
                                                     <td>
                                                         <b>Code: </b> <?php echo $leases->property_code; ?> <br>
                                                         <b>Name: </b> <?php echo $leases->property_name; ?> <br>
