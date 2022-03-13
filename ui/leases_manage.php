@@ -23,7 +23,7 @@ if (isset($_POST['evict'])) {
     }
 }
 /* Update Lease */
-if (isset($_POST['udpate_lease'])) {
+if (isset($_POST['update_lease'])) {
     $lease_id = $_POST['lease_id'];
     $leaase_property_id = $_POST['lease_property_id'];
     $lease_duration = $_POST['lease_duration'];
@@ -153,17 +153,17 @@ require_once('../app/partials/head.php');
                                                         <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
                                                     </td>
                                                     <td>
-                                                        <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a> <br>
-                                                        <a data-toggle="modal" href="#vacate_" class="badge badge-warning"><i class="fas fa-ban"></i> Evict</a> <br>
-                                                        <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                        <a data-toggle="modal" href="#update_<?php echo $leases->lease_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a> <br>
+                                                        <a data-toggle="modal" href="#vacate_<?php echo $leases->lease_id; ?>" class="badge badge-warning"><i class="fas fa-ban"></i> Evict</a> <br>
+                                                        <a data-toggle="modal" href="#delete_<?php echo $leases->lease_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                                     </td>
                                                     <!-- Update Modal -->
-                                                    <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal fade fixed-right" id="update_<?php echo $leases->lease_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog  modal-xl" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header align-items-center">
                                                                     <div class="text-bold">
-                                                                        <h6 class="text-bold">Update </h6>
+                                                                        <h6 class="text-bold">Update <?php echo $leases->lease_ref; ?> </h6>
                                                                     </div>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
@@ -175,12 +175,28 @@ require_once('../app/partials/head.php');
                                                                             <div class="form-group col-md-9">
                                                                                 <label for="">Property Details</label>
                                                                                 <select class="form-control basic" name="lease_property_id">
-                                                                                    <option>Select Property</option>
+                                                                                    <option value="<?php echo $leases->lease_property_id; ?>">
+                                                                                        Code: <?php echo $leases->property_code . ', Name: ' . $leases->property_name . ', Location: ' . $leases->property_address; ?>
+                                                                                    </option>
+                                                                                    <?php
+                                                                                    $properties_ret = "SELECT * FROM properties p 
+                                                                                    INNER JOIN categories c ON c.category_id  = p.property_category_id
+                                                                                    INNER JOIN users u ON u.user_id = p.property_landlord_id
+                                                                                    WHERE p.property_status = 'Vacant'";
+                                                                                    $properties_stmt = $mysqli->prepare($properties_ret);
+                                                                                    $properties_stmt->execute(); //ok
+                                                                                    $properties_res = $properties_stmt->get_result();
+                                                                                    while ($properties = $properties_res->fetch_object()) { ?>
+                                                                                        <option value="<?php echo $properties->property_id; ?>">
+                                                                                            Code: <?php echo $properties->property_code . ', Name: ' . $properties->property_name . ', Location: ' . $properties->property_address; ?>
+                                                                                        </option>
+                                                                                    <?php } ?>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="">Lease Duration (Months)</label>
                                                                                 <select class="form-control basic" name="lease_duration">
+                                                                                    <option><?php echo $leases->lease_duration; ?></option>
                                                                                     <option>1</option>
                                                                                     <option>2</option>
                                                                                     <option>3</option>
@@ -197,7 +213,7 @@ require_once('../app/partials/head.php');
                                                                             </div>
                                                                         </div>
                                                                         <div class="text-right">
-                                                                            <button type="submit" name="update_lease" class="btn btn-warning">Lease Property</button>
+                                                                            <button type="submit" name="update_lease" class="btn btn-warning">Update Lease</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
