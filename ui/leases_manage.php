@@ -26,15 +26,13 @@ if (isset($_POST['evict'])) {
 /* Update Lease */
 if (isset($_POST['update_lease'])) {
     $lease_id = $_POST['lease_id'];
-    $leaase_property_id = $_POST['lease_property_id'];
     $lease_duration = $_POST['lease_duration'];
 
     /* Persist */
-    $sql = "UPDATE property_leases SET lease_property_id = ?, lease_duration =? WHERE lease_id =?";
+    $sql = "UPDATE property_leases SET  lease_duration =? WHERE lease_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'sss',
-        $lease_property_id,
+        'ss',
         $lease_duration,
         $lease_id
     );
