@@ -93,3 +93,12 @@ while ($payments = $res->fetch_object()) {
         $stmt->close();
     }
 } */
+
+/* Expenses */
+$query = "SELECT SUM(expense_amount)  FROM expenses  ";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($expenses);
+$stmt->fetch();
+$stmt->close();
+
