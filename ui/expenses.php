@@ -46,7 +46,7 @@ if (isset($_POST['update_expense'])) {
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
         'sssss',
-        $exepense_name,
+        $expense_name,
         $expense_amount,
         $expense_desc,
         $expense_date_added,
@@ -170,6 +170,7 @@ require_once('../app/partials/head.php');
                                                 <th>REF NO</th>
                                                 <th>Name</th>
                                                 <th>Amount</th>
+                                                <th>Date</th>
                                                 <th>Desc</th>
                                                 <th>Manage</th>
                                             </tr>
@@ -186,6 +187,7 @@ require_once('../app/partials/head.php');
                                                     <td><?php echo $exp->expense_ref; ?></td>
                                                     <td><?php echo $exp->expense_name; ?></td>
                                                     <td> Ksh <?php echo number_format($exp->expense_amount); ?></td>
+                                                    <td><?php echo date('d M Y', strtotime($exp->expense_date_added)); ?></td>
                                                     <td><?php echo $exp->expense_desc; ?></td>
                                                     <td>
                                                         <a data-toggle="modal" href="#update_<?php echo $exp->expense_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
@@ -209,6 +211,7 @@ require_once('../app/partials/head.php');
                                                                             <div class="form-group col-md-4">
                                                                                 <label for="">Expense Ref Code</label>
                                                                                 <input type="text" required name="expense_ref" value="<?php echo $exp->expense_ref; ?>" readonly class="form-control">
+                                                                                <input type="hidden" required name="expense_id" value="<?php echo $exp->expense_id; ?>" readonly class="form-control">
                                                                             </div>
                                                                             <div class="form-group col-md-4">
                                                                                 <label for="">Expense Amount (Ksh)</label>
