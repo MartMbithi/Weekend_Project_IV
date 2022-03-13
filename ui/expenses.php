@@ -68,6 +68,7 @@ if (isset($_POST['delete_expenses'])) {
     $sql = "DELETE FROM expenses WHERE expense_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param('s', $expense_id);
+    $prepare->execute();
     if ($prepare) {
         $success = "Expense Deleted";
     } else {
@@ -233,6 +234,7 @@ require_once('../app/partials/head.php');
                                                                         <div class="text-right">
                                                                             <button type="submit" name="update_expense" class="btn btn-warning">Update Expense</button>
                                                                         </div>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -256,7 +258,7 @@ require_once('../app/partials/head.php');
                                                                         <!-- Hide This -->
                                                                         <input type="hidden" name="expense_id" value="<?php echo $exp->expense_id; ?>">
                                                                         <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                        <input type="submit" name="delete_expense" value="Delete" class="text-center btn btn-danger">
+                                                                        <input type="submit" name="delete_expenses" value="Delete" class="text-center btn btn-danger">
                                                                     </div>
                                                                 </form>
                                                             </div>
