@@ -27,7 +27,6 @@ if (isset($_POST['add_lease'])) {
         $lease_property_id,
         $lease_tenant_id,
         $lease_duration,
-        $lease_duration,
         $lease_date_added
     );
     $property_bind  = $property_prepare->bind_param(
