@@ -4,6 +4,7 @@ require_once('../app/settings/config.php');
 require_once('../app/settings/codeGen.php');
 require_once('../app/settings/checklogin.php');
 check_login();
+
 /* Add Lease */
 if (isset($_POST['add_lease'])) {
     $lease_ref = $a . $b;
@@ -91,6 +92,18 @@ require_once('../app/partials/head.php');
                                                 <label for="">Property Details</label>
                                                 <select class="form-control basic" name="lease_property_id">
                                                     <option>Select Property</option>
+                                                    <?php
+                                                    $ret = "SELECT * FROM properties p 
+                                                    INNER JOIN categories c ON c.category_id  = p.property_category_id
+                                                    INNER JOIN users u ON u.user_id = p.property_landlord_id";
+                                                    $stmt = $mysqli->prepare($ret);
+                                                    $stmt->execute(); //ok
+                                                    $res = $stmt->get_result();
+                                                    while ($properties = $res->fetch_object()) { ?>
+                                                        <option value="<?php echo $properties->property_id; ?>">
+                                                            Code: <?php echo $properties->property_code . ', Name: ' . $properties->property_name . ', Location: ' . $properties->property_address; ?>
+                                                        </option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-8">
