@@ -1,5 +1,37 @@
 <?php
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/codeGen.php');
+require_once('../app/settings/checklogin.php');
+check_login();
 /* Add Expense */
+if (isset($_POST['add_expense'])) {
+    $expense_ref = $a . $b;
+    $expense_name = $_POST['expense_name'];
+    $expense_amount = $_POST['expense_amount'];
+    $expense_desc = $_POST['expense_desc'];
+    $expense_date_added = $_POST['expense_date_added'];
+
+    /* Perisst */
+    $sql = "INSERT INTO expenses (expense_ref, expense_name, expense_amount, expense_desc, expense_date_added)
+    VALUES(?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssss',
+        $expense_ref,
+        $expense_name,
+        $expense_amount,
+        $expense_desc,
+        $expense_date_added
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Expense Ref #$expense_ref Added";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
 /* Update Expenses */
 /* Delete Expenses */
 require_once('../app/partials/head.php');
