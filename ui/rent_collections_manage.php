@@ -1,5 +1,26 @@
 <?php
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/codeGen.php');
+require_once('../app/settings/checklogin.php');
+check_login();
+
 /* Update Payments */
+if (isset($_POST['update'])) {
+    $payment_id = $_POST['payment_id'];
+    $payment_mode = $_POST['payment_mode'];
+
+    /* Persist */
+    $sql = "UPDATE payments SET payment_mode = ? WHERE payment_id = ?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('ss', $payment_mode, $payment_id);
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Payment Record Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 /* Delete  Psyments*/
 require_once('../app/partials/head.php');
 ?>
