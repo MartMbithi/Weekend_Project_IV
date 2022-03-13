@@ -15,7 +15,11 @@ if (isset($_POST['pay_lease'])) {
     /* Persist */
     $sql = "INSERT INTO payments (payment_ref, payment_lease_id, payment_amount, payment_mode) 
     VALUES(?,?,?,?)";
+    $lease_sql = "UPDATE leases SET lease_payment_status =? WHERE lease_id =?";
+
     $prepare = $mysqli->prepare($sql);
+    $lease_prepare = $mysqli->prepare($lease_sql);
+
     $bind = $prepare->bind_param(
         'ssss',
         $payment_ref,
@@ -23,8 +27,16 @@ if (isset($_POST['pay_lease'])) {
         $payment_amount,
         $payment_mode,
     );
+    $lease_bind = $lease_prepare->bind_param(
+        'ss',
+        $lease_payment_status,
+        $payment_lease_id
+    );
+
     $prepare->execute();
-    if ($prepare) {
+    $lease_prepare->execute();
+
+    if ($prepare && $lease_bind) {
         $success = "Payment $payment_ref Posted";
     } else {
         $err = "Failed!, Please Try Again";
@@ -133,9 +145,11 @@ require_once('../app/partials/head.php');
                                                                         <div class="row">
                                                                             <div class="form-group col-md-4">
                                                                                 <label for="">Payment Ref Code</label>
-                                                                                <input type="text" required value="<?php echo $paycode; ?>" name="payment_ref_code" readonly class="form-control">
+                                                                                <input type="text" required value="<?php echo $paycode; ?>" name="payment_ref" readonly class="form-control">
                                                                                 <!-- Hidden Values -->
                                                                                 <input type="hidden" required name="payment_lease_id" value="<?php echo $leases->lease_id; ?>" readonly class="form-control">
+                                                                                <input type="hidden" required name="lease_property_id" value="<?php echo $leases->lease_property_id; ?>" readonly class="form-control">
+
                                                                             </div>
                                                                             <div class="form-group col-md-4">
                                                                                 <label for="">Amount (Ksh)</label>
