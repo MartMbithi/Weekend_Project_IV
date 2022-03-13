@@ -21,7 +21,23 @@ if (isset($_POST['update'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
 /* Delete  Psyments*/
+if (isset($_POST['delete_payment'])) {
+    $payment_id = $_POST['payment_id'];
+    $lease_id   = $_POST['lease_id'];
+
+    /* Persist */
+    $sql = "DELETE FROM payments WHERE payment_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $payment_id);
+    $prepare->execute();
+    if ($success) {
+        $success = "Payment Deleted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
