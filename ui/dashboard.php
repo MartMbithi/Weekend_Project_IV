@@ -266,8 +266,9 @@ require_once('../app/partials/head.php');
                                                     </td>
                                                     <td>
                                                         <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
-                                                        <b>Duration: </b> <?php echo $leases->lease_duration; ?> <br>
-                                                        <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?>
+                                                        <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
+                                                        <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
+                                                        <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
