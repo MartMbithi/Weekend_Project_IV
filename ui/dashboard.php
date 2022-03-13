@@ -236,15 +236,41 @@ require_once('../app/partials/head.php');
                                             <tr>
                                                 <th>Tenant Details</th>
                                                 <th>Property Details</th>
-                                                <th>Date Leased</th>
+                                                <th>Lease Details</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Name: </td>
-                                                <td>Property</td>
-                                                <td>Date</td>
-                                            </tr>
+                                            <?php
+                                            $ret = "SELECT * FROM property_leases pl
+                                            INNER JOIN  properties p on p.property_id = pl.lease_property_id
+                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
+                                            INNER JOIN users u ON u.user_id = pl.lease_tenant_id";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($leases = $res->fetch_object()) {
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <b>Name: </b> <?php echo $leases->user_name; ?> <br>
+                                                        <b>IDNO: </b> <?php echo $leases->user_idno; ?> <br>
+                                                        <b>Phone No : </b> <?php echo $leases->user_phoneno; ?> <br>
+                                                        <b>Email : </b> <?php echo $leases->user_email; ?>
+
+                                                    </td>
+                                                    <td>
+                                                        <b>Code: </b> <?php echo $leases->property_code; ?> <br>
+                                                        <b>Name: </b> <?php echo $leases->property_name; ?> <br>
+                                                        <b>Category: </b> <?php echo $leases->category_name; ?> <br>
+                                                        <b>Location : </b> <?php echo $leases->property_address; ?>
+                                                    </td>
+                                                    <td>
+                                                        <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
+                                                        <b>Duration: </b> <?php echo $leases->lease_duration; ?> <br>
+                                                        <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
