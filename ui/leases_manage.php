@@ -46,6 +46,30 @@ if (isset($_POST['udpate_lease'])) {
 }
 
 /* Delete */
+if (isset($_POST['delete_lease'])) {
+    $lease_id  = $_POST['lease_id'];
+    $lease_property_id = -$_POST['lease_property_id'];
+
+    /* Delete */
+    $sql = "DELETE FROM property_leases WHERE lease_id =?";
+    $property_sql = "UPDATE properties SET property_status = 'Vacant' WHERE property_id ='$lease_property_id'";
+
+
+    $prepare = $mysqli->prepare($sql);
+    $property_prepare = $mysqli->prepare($property_sql);
+
+    $bind = $prepare->bind_param('s', $lease_id);
+
+
+    $prepare->execute();
+    $property_prepare->execute();
+
+    if ($prepare && $property_prepare) {
+        $info = "Lease Record Deleted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
