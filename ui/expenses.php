@@ -183,10 +183,10 @@ require_once('../app/partials/head.php');
                                             while ($exp = $res->fetch_object()) {
                                             ?>
                                                 <tr>
-                                                    <td><?php echo $exp->exepense_ref; ?></td>
+                                                    <td><?php echo $exp->expense_ref; ?></td>
                                                     <td><?php echo $exp->expense_name; ?></td>
-                                                    <td><?php echo number_format($exp->expense_amount); ?></td>
-                                                    <td><?php echo $exp->$expense_desc; ?></td>
+                                                    <td> Ksh <?php echo number_format($exp->expense_amount); ?></td>
+                                                    <td><?php echo $exp->expense_desc; ?></td>
                                                     <td>
                                                         <a data-toggle="modal" href="#update_<?php echo $exp->expense_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
                                                         <a data-toggle="modal" href="#delete_<?php echo $exp->expense_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
@@ -206,25 +206,30 @@ require_once('../app/partials/head.php');
                                                                 <div class="modal-body">
                                                                     <form method="post" enctype="multipart/form-data" role="form">
                                                                         <div class="row">
-                                                                            <div class="form-group col-md-6">
+                                                                            <div class="form-group col-md-4">
                                                                                 <label for="">Expense Ref Code</label>
-                                                                                <input type="text" required name="expense_ref_code" readonly class="form-control">
-                                                                                <!-- Hide This -->
-                                                                                <input type="hidden" required name="expense_id" readonly class="form-control">
+                                                                                <input type="text" required name="expense_ref" value="<?php echo $exp->expense_ref; ?>" readonly class="form-control">
                                                                             </div>
-                                                                            <div class="form-group col-md-6">
+                                                                            <div class="form-group col-md-4">
                                                                                 <label for="">Expense Amount (Ksh)</label>
-                                                                                <input type="text" required name="expense_amount" class="form-control">
+                                                                                <input type="text" required value="<?php echo $exp->expense_amount; ?>" name="expense_amount" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group col-md-4">
+                                                                                <label for="">Expense Date</label>
+                                                                                <input type="date" required value="<?php echo $exp->expense_date_added; ?>" name="expense_date_added" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group col-md-12">
+                                                                                <label for="">Expense Name</label>
+                                                                                <input type="text" required name="expense_name" value="<?php echo $exp->expense_name; ?>" class="form-control">
                                                                             </div>
                                                                             <div class="form-group col-md-12">
                                                                                 <label for="">Expense Description</label>
-                                                                                <textarea type="text" required name="expense_desc" class="form-control"></textarea>
+                                                                                <textarea type="text" required name="expense_desc" class="form-control"><?php echo $exp->expense_desc; ?></textarea>
                                                                             </div>
                                                                         </div>
                                                                         <div class="text-right">
-                                                                            <button type="submit" name="update_expense" class="btn btn-warning">Add Expense</button>
+                                                                            <button type="submit" name="update_expense" class="btn btn-warning">Update Expense</button>
                                                                         </div>
-                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>
