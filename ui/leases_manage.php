@@ -122,114 +122,139 @@ require_once('../app/partials/head.php');
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                <td>Property</td>
-                                                <td>Tenant</td>
-                                                <td>Ageement</td>
-                                                <td>
-                                                    <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
-                                                    <a data-toggle="modal" href="#vacate_" class="badge badge-warning"><i class="fas fa-ban"></i> Evict</a>
-                                                    <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
-                                                </td>
-                                                <!-- Update Modal -->
-                                                <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="modal-dialog  modal-xl" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header align-items-center">
-                                                                <div class="text-bold">
-                                                                    <h6 class="text-bold">Update </h6>
-                                                                </div>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form method="post" enctype="multipart/form-data" role="form">
-                                                                    <div class="row">
-                                                                        <div class="form-group col-md-9">
-                                                                            <label for="">Property Details</label>
-                                                                            <select class="form-control basic" name="lease_property_id">
-                                                                                <option>Select Property</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="">Lease Duration (Months)</label>
-                                                                            <select class="form-control basic" name="lease_duration">
-                                                                                <option>1</option>
-                                                                                <option>2</option>
-                                                                                <option>3</option>
-                                                                                <option>4</option>
-                                                                                <option>5</option>
-                                                                                <option>6</option>
-                                                                                <option>7</option>
-                                                                                <option>8</option>
-                                                                                <option>9</option>
-                                                                                <option>10</option>
-                                                                                <option>11</option>
-                                                                                <option>12</option>
-                                                                            </select>
-                                                                        </div>
+                                            <?php
+                                            $ret = "SELECT * FROM property_leases pl
+                                            INNER JOIN  properties p on p.property_id = pl.lease_property_id
+                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
+                                            INNER JOIN users u ON u.user_id = pl.lease_tenant_id 
+                                            WHERE pl.lease_eviction_status = '0'
+                                            ";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($leases = $res->fetch_object()) {
+                                            ?> <tr>
+                                                    <td>
+                                                        <b>Code: </b> <?php echo $leases->property_code; ?> <br>
+                                                        <b>Name: </b> <?php echo $leases->property_name; ?> <br>
+                                                        <b>Category: </b> <?php echo $leases->category_name; ?> <br>
+                                                        <b>Location : </b> <?php echo $leases->property_address; ?>
+                                                    </td>
+                                                    <td>
+                                                        <b>Name: </b> <?php echo $leases->user_name; ?> <br>
+                                                        <b>IDNO: </b> <?php echo $leases->user_idno; ?> <br>
+                                                        <b>Phone No : </b> <?php echo $leases->user_phoneno; ?> <br>
+                                                        <b>Email : </b> <?php echo $leases->user_email; ?>
+                                                    </td>
+                                                    <td>
+                                                        <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
+                                                        <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
+                                                        <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
+                                                        <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
+                                                    </td>
+                                                    <td>
+                                                        <a data-toggle="modal" href="#update_" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a> <br>
+                                                        <a data-toggle="modal" href="#vacate_" class="badge badge-warning"><i class="fas fa-ban"></i> Evict</a> <br>
+                                                        <a data-toggle="modal" href="#delete_" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                                    </td>
+                                                    <!-- Update Modal -->
+                                                    <div class="modal fade fixed-right" id="update_" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog  modal-xl" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header align-items-center">
+                                                                    <div class="text-bold">
+                                                                        <h6 class="text-bold">Update </h6>
                                                                     </div>
-                                                                    <div class="text-right">
-                                                                        <button type="submit" name="update_lease" class="btn btn-warning">Lease Property</button>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-md-9">
+                                                                                <label for="">Property Details</label>
+                                                                                <select class="form-control basic" name="lease_property_id">
+                                                                                    <option>Select Property</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group col-md-3">
+                                                                                <label for="">Lease Duration (Months)</label>
+                                                                                <select class="form-control basic" name="lease_duration">
+                                                                                    <option>1</option>
+                                                                                    <option>2</option>
+                                                                                    <option>3</option>
+                                                                                    <option>4</option>
+                                                                                    <option>5</option>
+                                                                                    <option>6</option>
+                                                                                    <option>7</option>
+                                                                                    <option>8</option>
+                                                                                    <option>9</option>
+                                                                                    <option>10</option>
+                                                                                    <option>11</option>
+                                                                                    <option>12</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-right">
+                                                                            <button type="submit" name="update_lease" class="btn btn-warning">Lease Property</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal -->
+
+                                                    <!-- Vacate Modal -->
+                                                    <div class="modal fade" id="vacate_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">CONFIRM EVICTION</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal">
+                                                                        <span>&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form method="POST">
+                                                                    <div class="modal-body text-center text-danger">
+                                                                        <h4>Evict Tenant?</h4>
+                                                                        <br>
+                                                                        <!-- Hide This -->
+                                                                        <input type="hidden" name="property_id" value="">
+                                                                        <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                        <input type="submit" name="evict" value="Yes" class="text-center btn btn-danger">
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- End Modal -->
-
-                                                <!-- Vacate Modal -->
-                                                <div class="modal fade" id="vacate_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">CONFIRM EVICTION</h5>
-                                                                <button type="button" class="close" data-dismiss="modal">
-                                                                    <span>&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form method="POST">
-                                                                <div class="modal-body text-center text-danger">
-                                                                    <h4>Evict Tenant?</h4>
-                                                                    <br>
-                                                                    <!-- Hide This -->
-                                                                    <input type="hidden" name="property_id" value="">
-                                                                    <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                    <input type="submit" name="evict" value="Yes" class="text-center btn btn-danger">
+                                                    <!-- Delete Modal -->
+                                                    <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal">
+                                                                        <span>&times;</span>
+                                                                    </button>
                                                                 </div>
-                                                            </form>
+                                                                <form method="POST">
+                                                                    <div class="modal-body text-center text-danger">
+                                                                        <h4>Delete </h4>
+                                                                        <br>
+                                                                        <!-- Hide This -->
+                                                                        <input type="hidden" name="property_id" value="">
+                                                                        <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                                        <input type="submit" name="delete_lease" value="Delete" class="text-center btn btn-danger">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- Delete Modal -->
-                                                <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
-                                                                <button type="button" class="close" data-dismiss="modal">
-                                                                    <span>&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form method="POST">
-                                                                <div class="modal-body text-center text-danger">
-                                                                    <h4>Delete </h4>
-                                                                    <br>
-                                                                    <!-- Hide This -->
-                                                                    <input type="hidden" name="property_id" value="">
-                                                                    <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                                    <input type="submit" name="delete_lease" value="Delete" class="text-center btn btn-danger">
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End Modal -->
-                                            </tr>
-
+                                                    <!-- End Modal -->
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
