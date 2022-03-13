@@ -1,5 +1,37 @@
 <?php
-/* Leases Add */
+session_start();
+require_once('../app/settings/config.php');
+require_once('../app/settings/codeGen.php');
+require_once('../app/settings/checklogin.php');
+check_login();
+/* Add Lease */
+if (isset($_POST['add_lease'])) {
+    $lease_ref = $a . $b;
+    $lease_property_id = $_POST['lease_property_id'];
+    $lease_tenant_id = $_POST['lease_tenant_id'];
+    $lease_duration = $_POST['lease_duration'];
+    $lease_date_added = date('d M Y g:ia');
+
+    /* Persist */
+    $sql = "INSERT INTO property_leases (lease_ref, lease_property_id, lease_tenant_id, lease_duration, lease_date_added)
+    VALUES(?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssss',
+        $lease_ref,
+        $lease_property_id,
+        $lease_tenant_id,
+        $lease_duration,
+        $lease_duration,
+        $lease_date_added
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Tenant Lease Record Added";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
@@ -54,7 +86,7 @@ require_once('../app/partials/head.php');
                                                 <label for="">Tenant Details</label>
                                                 <select class="form-control basic" name="lease_tenant_id">
                                                     <option>Select Tenant</option>
-                                                </select> 
+                                                </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Lease Duration (Months)</label>
