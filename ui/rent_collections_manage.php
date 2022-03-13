@@ -147,14 +147,14 @@ require_once('../app/partials/head.php');
                                                             <div class="modal-content">
                                                                 <div class="modal-header align-items-center">
                                                                     <div class="text-bold">
-                                                                        <h6 class="text-bold">Print Receipt</h6>
+                                                                        <h6 class="text-bold">Print Receipt For <?php echo $leases->payment_ref; ?></h6>
                                                                     </div>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>

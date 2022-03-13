@@ -141,7 +141,7 @@ require_once('../app/partials/head.php');
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Total Rent Collections</span>
-                                    <span class="info-box-number">Ksh 2,000</span>
+                                    <span class="info-box-number">kSH <?php echo number_format($payments, 2); ?></span>
                                 </div>
                             </div>
                         </div>

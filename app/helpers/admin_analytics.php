@@ -67,3 +67,29 @@ $stmt->execute();
 $stmt->bind_result($properties_vacant);
 $stmt->fetch();
 $stmt->close();
+
+
+/* Rent Collections */
+$query = "SELECT SUM(payment_amount)  FROM payments  ";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($payments);
+$stmt->fetch();
+$stmt->close();
+
+/* Rent Collected In Previous Month */
+/* $previous_month =  date('m, Y', strtotime('-1 month', strtotime(date('d-m-Y'))));
+$ret = "SELECT * FROM payments";
+$stmt = $mysqli->prepare($ret);
+$stmt->execute(); //ok
+$res = $stmt->get_result();
+while ($payments = $res->fetch_object()) {
+    if (date('m, Y', strtotime($payments->payment_date_added)) = $previous_month) {
+        $query = "SELECT SUM(payment_amount)  FROM payments WHERE payment ";
+        $stmt = $mysqli->prepare($query);
+        $stmt->execute();
+        $stmt->bind_result($payments);
+        $stmt->fetch();
+        $stmt->close();
+    }
+} */
