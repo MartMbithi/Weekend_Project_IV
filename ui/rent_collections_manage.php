@@ -25,15 +25,22 @@ if (isset($_POST['update'])) {
 /* Delete  Psyments*/
 if (isset($_POST['delete_payment'])) {
     $payment_id = $_POST['payment_id'];
-    $lease_id   = $_POST['lease_id'];
+    $payment_lease_id   = $_POST['lease_id'];
 
     /* Persist */
     $sql = "DELETE FROM payments WHERE payment_id =?";
+    $leaase_sql = "UPDATE property_leases SET lease_payment_status ='Pending' WHERE lease_id = '$payment_lease_id'";
+
     $prepare = $mysqli->prepare($sql);
+    $lease_prepare = $mysqli->prepare($sql);
+
     $bind = $prepare->bind_param('s', $payment_id);
+
     $prepare->execute();
-    if ($success) {
-        $success = "Payment Deleted";
+    $lease_prepare->execute();
+
+    if ($success && $lease_prepare) {
+        $success = "Payment Reversed";
     } else {
         $err = "Failed!, Please Try Again";
     }
