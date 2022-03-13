@@ -128,9 +128,9 @@ require_once('../app/partials/head.php');
                                                     <td>
                                                         <?php
                                                         if ($leases->lease_payment_status != 'Paid') { ?>
-                                                            <a data-toggle="modal" href="#update_<?php echo $leases->lease_id; ?>" class="badge badge-success"><i class="fas fa-hand-holding-usd"></i> Collect Rent</a>
+                                                            <a data-toggle="modal" href="#update_<?php echo $leases->lease_id; ?>" class="badge badge-primary"><i class="fas fa-hand-holding-usd"></i> Collect Rent</a>
                                                         <?php  } else { ?>
-                                                            <a data-toggle="modal" href="#receipt_<?php echo $leases->lease_id; ?>" class="badge badge-primary"><i class="fas fa-receipt"></i> Get Receipt</a>
+                                                            <span class="badge badge-success"><i class="fas fa-check"></i> Already Paid</span>
                                                         <?php } ?>
                                                     </td>
                                                     <!-- Update Modal -->
