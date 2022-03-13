@@ -4,7 +4,8 @@ require_once('../app/settings/config.php');
 require_once('../app/settings/codeGen.php');
 require_once('../app/settings/checklogin.php');
 check_login();
-/* Update Lease */
+
+/* Evict */
 if (isset($_POST['evict'])) {
     $lease_id = $_POST['lease_id'];
     $lease_eviction_status = '1';
@@ -21,7 +22,29 @@ if (isset($_POST['evict'])) {
         $err = "Failed!, Please Try Again";
     }
 }
-/* Evict */
+/* Update Lease */
+if (isset($_POST['udpate_lease'])) {
+    $lease_id = $_POST['lease_id'];
+    $leaase_property_id = $_POST['lease_property_id'];
+    $lease_duration = $_POST['lease_duration'];
+
+    /* Persist */
+    $sql = "UPDATE property_leases SET lease_property_id = ?, lease_duration =? WHERE lease_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sss',
+        $lease_property_id,
+        $lease_duration,
+        $lease_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Lease Record Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
 /* Delete */
 require_once('../app/partials/head.php');
 ?>
