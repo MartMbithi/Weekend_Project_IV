@@ -94,7 +94,7 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-8">
-                            <h1 class="m-0 text-dark">Property Leases Module - Manage Leases</h1>
+                            <h1 class="m-0 text-dark">Property Leases  Manage Leases</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-4">
                             <ol class="breadcrumb float-sm-right">
