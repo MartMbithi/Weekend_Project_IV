@@ -61,48 +61,77 @@ require_once('../app/partials/head.php');
 
             <br><br><br>
 
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-warning card-outline">
-                                <div class="card-body">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Code</th>
-                                                <th>Name</th>
-                                                <th>Category</th>
-                                                <th>Property Landlord</th>
-                                                <th>Location</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $ret = "SELECT * FROM properties p 
-                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                            INNER JOIN users u ON u.user_id = p.property_landlord_id";
-                                            $stmt = $mysqli->prepare($ret);
-                                            $stmt->execute(); //ok
-                                            $res = $stmt->get_result();
-                                            while ($properties = $res->fetch_object()) {
-                                            ?>
+            <?php
+            if (isset($_POST['filter'])) {
+            ?>
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-warning card-outline">
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
                                                 <tr>
-                                                    <td><?php echo $properties->property_code; ?></td>
-                                                    <td><?php echo $properties->property_name; ?></td>
-                                                    <td><?php echo $properties->category_name; ?></td>
-                                                    <td><?php echo $properties->user_name; ?></td>
-                                                    <td><?php echo $properties->property_address; ?></td>
+                                                    <th>Lease Details</th>
+                                                    <th>Property Details</th>
+                                                    <th>Tenant Details</th>
+                                                    <th>Payment Details</th>
                                                 </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $start_date = date('d M Y g:ia', strtotime($_POST['start_date']));
+                                                $end_date = date('d M Y g:ia', strtotime($_POST['end_date']));
+                                                $ret = "SELECT * FROM property_leases pl
+                                                INNER JOIN  properties p on p.property_id = pl.lease_property_id
+                                                INNER JOIN categories c ON c.category_id  = p.property_category_id
+                                                INNER JOIN users u ON u.user_id = pl.lease_tenant_id 
+                                                INNER JOIN payments pa ON pa.payment_lease_id = pl.lease_id 
+                                                WHERE pl.lease_eviction_status = '0'
+                                                WHERE pa.payment_date BETWEEN '$start_date' AND '$end_date'
+                                                ";
+                                                $stmt = $mysqli->prepare($ret);
+                                                $stmt->execute(); //ok
+                                                $res = $stmt->get_result();
+                                                while ($leases = $res->fetch_object()) {
+                                                ?>
+                                                    <tr>
+                                                        <td>
+                                                            <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
+                                                            <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
+                                                            <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
+                                                            <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
+                                                        </td>
+                                                        <td>
+                                                            <b>Code: </b> <?php echo $leases->property_code; ?> <br>
+                                                            <b>Name: </b> <?php echo $leases->property_name; ?> <br>
+                                                            <b>Category: </b> <?php echo $leases->category_name; ?> <br>
+                                                            <b>Location : </b> <?php echo $leases->property_address; ?>
+                                                        </td>
+                                                        <td>
+                                                            <b>Name: </b> <?php echo $leases->user_name; ?> <br>
+                                                            <b>IDNO: </b> <?php echo $leases->user_idno; ?> <br>
+                                                            <b>Phone No : </b> <?php echo $leases->user_phoneno; ?> <br>
+                                                            <b>Email : </b> <?php echo $leases->user_email; ?>
+                                                        </td>
+                                                        <td>
+                                                            <b>Ref: </b> <?php echo $leases->payment_ref; ?> <br>
+                                                            <b>Amount: </b> Ksh <?php echo number_format($leases->payment_amount, 2); ?> <br>
+                                                            <b>Mode : </b> <?php echo $leases->payment_mode; ?> <br>
+                                                            <b>Date : </b> <?php echo date('d M Y g:ia', strtotime($leases->payment_date)); ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            <?php } ?>
         </div>
 
         <!-- Main Footer -->
