@@ -70,7 +70,7 @@ require_once('../app/partials/head.php');
                             <div class="col-md-12">
                                 <div class="card card-warning card-outline">
                                     <div class="card-body">
-                                        <table class="table">
+                                        <table class="report_table">
                                             <thead>
                                                 <tr>
                                                     <th>Lease Details</th>
