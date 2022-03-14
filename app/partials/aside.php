@@ -205,7 +205,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="user_reports?user=staffs" class="nav-link">
+                            <a href="user_reports?user=staff" class="nav-link">
                                 <i class="fas fa-angle-right nav-icon"></i>
                                 <p>Staffs</p>
                             </a>
