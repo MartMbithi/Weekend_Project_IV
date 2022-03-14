@@ -71,6 +71,37 @@ require_once('../app/partials/head.php');
                                 <div class="card card-warning card-outline">
                                     <div class="card-body">
 
+                                        <table class="report_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>REF NO</th>
+                                                    <th>Name</th>
+                                                    <th>Amount</th>
+                                                    <th>Date</th>
+                                                    <th>Desc</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $start_date = date('d M Y g:ia', strtotime($_POST['start_date']));
+                                                $end_date = date('d M Y g:ia', strtotime($_POST['end_date']));
+                                                $ret = "SELECT * FROM expenses 
+                                                WHERE expense_date_added BETWEEN '$start_date' AND '$end_date'";
+                                                $stmt = $mysqli->prepare($ret);
+                                                $stmt->execute(); //ok
+                                                $res = $stmt->get_result();
+                                                while ($exp = $res->fetch_object()) {
+                                                ?>
+                                                    <tr>
+                                                        <td><?php echo $exp->expense_ref; ?></td>
+                                                        <td><?php echo $exp->expense_name; ?></td>
+                                                        <td> Ksh <?php echo number_format($exp->expense_amount); ?></td>
+                                                        <td><?php echo date('d M Y', strtotime($exp->expense_date_added)); ?></td>
+                                                        <td><?php echo $exp->expense_desc; ?></td>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
