@@ -96,7 +96,7 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-7">
-                            <h1 class="m-0 text-dark">Property Management Module - Assign Caretaker</h1>
+                            <h1 class="m-0 text-dark">Property Management - Assign Caretaker</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-5">
                             <ol class="breadcrumb float-sm-right">

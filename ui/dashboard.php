@@ -187,8 +187,7 @@ require_once('../app/partials/head.php');
                             <div class="card card-warning card-outline">
                                 <div class="card-header">
                                     <h5 class="card-title text-bold">
-                                        <?php echo date('M, Y', strtotime('-1 month', strtotime(date('d-m-Y')))); ?>
-                                        Recap Report
+                                        Overall Income Statements Recap Report
                                     </h5>
                                 </div>
                                 <!-- /.card-header -->
@@ -202,36 +201,6 @@ require_once('../app/partials/head.php');
                                     </div>
                                     <!-- /.row -->
                                 </div>
-                                <!-- ./card-body -->
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-sm-4 col-6">
-                                            <div class="description-block border-right">
-                                                <h5 class="description-header">Ksh 35,210.43</h5>
-                                                <span class="description-text"><?php echo date('M, Y', strtotime('-1 month', strtotime(date('d-m-Y')))); ?> Collected Rent Revenue</span>
-                                            </div>
-                                            <!-- /.description-block -->
-                                        </div>
-                                        <!-- /.col -->
-                                        <div class="col-sm-4 col-6">
-                                            <div class="description-block border-right">
-                                                <h5 class="description-header">Ksh 10,390.90</h5>
-                                                <span class="description-text"><?php echo date('M, Y', strtotime('-1 month', strtotime(date('d-m-Y')))); ?> Expenditures</span>
-                                            </div>
-                                            <!-- /.description-block -->
-                                        </div>
-                                        <!-- /.col -->
-                                        <div class="col-sm-4 col-6">
-                                            <div class="description-block border-right">
-                                                <h5 class="description-header">Ksh 24,813.53</h5>
-                                                <span class="description-text"><?php echo date('M, Y', strtotime('-1 month', strtotime(date('d-m-Y')))); ?> Profit / Loss</span>
-                                            </div>
-                                            <!-- /.description-block -->
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-                                </div>
-                                <!-- /.card-footer -->
                             </div>
                             <!-- /.card -->
                         </div>
@@ -305,6 +274,8 @@ require_once('../app/partials/head.php');
 
     <!-- Scripts -->
     <?php require_once('../app/partials/scripts.php'); ?>
+    <!-- Load Chart Scripts -->
+    <?php require_once('../app/partials/chart_scripts.php'); ?>
 </body>
 
 </html>

@@ -162,14 +162,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="reports_income_statements" class="nav-link">
-                        <i class="nav-icon fas fa-hand-holding-usd"></i>
-                        <p>
-                            Income Statements
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="reports_properties" class="nav-link">
                         <i class="nav-icon fas fa-hotel"></i>
                         <p>
@@ -184,6 +176,41 @@
                             Leases
                         </p>
                     </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-tag"></i>
+                        <p>
+                            Users Reports
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="user_reports?user=landlord" class="nav-link">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Landlords</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="user_reports?user=caretaker" class="nav-link">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Caretakers</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="user_reports?user=tenant" class="nav-link">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Tenants</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="user_reports?user=staff" class="nav-link">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Staffs</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
