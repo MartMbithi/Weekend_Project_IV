@@ -88,8 +88,8 @@ require_once('../app/partials/head.php');
                                                 INNER JOIN categories c ON c.category_id  = p.property_category_id
                                                 INNER JOIN users u ON u.user_id = pl.lease_tenant_id 
                                                 INNER JOIN payments pa ON pa.payment_lease_id = pl.lease_id 
-                                                WHERE pl.lease_eviction_status = '0'
-                                                WHERE pa.payment_date BETWEEN '$start_date' AND '$end_date'
+                                                WHERE pl.lease_eviction_status = '0' AND
+                                                pa.payment_date BETWEEN '$start_date' AND '$end_date'
                                                 ";
                                                 $stmt = $mysqli->prepare($ret);
                                                 $stmt->execute(); //ok
