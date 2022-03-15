@@ -133,53 +133,58 @@ require_once('../app/partials/head.php');
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Incomes -->
-                        <div class="col-12 col-sm-6 col-md-4">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Total Rent Collections</span>
-                                    <span class="info-box-number">kSH <?php echo number_format($payments, 2); ?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-money-bill-alt"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Expenses</span>
-                                    <span class="info-box-number"><?php echo number_format($expenses, 2); ?></span>
-                                </div>
-                            </div>
-                        </div>
                         <?php
-                        if ($payments >= $expenses) {
-                            $pl = $payments - $expenses;
+                        /* Only Show This To Admins */
+                        if ($_SESSION['user_access_level'] == "admin") {
                         ?>
+                            <!-- Incomes -->
                             <div class="col-12 col-sm-6 col-md-4">
                                 <div class="info-box mb-3">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-funnel-dollar"></i></span>
-                                    <div class="info-box-content text-success">
-                                        <span class="info-box-text">Overall Profit </span>
-                                        <span class="info-box-number">Ksh <?php echo number_format($pl, 2); ?></span>
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Total Rent Collections</span>
+                                        <span class="info-box-number">kSH <?php echo number_format($payments, 2); ?></span>
                                     </div>
                                 </div>
                             </div>
-                        <?php } else {
-                            $pl =  $expenses - $payments; ?>
                             <div class="col-12 col-sm-6 col-md-4">
                                 <div class="info-box mb-3">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-funnel-dollar"></i></span>
-                                    <div class="info-box-content text-danger">
-                                        <span class="info-box-text ">Overall Loss </span>
-                                        <span class="info-box-number">Ksh <?php echo number_format($pl, 2); ?></span>
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-money-bill-alt"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Expenses</span>
+                                        <span class="info-box-number"><?php echo number_format($expenses, 2); ?></span>
                                     </div>
                                 </div>
                             </div>
-                        <?php } ?>
+                            <?php
+                            if ($payments >= $expenses) {
+                                $pl = $payments - $expenses;
+                            ?>
+                                <div class="col-12 col-sm-6 col-md-4">
+                                    <div class="info-box mb-3">
+                                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-funnel-dollar"></i></span>
+                                        <div class="info-box-content text-success">
+                                            <span class="info-box-text">Overall Profit </span>
+                                            <span class="info-box-number">Ksh <?php echo number_format($pl, 2); ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } else {
+                                $pl =  $expenses - $payments; ?>
+                                <div class="col-12 col-sm-6 col-md-4">
+                                    <div class="info-box mb-3">
+                                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-funnel-dollar"></i></span>
+                                        <div class="info-box-content text-danger">
+                                            <span class="info-box-text ">Overall Loss </span>
+                                            <span class="info-box-number">Ksh <?php echo number_format($pl, 2); ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php }
+                        }
+                        ?>
                     </div>
 
                     <div class="row">
