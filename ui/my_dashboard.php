@@ -52,19 +52,28 @@ require_once('../app/partials/head.php');
                         </div>
                         <div class="col-12 col-sm-6 col-md-4">
                             <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-money-check"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Pending Rent Payments</span>
-                                    <span class="info-box-number"><?php echo $payments; ?></span>
+                                    <span class="info-box-number">
+                                        <?php
+                                        if (!empty($payable_rent)) {
+                                            $payable_rent = 0;
+                                        } else {
+                                            $payable_rent = $payable_rent;
+                                        }
+                                        ?>
+                                        Ksh <?php echo number_format($payable_rent, 2); ?>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-4">
                             <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usdgit a"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Overall Rent Payment Expenditures</span>
-                                    <span class="info-box-number"><?php echo $payments; ?></span>
+                                    <span class="info-box-number">Ksh <?php echo number_format($payments, 2); ?></span>
                                 </div>
                             </div>
                         </div>
