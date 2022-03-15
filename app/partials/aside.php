@@ -510,4 +510,61 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
         <!-- /.sidebar -->
     </aside>
 <?php } elseif ($_SESSION['user_access_level'] == "tenant") { ?>
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="my_dashboard" class="brand-link">
+            <img src="../assets/upload/logo.png" alt="" class="brand-image img-circle elevation-4 border-success">
+            <span class="brand-text font-weight-bold">House Rental MIS</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="ny_dashbord" class="nav-link">
+                            <i class="nav-icon fas fa-home"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-edit"></i>
+                            <p>
+                                Property Leases
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="tenant_leases_add" class="nav-link">
+                                    <i class="fas fa-angle-right nav-icon"></i>
+                                    <p>Add Lease</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="tenant_leases_manage" class="nav-link">
+                                    <i class="fas fa-angle-right nav-icon"></i>
+                                    <p>Manage Leases</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tenant_reports_revenue" class="nav-link">
+                            <i class="nav-icon fas fa-funnel-dollar"></i>
+                            <p>
+                                Rent Payments
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
 <?php } ?>
