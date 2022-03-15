@@ -31,7 +31,7 @@ $stmt->close();
 /* Rent Collections */
 $query = "SELECT SUM(payment_amount)  FROM payments p  INNER JOIN property_leases pl 
 ON pl.lease_id = p.payment_lease_id INNER JOIN properties pr ON pr.property_id = pl.lease_property_id
-WHERE pr.proprty_landlord_id  = '$user_id'";
+WHERE pr.property_landlord_id  = '$user_id'";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($payments);
