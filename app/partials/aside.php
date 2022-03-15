@@ -523,7 +523,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
-                        <a href="ny_dashbord" class="nav-link">
+                        <a href="my_dashboard" class="nav-link">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Dashboard
