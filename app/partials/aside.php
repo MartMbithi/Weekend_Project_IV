@@ -330,54 +330,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-hand-holding-usd"></i>
-                            <p>
-                                Rent Collections
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="rent_collections" class="nav-link">
-                                    <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Add Payments</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="rent_collections_manage" class="nav-link">
-                                    <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Manage Payments</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="expenses" class="nav-link">
-                            <i class="nav-icon fas fa-money-bill-alt"></i>
-                            <p>
-                                Expenses
-                            </p>
-                        </a>
-                    </li>
                     <li class="nav-header text-warning">Reports</li>
-                    <li class="nav-item">
-                        <a href="reports_revenue" class="nav-link">
-                            <i class="nav-icon fas fa-funnel-dollar"></i>
-                            <p>
-                                Revenue Reports
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="reports_expenditures" class="nav-link">
-                            <i class="nav-icon fas fa-money-check"></i>
-                            <p>
-                                Expenditure Reports
-                            </p>
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a href="reports_properties" class="nav-link">
                             <i class="nav-icon fas fa-hotel"></i>

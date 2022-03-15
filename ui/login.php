@@ -18,7 +18,7 @@ if (isset($_POST['login'])) {
     $_SESSION['user_access_level'] = $user_access_level;
     $_SESSION['user_name'] = $user_name;
 
-    if ($rs && $user_access_level == "admin") {
+    if (($rs && $user_access_level == "admin") || ($rs && $user_access_level == "staff")) {
         /* Pass This Alert Via Session */
         $_SESSION['success'] = 'You Have Successfully Logged In To Administrator Dashboard';
         header('Location: dashboard');
