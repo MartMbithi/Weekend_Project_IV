@@ -23,6 +23,10 @@ if (isset($_POST['login'])) {
         $_SESSION['success'] = 'You Have Successfully Logged In';
         header('Location: dashboard');
         exit;
+    } elseif ($rs && $user_access_level == "landlord") {
+        $_SESSION['success'] = 'You Have Successfully Logged In To Landlord Dashboard';
+        header('Location: landlord_dashboard');
+        exit;
     } elseif ($rs && $user_access_level == "tenant") {
         $_SESSION['success'] = 'You Have Successfully Logged In To Tenant Dashboard';
         header('Location: my_dashboard');
