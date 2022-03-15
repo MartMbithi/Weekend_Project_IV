@@ -425,7 +425,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="landlord_manage" class="nav-link">
+                                <a href="landlord_manage_properties" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
                                     <p>Manage Properties</p>
                                 </a>
