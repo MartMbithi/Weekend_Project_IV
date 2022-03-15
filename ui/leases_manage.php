@@ -54,7 +54,7 @@ if (isset($_POST['update_lease'])) {
 /* Delete */
 if (isset($_POST['delete_lease'])) {
     $lease_id  = $_POST['lease_id'];
-    $lease_property_id = -$_POST['lease_property_id'];
+    $lease_property_id = $_POST['lease_property_id'];
 
     /* Delete */
     $sql = "DELETE FROM property_leases WHERE lease_id =?";
