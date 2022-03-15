@@ -12,7 +12,7 @@ if (isset($_POST['assign_property'])) {
 
     /* Prevent Double Entries */
     $sql = "SELECT * FROM  caretaker_assigns WHERE assignment_caretaker_id = '$assignment_caretaker_id' 
-    AND assignment_property_id = '$assignment_property_id'";
+    AND  assignment_property_id = '$assignment_property_id'";
     $res = mysqli_query($mysqli, $sql);
     if (mysqli_num_rows($res) > 0) {
         $assigns = mysqli_fetch_assoc($res);
@@ -100,7 +100,7 @@ require_once('../app/partials/head.php');
                         </div><!-- /.col -->
                         <div class="col-sm-5">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+                                <li class="breadcrumb-item"><a href="landlord_dashboard">Home</a></li>
                                 <li class="breadcrumb-item"><a href="">Properties</a></li>
                                 <li class="breadcrumb-item active">Assign Caretaker</li>
                             </ol>
@@ -147,7 +147,8 @@ require_once('../app/partials/head.php');
                                             <select class="form-control basic" name="assignment_property_id">
                                                 <option>Select Property</option>
                                                 <?php
-                                                $ret = "SELECT * FROM properties  ";
+                                                $user_id = $_SESSION['user_id'];
+                                                $ret = "SELECT * FROM properties WHERE property_landlord_id = '$user_id' ";
                                                 $stmt = $mysqli->prepare($ret);
                                                 $stmt->execute(); //ok
                                                 $res = $stmt->get_result();
@@ -187,9 +188,11 @@ require_once('../app/partials/head.php');
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $user_id = $_SESSION['user_id'];
                                             $ret = "SELECT * FROM caretaker_assigns ca 
                                             INNER JOIN users u ON ca.assignment_caretaker_id = u.user_id
-                                            INNER JOIN properties p ON p.property_id = ca.assignment_property_id  ";
+                                            INNER JOIN properties p ON p.property_id = ca.assignment_property_id
+                                            WHERE p.property_landlord_id = '$user_id'  ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
@@ -247,7 +250,7 @@ require_once('../app/partials/head.php');
                                                                                 <select class="form-control basic" name="assignment_property_id">
                                                                                     <option value="<?php echo $assn->assignment_property_id; ?>"><?php echo $assn->property_code . ' ' . $assn->property_name; ?></option>
                                                                                     <?php
-                                                                                    $properties_ret = "SELECT * FROM properties  ";
+                                                                                    $properties_ret = "SELECT * FROM properties WHERE property_landlord_id = '$user_id'  ";
                                                                                     $properties_stmt = $mysqli->prepare($properties_ret);
                                                                                     $properties_stmt->execute(); //ok
                                                                                     $properties_res = $properties_stmt->get_result();

@@ -94,11 +94,11 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-8">
-                            <h1 class="m-0 text-dark">Property Leases  Manage Leases</h1>
+                            <h1 class="m-0 text-dark">Property Leases Manage Leases</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-4">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+                                <li class="breadcrumb-item"><a href="landlord_dashboard">Home</a></li>
                                 <li class="breadcrumb-item"><a href="">Property Leases</a></li>
                                 <li class="breadcrumb-item active">Manage Leases</li>
                             </ol>
@@ -128,11 +128,12 @@ require_once('../app/partials/head.php');
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $user_id = $_SESSION['user_id'];
                                             $ret = "SELECT * FROM property_leases pl
                                             INNER JOIN  properties p on p.property_id = pl.lease_property_id
                                             INNER JOIN categories c ON c.category_id  = p.property_category_id
                                             INNER JOIN users u ON u.user_id = pl.lease_tenant_id 
-                                            WHERE pl.lease_eviction_status = '0'
+                                            WHERE pl.lease_eviction_status = '0' AND p.property_landlord_id = '$user_id'
                                             ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
