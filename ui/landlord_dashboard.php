@@ -41,20 +41,6 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <!-- Info boxes -->
                     <div class="row">
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-sitemap"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Property Categories</span>
-                                    <span class="info-box-number">
-                                        <?php echo $categories; ?>
-                                    </span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
                         <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
@@ -69,7 +55,6 @@ require_once('../app/partials/head.php');
                             <!-- /.info-box -->
                         </div>
                         <!-- /.col -->
-
                         <!-- fix for small devices only -->
                         <div class="clearfix hidden-md-up"></div>
 
@@ -93,129 +78,19 @@ require_once('../app/partials/head.php');
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3">
+
+                        <div class="col-12 col-sm-6 col-md-4">
                             <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tie"></i></span>
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
 
                                 <div class="info-box-content">
-                                    <span class="info-box-text">Staffs</span>
-                                    <span class="info-box-number"><?php echo $staffs; ?></span>
+                                    <span class="info-box-text">Total Rent Collections</span>
+                                    <span class="info-box-number">kSH <?php echo number_format($payments, 2); ?></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tag"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Landlords</span>
-                                    <span class="info-box-number"><?php echo $landlords; ?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-cog"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Caretakers</span>
-                                    <span class="info-box-number"><?php echo $caretakers; ?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Tenants</span>
-                                    <span class="info-box-number"><?php echo $tenants; ?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                        /* Only Show This To Admins */
-                        if ($_SESSION['user_access_level'] == "admin") {
-                        ?>
-                            <!-- Incomes -->
-                            <div class="col-12 col-sm-6 col-md-4">
-                                <div class="info-box mb-3">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
-
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Total Rent Collections</span>
-                                        <span class="info-box-number">kSH <?php echo number_format($payments, 2); ?></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4">
-                                <div class="info-box mb-3">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-money-bill-alt"></i></span>
-
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Expenses</span>
-                                        <span class="info-box-number"><?php echo number_format($expenses, 2); ?></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
-                            if ($payments >= $expenses) {
-                                $pl = $payments - $expenses;
-                            ?>
-                                <div class="col-12 col-sm-6 col-md-4">
-                                    <div class="info-box mb-3">
-                                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-funnel-dollar"></i></span>
-                                        <div class="info-box-content text-success">
-                                            <span class="info-box-text">Overall Profit </span>
-                                            <span class="info-box-number">Ksh <?php echo number_format($pl, 2); ?></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php } else {
-                                $pl =  $expenses - $payments; ?>
-                                <div class="col-12 col-sm-6 col-md-4">
-                                    <div class="info-box mb-3">
-                                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-funnel-dollar"></i></span>
-                                        <div class="info-box-content text-danger">
-                                            <span class="info-box-text ">Overall Loss </span>
-                                            <span class="info-box-number">Ksh <?php echo number_format($pl, 2); ?></span>
-                                        </div>
-                                    </div>
-                                </div>
-                        <?php }
-                        }
-                        ?>
                     </div>
 
-                    <?php
-                    /* Show This To Admin Only */
-                    if ($_SESSION['user_access_level'] == "admin") { ?>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card card-warning card-outline">
-                                    <div class="card-header">
-                                        <h5 class="card-title text-bold">
-                                            Overall Income Statements Recap Report
-                                        </h5>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="chart">
-                                                    <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 100%; max-width: 100%;"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.row -->
-                                    </div>
-                                </div>
-                                <!-- /.card -->
-                            </div>
-                            <!-- /.col -->
-                            <!-- /.card -->
-                        </div>
-                    <?php } ?>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-warning card-outline">
