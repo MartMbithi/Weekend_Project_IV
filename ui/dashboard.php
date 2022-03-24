@@ -109,34 +109,38 @@ require_once('../app/partials/head.php');
                             </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tag"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Landlords</span>
-                                    <span class="info-box-number"><?php echo $landlords; ?></span>
+                            <a href="users_landlords">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tag"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Landlords</span>
+                                        <span class="info-box-number"><?php echo $landlords; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-cog"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Caretakers</span>
-                                    <span class="info-box-number"><?php echo $caretakers; ?></span>
+                            <a href="users_caretakers">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-cog"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Caretakers</span>
+                                        <span class="info-box-number"><?php echo $caretakers; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                            <a href="users_tenants">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Tenants</span>
-                                    <span class="info-box-number"><?php echo $tenants; ?></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Tenants</span>
+                                        <span class="info-box-number"><?php echo $tenants; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
 
