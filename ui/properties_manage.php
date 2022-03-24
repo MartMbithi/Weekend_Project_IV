@@ -119,6 +119,7 @@ require_once('../app/partials/head.php');
                                                     <td><?php echo $properties->user_name; ?></td>
                                                     <td><?php echo $properties->property_address; ?></td>
                                                     <td>
+                                                        <a href="property?view=<?php echo $properties->property_id; ?>" class="badge badge-success"><i class="fas fa-eye"></i> View</a>
                                                         <a data-toggle="modal" href="#update_<?php echo $properties->property_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
                                                         <a data-toggle="modal" href="#delete_<?php echo $properties->property_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                                     </td>
@@ -136,56 +137,84 @@ require_once('../app/partials/head.php');
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <form method="post" enctype="multipart/form-data" role="form">
-                                                                        <div class="row">
-                                                                            <div class="form-group col-md-4">
-                                                                                <label for="">Property Code</label>
-                                                                                <input type="text" value="<?php echo $properties->property_code; ?>" readonly required name="property_code" class="form-control">
-                                                                                <input type="hidden" value="<?php echo $properties->property_id; ?>" readonly required name="property_id" class="form-control">
-                                                                            </div>
-                                                                            <div class="form-group col-md-2">
-                                                                                <label for="">Monthly Rent (Ksh)</label>
-                                                                                <input type="text" required value="<?php echo $properties->property_cost; ?>" name="property_cost" class="form-control">
-                                                                            </div>
-                                                                            <div class="form-group col-md-6">
-                                                                                <label for="">Property Name</label>
-                                                                                <input type="text" value="<?php echo $properties->property_name; ?>" required name="property_name" class="form-control">
-                                                                            </div>
+                                                                        <fieldset class="border border-primary p-2">
+                                                                            <legend class="w-auto text-primary font-weight-light">Rental Property Details </legend>
+                                                                            <div class="row">
+                                                                                <div class="form-group col-md-4">
+                                                                                    <label for="">Property Code</label>
+                                                                                    <input type="text" value="<?php echo $properties->property_code; ?>" readonly required name="property_code" class="form-control">
+                                                                                    <input type="hidden" value="<?php echo $properties->property_id; ?>" readonly required name="property_id" class="form-control">
+                                                                                </div>
+                                                                                <div class="form-group col-md-2">
+                                                                                    <label for="">Monthly Rent (Ksh)</label>
+                                                                                    <input type="text" required value="<?php echo $properties->property_cost; ?>" name="property_cost" class="form-control">
+                                                                                </div>
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label for="">Property Name</label>
+                                                                                    <input type="text" value="<?php echo $properties->property_name; ?>" required name="property_name" class="form-control">
+                                                                                </div>
 
-                                                                            <div class="form-group col-md-6">
-                                                                                <label for="">Property Category</label>
-                                                                                <select class="form-control basic" name="property_category_id">
-                                                                                    <option value="<?php echo $properties->property_category_id; ?>"><?php echo $properties->category_code . ' - ' . $properties->category_name; ?></option>
-                                                                                    <?php
-                                                                                    $categories_ret = "SELECT * FROM categories  ";
-                                                                                    $categories_stmt = $mysqli->prepare($categories_ret);
-                                                                                    $categories_stmt->execute(); //ok
-                                                                                    $categories_res = $categories_stmt->get_result();
-                                                                                    while ($categories_cat = $categories_res->fetch_object()) {
-                                                                                    ?>
-                                                                                        <option value="<?php echo $categories_cat->category_id; ?>"><?php echo $categories_cat->category_code . ' - ' . $categories_cat->category_name; ?></option>
-                                                                                    <?php } ?>
-                                                                                </select>
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label for="">Property Category</label>
+                                                                                    <select class="form-control basic" name="property_category_id">
+                                                                                        <option value="<?php echo $properties->property_category_id; ?>"><?php echo $properties->category_code . ' - ' . $properties->category_name; ?></option>
+                                                                                        <?php
+                                                                                        $categories_ret = "SELECT * FROM categories  ";
+                                                                                        $categories_stmt = $mysqli->prepare($categories_ret);
+                                                                                        $categories_stmt->execute(); //ok
+                                                                                        $categories_res = $categories_stmt->get_result();
+                                                                                        while ($categories_cat = $categories_res->fetch_object()) {
+                                                                                        ?>
+                                                                                            <option value="<?php echo $categories_cat->category_id; ?>"><?php echo $categories_cat->category_code . ' - ' . $categories_cat->category_name; ?></option>
+                                                                                        <?php } ?>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label for="">Property Landlord / Manager</label>
+                                                                                    <select class="form-control basic" name="property_landlord_id">
+                                                                                        <option value="<?php echo $properties->property_landlord_id; ?>"><?php echo $properties->user_idno . ' - ' . $properties->user_name; ?></option>
+                                                                                        <?php
+                                                                                        $landlord_ret = "SELECT * FROM users WHERE user_access_level  = 'landlord'  ";
+                                                                                        $landlord_stmt = $mysqli->prepare($landlord_ret);
+                                                                                        $landlord_stmt->execute(); //ok
+                                                                                        $landlord_res = $landlord_stmt->get_result();
+                                                                                        while ($landlord_users = $landlord_res->fetch_object()) {
+                                                                                        ?>
+                                                                                            <option value="<?php echo $landlord_users->user_id; ?>"><?php echo $landlord_users->user_idno . ' - ' . $landlord_users->user_name; ?></option>
+                                                                                        <?php } ?>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group col-md-12">
+                                                                                    <label for="">Property Address</label>
+                                                                                    <textarea type="text" name="property_address" class="form-control"><?php echo $properties->property_address; ?></textarea>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="form-group col-md-6">
-                                                                                <label for="">Property Landlord / Manager</label>
-                                                                                <select class="form-control basic" name="property_landlord_id">
-                                                                                    <option value="<?php echo $properties->property_landlord_id; ?>"><?php echo $properties->user_idno . ' - ' . $properties->user_name; ?></option>
-                                                                                    <?php
-                                                                                    $landlord_ret = "SELECT * FROM users WHERE user_access_level  = 'landlord'  ";
-                                                                                    $landlord_stmt = $mysqli->prepare($landlord_ret);
-                                                                                    $landlord_stmt->execute(); //ok
-                                                                                    $landlord_res = $landlord_stmt->get_result();
-                                                                                    while ($landlord_users = $landlord_res->fetch_object()) {
-                                                                                    ?>
-                                                                                        <option value="<?php echo $landlord_users->user_id; ?>"><?php echo $landlord_users->user_idno . ' - ' . $landlord_users->user_name; ?></option>
-                                                                                    <?php } ?>
-                                                                                </select>
+                                                                        </fieldset>
+                                                                        <br>
+                                                                        <fieldset class="border border-primary p-2">
+                                                                            <legend class="w-auto text-primary font-weight-light">Rental Property Images</legend>
+                                                                            <div class="row">
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label for="exampleInputFile">Property Exterior Image</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="custom-file">
+                                                                                            <input name="property_img_1" accept=".png, jpeg, .jpg" type="file" class="custom-file-input">
+                                                                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label for="exampleInputFile">Property Interior Image</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="custom-file">
+                                                                                            <input name="property_img_2" accept=".png, jpeg, .jpg" type="file" class="custom-file-input">
+                                                                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="form-group col-md-12">
-                                                                                <label for="">Property Address</label>
-                                                                                <textarea type="text" name="property_address" class="form-control"><?php echo $properties->property_address; ?></textarea>
-                                                                            </div>
-                                                                        </div>
+                                                                        </fieldset>
+                                                                        <br>
                                                                         <div class="text-right">
                                                                             <button type="submit" name="update_property" class="btn btn-warning">Update Property</button>
                                                                         </div>
