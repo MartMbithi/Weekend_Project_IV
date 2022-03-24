@@ -42,31 +42,33 @@ require_once('../app/partials/head.php');
                     <!-- Info boxes -->
                     <div class="row">
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-sitemap"></i></span>
+                            <a href="property_categories">
+                                <div class="info-box text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-sitemap"></i></span>
 
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Property Categories</span>
-                                    <span class="info-box-number">
-                                        <?php echo $categories; ?>
-                                    </span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Property Categories</span>
+                                        <span class="info-box-number">
+                                            <?php echo $categories; ?>
+                                        </span>
+                                    </div>
+                                    <!-- /.info-box-content -->
                                 </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
+                                <!-- /.info-box -->
+                            </a>
                         </div>
                         <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hotel"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Properties</span>
-                                    <span class="info-box-number"><?php echo $properties; ?></span>
+                            <a href="properties_manage">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hotel"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Properties</span>
+                                        <span class="info-box-number"><?php echo $properties; ?></span>
+                                    </div>
+                                    <!-- /.info-box-content -->
                                 </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
+g                            </a>
                         </div>
                         <!-- /.col -->
 
