@@ -15,13 +15,13 @@ if (isset($_POST['add_property'])) {
     $property_address = $_POST['property_address'];
 
     /* Process Image 1 */
-    $property_img_1 = $_FILES['property_img_1']['name'];
+    $property_img_1 = $property_code.$_FILES['property_img_1']['name'];
     $upload_directory = "../data/" . $property_img_1;
     $temp_name = $_FILES["property_img_1"]["tmp_name"];
     move_uploaded_file($temp_name, $upload_directory);
 
     /* Process Image 2 */
-    $property_img_2 = $_FILES['property_img_2']['name'];
+    $property_img_2 = $property_code.$_FILES['property_img_2']['name'];
     $upload_directory_2 = "../data/" . $property_img_2;
     $temp_name = $_FILES["property_img_2"]["tmp_name"];
     move_uploaded_file($temp_name, $upload_directory_2);
