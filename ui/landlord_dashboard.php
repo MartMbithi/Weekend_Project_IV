@@ -62,7 +62,7 @@ require_once('../app/partials/head.php');
 
                         <div class="col-12 col-sm-6 col-md-3">
                             <a href="landlord_leases_manage">
-                                <div class="info-box mb-3">
+                                <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-edit"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Leased Properties</span>
