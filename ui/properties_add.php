@@ -13,18 +13,33 @@ if (isset($_POST['add_property'])) {
     $property_category_id = $_POST['property_category_id'];
     $property_landlord_id = $_POST['property_landlord_id'];
     $property_address = $_POST['property_address'];
+    $property_img_1 = $_FILES['property_img_1']['name'];
+    $property_img_2 = $_FILES['property_img_2']['name'];
+
+    /* Upload Images */
+    $upload_directory_1 = "../data/" . $property_img_1;
+    $upload_directory_2 = "../data/" . $property_img_2;
+
+    $temp_name_1 = $_FILES["property_img_1"]["tmp_name_1"];
+    $temp_name_2 = $_FILES["property_img_2"]["tmp_name_2"];
+
+    /* Move Uploaded File */
+    move_uploaded_file($temp_name_1, $upload_directory_1);
+    move_uploaded_file($temp_name_2, $upload_directory_2);
 
     /* Perisist */
-    $sql = "INSERT INTO  properties (property_code, property_name, property_cost, property_category_id, property_landlord_id, property_address)
-    VALUES(?,?,?,?,?,?)";
+    $sql = "INSERT INTO  properties (property_code, property_name, property_cost, property_category_id, property_landlord_id, property_img_1, property_img_2 property_address)
+    VALUES(?,?,?,?,?,?,?,?)";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'ssssss',
+        'ssssssss',
         $property_code,
         $property_name,
         $property_cost,
         $property_category_id,
         $property_landlord_id,
+        $property_img_1,
+        $property_img_2,
         $property_address,
     );
     $prepare->execute();
