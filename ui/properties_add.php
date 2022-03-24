@@ -132,11 +132,20 @@ require_once('../app/partials/head.php');
                                         <fieldset class="border border-primary p-2">
                                             <legend class="w-auto text-primary font-weight-light">Rental Property Images</legend>
                                             <div class="row">
-                                                <div class="form-group col-md-12">
-                                                    <label for="exampleInputFile">Select File</label>
+                                                <div class="form-group col-md-6">
+                                                    <label for="exampleInputFile">Property Exterior Image</label>
                                                     <div class="input-group">
                                                         <div class="custom-file">
-                                                            <input required name="file" accept=".png, jpeg, .jpg" type="file" class="custom-file-input">
+                                                            <input required name="property_img_1" accept=".png, jpeg, .jpg" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="exampleInputFile">Property Interior Image</label>
+                                                    <div class="input-group">
+                                                        <div class="custom-file">
+                                                            <input required name="property_img_2" accept=".png, jpeg, .jpg" type="file" class="custom-file-input">
                                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                         </div>
                                                     </div>
