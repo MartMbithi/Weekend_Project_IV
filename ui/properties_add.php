@@ -13,19 +13,18 @@ if (isset($_POST['add_property'])) {
     $property_category_id = $_POST['property_category_id'];
     $property_landlord_id = $_POST['property_landlord_id'];
     $property_address = $_POST['property_address'];
+
+    /* Process Image 1 */
     $property_img_1 = $_FILES['property_img_1']['name'];
-    $property_img_2 = $_FILES['property_img_2']['name'];
-
-    /* Upload Images */
     $upload_directory = "../data/" . $property_img_1;
-    $upload_directory = "../data/" . $property_img_2;
-
     $temp_name = $_FILES["property_img_1"]["tmp_name"];
-    $temp_name = $_FILES["property_img_2"]["tmp_name"];
+    move_uploaded_file($temp_name, $upload_directory);
 
-    /* Move Uploaded File */
-    move_uploaded_file($temp_name, $upload_directory);
-    move_uploaded_file($temp_name, $upload_directory);
+    /* Process Image 2 */
+    $property_img_2 = $_FILES['property_img_2']['name'];
+    $upload_directory_2 = "../data/" . $property_img_2;
+    $temp_name = $_FILES["property_img_2"]["tmp_name"];
+    move_uploaded_file($temp_name, $upload_directory_2);
 
     /* Perisist */
     $sql = "INSERT INTO  properties (property_code, property_name, property_cost, property_category_id, property_landlord_id, property_img_1, property_img_2, property_address)
