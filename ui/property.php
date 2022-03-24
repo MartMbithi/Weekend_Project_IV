@@ -31,7 +31,7 @@ require_once('../app/partials/head.php');
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1><?php echo $property->property_name; ?> Details</h1>
+                                <h1><?php echo $property->property_name; ?></h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -120,22 +120,86 @@ require_once('../app/partials/head.php');
                                                             </div>
                                                         </fieldset>
                                                     </div>
+                                                    <div class="col-6">
+                                                        <fieldset class="border border-primary p-2">
+                                                            <legend class="w-auto text-primary font-weight-light">Assigned Caretaker (s) Details </legend>
+                                                            <?php
+                                                            $ret = "SELECT * FROM caretaker_assigns ca 
+                                                            INNER JOIN users u ON ca.assignment_caretaker_id = u.user_id
+                                                            INNER JOIN properties p ON p.property_id = ca.assignment_property_id 
+                                                            WHERE property_id = '$view'";
+                                                            $stmt = $mysqli->prepare($ret);
+                                                            $stmt->execute(); //ok
+                                                            $res = $stmt->get_result();
+                                                            while ($assn = $res->fetch_object()) {
+                                                            ?>
+                                                                <div class="card-body">
+                                                                    <ul class="list-group list-group-unbordered mb-3">
+                                                                        <li class="list-group-item">
+                                                                            <b><i class="fas fa-user-tie text-warning"></i> Names: </b> <a class="float-right"><?php echo $assn->user_name; ?></a>
+                                                                        </li>
+                                                                        <li class="list-group-item">
+                                                                            <b><i class="fas fa-phone text-warning"></i> Contacts: </b> <a class="float-right"><?php echo $assn->user_phoneno; ?></a>
+                                                                        </li>
+                                                                        <li class="list-group-item">
+                                                                            <b><i class="fas fa-envelope text-warning"></i> Email: </b> <a class="float-right"><?php echo $assn->user_email; ?></a>
+                                                                        </li>
+                                                                        <li class="list-group-item">
+                                                                            <b><i class="fas fa-map-pin text-warning"></i> Address: </b> <a class="float-right"><?php echo $assn->user_address; ?></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <fieldset class="border border-primary p-2">
+                                                            <legend class="w-auto text-primary font-weight-light">Lease History </legend>
+
+                                                            <div class="card-body">
+                                                                <div class="timeline">
+                                                                    <?php
+                                                                    $ret = "SELECT * FROM property_leases pl
+                                                                    INNER JOIN  properties p on p.property_id = pl.lease_property_id
+                                                                    INNER JOIN categories c ON c.category_id  = p.property_category_id
+                                                                    INNER JOIN users u ON u.user_id = pl.lease_tenant_id 
+                                                                    WHERE pl.lease_eviction_status = '0'  AND  p.property_id = '$view'
+                                                                    ORDER BY pl.lease_date_added  ASC LIMIT 5
+                                                                    ";
+                                                                    $stmt = $mysqli->prepare($ret);
+                                                                    $stmt->execute(); //ok
+                                                                    $res = $stmt->get_result();
+                                                                    while ($leases = $res->fetch_object()) {
+                                                                    ?>
+                                                                        <!-- timeline time label -->
+                                                                        <div class="time-label">
+                                                                            <span class="bg-success"><?php echo $leases->lease_date_added; ?></span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <i class="fas fa-user-tag bg-blue"></i>
+                                                                            <div class="timeline-item">
+                                                                                <h3 class="timeline-header">Lease Details</h3>
+                                                                                <div class="timeline-body">
+                                                                                    <b>Tenant Name: </b> <?php echo $leases->user_name; ?> <br>
+                                                                                    <b>Tenant IDNO: </b> <?php echo $leases->user_idno; ?> <br>
+                                                                                    <b>Tenant Phone No : </b> <?php echo $leases->user_phoneno; ?> <br>
+                                                                                    <b>Tenant Email : </b> <?php echo $leases->user_email; ?> <br>
+                                                                                    <b>Lease REF: </b> <?php echo $leases->lease_ref; ?> <br>
+                                                                                    <b>Lease Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
+                                                                                    <b>Lease Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    <?php } ?>
+                                                                </div>
+                                                        </fieldset>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <!-- /.tab-pane -->
-                                            <div class="tab-pane" id="caretaker">
-
-                                            </div>
-                                            <div class="tab-pane" id="lease">
-
-                                            </div>
                                         </div>
-                                        <!-- /.tab-content -->
-                                    </div><!-- /.card-body -->
+                                    </div>
                                 </div>
-                                <!-- /.nav-tabs-custom -->
                             </div>
-                            <!-- /.col -->
                         </div>
                     </div>
                 </section>
