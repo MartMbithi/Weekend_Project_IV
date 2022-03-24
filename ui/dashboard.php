@@ -42,31 +42,33 @@ require_once('../app/partials/head.php');
                     <!-- Info boxes -->
                     <div class="row">
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-sitemap"></i></span>
+                            <a href="property_categories">
+                                <div class="info-box text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-sitemap"></i></span>
 
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Property Categories</span>
-                                    <span class="info-box-number">
-                                        <?php echo $categories; ?>
-                                    </span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Property Categories</span>
+                                        <span class="info-box-number">
+                                            <?php echo $categories; ?>
+                                        </span>
+                                    </div>
+                                    <!-- /.info-box-content -->
                                 </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
+                                <!-- /.info-box -->
+                            </a>
                         </div>
                         <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hotel"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Properties</span>
-                                    <span class="info-box-number"><?php echo $properties; ?></span>
+                            <a href="properties_manage">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hotel"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Properties</span>
+                                        <span class="info-box-number"><?php echo $properties; ?></span>
+                                    </div>
+                                    <!-- /.info-box-content -->
                                 </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
+                            </a>
                         </div>
                         <!-- /.col -->
 
@@ -74,64 +76,71 @@ require_once('../app/partials/head.php');
                         <div class="clearfix hidden-md-up"></div>
 
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-edit"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Leased Properties</span>
-                                    <span class="info-box-number"><?php echo $properties_leased; ?></span>
+                            <a href="leases_manage">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-edit"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Leased Properties</span>
+                                        <span class="info-box-number"><?php echo $properties_leased; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Vacant Properties</span>
-                                    <span class="info-box-number"><?php echo $properties_vacant; ?></span>
+                            <a href="properties_manage">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Vacant Properties</span>
+                                        <span class="info-box-number"><?php echo $properties_vacant; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tie"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Staffs</span>
-                                    <span class="info-box-number"><?php echo $staffs; ?></span>
+                            <a href="users_staffs">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tie"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Staffs</span>
+                                        <span class="info-box-number"><?php echo $staffs; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tag"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Landlords</span>
-                                    <span class="info-box-number"><?php echo $landlords; ?></span>
+                            <a href="users_landlords">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tag"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Landlords</span>
+                                        <span class="info-box-number"><?php echo $landlords; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-cog"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Caretakers</span>
-                                    <span class="info-box-number"><?php echo $caretakers; ?></span>
+                            <a href="users_caretakers">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-cog"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Caretakers</span>
+                                        <span class="info-box-number"><?php echo $caretakers; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                            <a href="users_tenants">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Tenants</span>
-                                    <span class="info-box-number"><?php echo $tenants; ?></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Tenants</span>
+                                        <span class="info-box-number"><?php echo $tenants; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
 

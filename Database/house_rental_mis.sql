@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 15, 2022 at 12:49 PM
+-- Generation Time: Mar 23, 2022 at 09:35 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -108,7 +108,8 @@ CREATE TABLE `payments` (
 INSERT INTO `payments` (`payment_id`, `payment_ref`, `payment_lease_id`, `payment_amount`, `payment_mode`, `payment_date`) VALUES
 (5, 'D912S7Z34O', 1, '18000', 'Debit/Credit Card', '2022-03-13 11:40:54'),
 (8, 'DOWT7L8P6E', 3, '18000', 'Cash', '13 Mar 2022 9:56am'),
-(9, 'LXTDHBVUGK', 6, '36000', 'Debit/Credit Card', '15 Mar 2022 4:26am');
+(9, 'LXTDHBVUGK', 6, '36000', 'Debit/Credit Card', '15 Mar 2022 4:26am'),
+(10, 'WMC28EK1A6', 7, '12500', 'Debit/Credit Card', '15 Mar 2022 12:51pm');
 
 -- --------------------------------------------------------
 
@@ -163,7 +164,7 @@ INSERT INTO `property_leases` (`lease_id`, `lease_ref`, `lease_property_id`, `le
 (3, 'ZEPXO78652', 1, 10, '4', 'Paid', '13 Mar 2022 9:12am', 0),
 (4, 'LWBDX97310', 4, 10, '5', 'Pending', '15 Mar 2022 4:16am', 1),
 (6, 'QXZUS06129', 4, 2, '4', 'Paid', '15 Mar 2022 4:24am', 0),
-(7, 'LCZGP80519', 5, 2, '1', 'Pending', '15 Mar 2022 12:37pm', 0);
+(7, 'LCZGP80519', 5, 2, '1', 'Paid', '15 Mar 2022 12:37pm', 0);
 
 -- --------------------------------------------------------
 
@@ -276,7 +277,7 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `payment_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `properties`
