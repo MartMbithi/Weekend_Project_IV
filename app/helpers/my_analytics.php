@@ -1,5 +1,5 @@
 <?php
-/* Register All Landlord Analytics Here */
+/* Register All Tenant Analytics Here */
 
 $user_id  = $_SESSION['user_id'];
 
