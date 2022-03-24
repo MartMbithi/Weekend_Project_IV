@@ -68,7 +68,7 @@ require_once('../app/partials/head.php');
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
-g                            </a>
+                            </a>
                         </div>
                         <!-- /.col -->
 
@@ -76,34 +76,37 @@ g                            </a>
                         <div class="clearfix hidden-md-up"></div>
 
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-edit"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Leased Properties</span>
-                                    <span class="info-box-number"><?php echo $properties_leased; ?></span>
+                            <a href="leases_manage">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-edit"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Leased Properties</span>
+                                        <span class="info-box-number"><?php echo $properties_leased; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Vacant Properties</span>
-                                    <span class="info-box-number"><?php echo $properties_vacant; ?></span>
+                            <a href="properties_manage">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Vacant Properties</span>
+                                        <span class="info-box-number"><?php echo $properties_vacant; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tie"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Staffs</span>
-                                    <span class="info-box-number"><?php echo $staffs; ?></span>
+                            <a href="users_staffs">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tie"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Staffs</span>
+                                        <span class="info-box-number"><?php echo $staffs; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
