@@ -43,51 +43,56 @@ require_once('../app/partials/head.php');
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hotel"></i></span>
+                            <a href="landlord_manage_properties">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hotel"></i></span>
 
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Properties</span>
-                                    <span class="info-box-number"><?php echo $properties; ?></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Properties</span>
+                                        <span class="info-box-number"><?php echo $properties; ?></span>
+                                    </div>
+                                    <!-- /.info-box-content -->
                                 </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
+                                <!-- /.info-box -->
+                            </a>
                         </div>
                         <!-- /.col -->
                         <!-- fix for small devices only -->
                         <div class="clearfix hidden-md-up"></div>
 
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-edit"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Leased Properties</span>
-                                    <span class="info-box-number"><?php echo $properties_leased; ?></span>
+                            <a href="landlord_leases_manage">
+                                <div class="info-box mb-3">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-edit"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Leased Properties</span>
+                                        <span class="info-box-number"><?php echo $properties_leased; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Vacant Properties</span>
-                                    <span class="info-box-number"><?php echo $properties_vacant; ?></span>
+                            <a href="landlord_manage_properties">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Vacant Properties</span>
+                                        <span class="info-box-number"><?php echo $properties_vacant; ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Total Rent Collections</span>
-                                    <span class="info-box-number">kSH <?php echo number_format($payments, 2); ?></span>
+                            <a href="landlord_manage_properties">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Total Rent Collections</span>
+                                        <span class="info-box-number">kSH <?php echo number_format($payments, 2); ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
 
