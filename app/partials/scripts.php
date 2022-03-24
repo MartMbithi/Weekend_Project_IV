@@ -32,6 +32,16 @@
         $('.table').DataTable();
     });
 
+    $(document).ready(function() {
+        $('.report_table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
+<script>
     /* Init Custom File Select */
     $(document).ready(function() {
         bsCustomFileInput.init();
@@ -42,17 +52,7 @@
         var nextSibling = e.target.nextElementSibling
         nextSibling.innerText = fileName
     })
-
-    $(document).ready(function() {
-        $('.report_table').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'csv', 'excel', 'pdf', 'print'
-            ]
-        });
-    });
 </script>
-
 <!-- Init  Alerts -->
 <?php if (isset($success)) { ?>
     <!-- Pop Success Alert -->

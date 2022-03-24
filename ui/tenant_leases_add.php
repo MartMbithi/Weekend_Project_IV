@@ -85,49 +85,85 @@ require_once('../app/partials/head.php');
                         <div class="col-md-12">
                             <div class="card card-warning card-outline">
                                 <div class="card-body">
-                                    <form method="post" enctype="multipart/form-data" role="form">
-                                        <div class="row">
-                                            <div class="form-group col-md-8">
-                                                <label for="">Property Details</label>
-                                                <select class="form-control basic" name="lease_property_id">
-                                                    <option>Select Property</option>
-                                                    <?php
-                                                    $ret = "SELECT * FROM properties p 
-                                                    INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                                    INNER JOIN users u ON u.user_id = p.property_landlord_id
-                                                    WHERE p.property_status = 'Vacant'";
-                                                    $stmt = $mysqli->prepare($ret);
-                                                    $stmt->execute(); //ok
-                                                    $res = $stmt->get_result();
-                                                    while ($properties = $res->fetch_object()) { ?>
-                                                        <option value="<?php echo $properties->property_id; ?>">
-                                                            Code: <?php echo $properties->property_code . ', Name: ' . $properties->property_name . ', Location: ' . $properties->property_address; ?>
-                                                        </option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="">Lease Duration (Months)</label>
-                                                <select class="form-control basic" name="lease_duration">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-                                                    <option>8</option>
-                                                    <option>9</option>
-                                                    <option>10</option>
-                                                    <option>11</option>
-                                                    <option>12</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="text-right">
-                                            <button type="submit" name="add_lease" class="btn btn-warning">Lease Property</button>
-                                        </div>
-                                    </form>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Code</th>
+                                                <th>Name</th>
+                                                <th>Category</th>
+                                                <th>Property Landlord</th>
+                                                <th>Location</th>
+                                                <th>Manage</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $ret = "SELECT * FROM properties p 
+                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
+                                            INNER JOIN users u ON u.user_id = p.property_landlord_id
+                                            WHERE p.property_status ='Vacant'";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($properties = $res->fetch_object()) {
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $properties->property_code; ?></td>
+                                                    <td><?php echo $properties->property_name; ?></td>
+                                                    <td><?php echo $properties->category_name; ?></td>
+                                                    <td><?php echo $properties->user_name; ?></td>
+                                                    <td><?php echo $properties->property_address; ?></td>
+                                                    <td>
+                                                        <a href="tenant_property?view=<?php echo $properties->property_id; ?>" class="badge badge-success"><i class="fas fa-eye"></i> View</a>
+                                                        <a data-toggle="modal" href="#update_<?php echo $properties->property_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Lease Property</a>
+                                                    </td>
+                                                    <!-- Update Modal -->
+                                                    <div class="modal fade fixed-right" id="update_<?php echo $properties->property_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog  modal-xl" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header align-items-center">
+                                                                    <div class="text-bold">
+                                                                        <h6 class="text-bold">Lease This Property </h6>
+                                                                    </div>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-md-12">
+                                                                                <label for="">Lease Duration (Months)</label>
+                                                                                <input type="hidden" name="lease_property_id" value="<?php echo $properties->property_id; ?>">
+                                                                                <select class="form-control basic" name="lease_duration">
+                                                                                    <option>1</option>
+                                                                                    <option>2</option>
+                                                                                    <option>3</option>
+                                                                                    <option>4</option>
+                                                                                    <option>5</option>
+                                                                                    <option>6</option>
+                                                                                    <option>7</option>
+                                                                                    <option>8</option>
+                                                                                    <option>9</option>
+                                                                                    <option>10</option>
+                                                                                    <option>11</option>
+                                                                                    <option>12</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-right">
+                                                                            <button type="submit" name="add_lease" class="btn btn-warning">Lease Property</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal -->
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
