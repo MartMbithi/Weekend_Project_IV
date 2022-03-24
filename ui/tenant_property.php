@@ -203,7 +203,7 @@ require_once('../app/partials/head.php');
                                                                 <div class="row">
                                                                     <div class="form-group col-md-12">
                                                                         <label for="">Lease Duration (Months)</label>
-                                                                        <input type="hidden" name="lease_property_id" value="<?php echo $properties->property_id; ?>">
+                                                                        <input type="hidden" name="lease_property_id" value="<?php echo $view; ?>">
                                                                         <select class="form-control basic" name="lease_duration">
                                                                             <option>1</option>
                                                                             <option>2</option>

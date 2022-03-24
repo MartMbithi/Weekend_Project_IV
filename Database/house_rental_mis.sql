@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 23, 2022 at 09:35 AM
+-- Generation Time: Mar 24, 2022 at 05:33 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -40,7 +40,9 @@ CREATE TABLE `caretaker_assigns` (
 INSERT INTO `caretaker_assigns` (`assignment_id`, `assignment_caretaker_id`, `assignment_property_id`) VALUES
 (2, 8, 1),
 (3, 7, 3),
-(5, 8, 4);
+(5, 8, 4),
+(6, 7, 11),
+(7, 7, 13);
 
 -- --------------------------------------------------------
 
@@ -109,7 +111,8 @@ INSERT INTO `payments` (`payment_id`, `payment_ref`, `payment_lease_id`, `paymen
 (5, 'D912S7Z34O', 1, '18000', 'Debit/Credit Card', '2022-03-13 11:40:54'),
 (8, 'DOWT7L8P6E', 3, '18000', 'Cash', '13 Mar 2022 9:56am'),
 (9, 'LXTDHBVUGK', 6, '36000', 'Debit/Credit Card', '15 Mar 2022 4:26am'),
-(10, 'WMC28EK1A6', 7, '12500', 'Debit/Credit Card', '15 Mar 2022 12:51pm');
+(10, 'WMC28EK1A6', 7, '12500', 'Debit/Credit Card', '15 Mar 2022 12:51pm'),
+(11, 'VN5G0PJCD4', 9, '15000', 'Cash', '24 Mar 2022 5:05pm');
 
 -- --------------------------------------------------------
 
@@ -125,18 +128,24 @@ CREATE TABLE `properties` (
   `property_category_id` int(200) NOT NULL,
   `property_landlord_id` int(200) NOT NULL,
   `property_address` longtext NOT NULL,
-  `property_status` varchar(200) NOT NULL DEFAULT 'Vacant'
+  `property_status` varchar(200) NOT NULL DEFAULT 'Vacant',
+  `property_img_1` longtext DEFAULT NULL,
+  `property_img_2` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `properties`
 --
 
-INSERT INTO `properties` (`property_id`, `property_code`, `property_name`, `property_cost`, `property_category_id`, `property_landlord_id`, `property_address`, `property_status`) VALUES
-(1, 'UFMGK78325', 'James Flatts', '4500', 2, 4, '90126 Localhost', 'Leased'),
-(3, 'YKRVN86405', 'Jim Appartments', '45000', 3, 4, '90126 Localhost', 'Leased'),
-(4, 'SZVXF76481', 'Ice Age Appartments', '9000', 3, 4, '90126 Localhost Drive', 'Leased'),
-(5, 'QZOUJ30814', 'My Appartment', '12500', 4, 4, '127 9000 Localhost', 'Leased');
+INSERT INTO `properties` (`property_id`, `property_code`, `property_name`, `property_cost`, `property_category_id`, `property_landlord_id`, `property_address`, `property_status`, `property_img_1`, `property_img_2`) VALUES
+(1, 'UFMGK78325', 'James Flatts', '4500', 2, 4, '90126 Localhost', 'Leased', NULL, NULL),
+(3, 'YKRVN86405', 'Jim Appartments', '45000', 3, 4, '90126 Localhost', 'Leased', NULL, NULL),
+(4, 'SZVXF76481', 'Ice Age Appartments', '9000', 3, 4, '90126 Localhost Drive', 'Leased', NULL, NULL),
+(5, 'QZOUJ30814', 'My Appartment', '12500', 4, 4, '127 9000 Localhost', 'Leased', 'QZOUJ30814garrett-parker-xQWLtlQb7L0-unsplash.jpg', 'QZOUJ30814alexandra-gorn-JIUjvqe2ZHg-unsplash.jpg'),
+(6, 'XYJRS60192', '90236 Appartments', '5000', 4, 3, '9017 Localhost', 'Vacant', NULL, NULL),
+(11, 'WHISL68053', 'Pike Appartments', '9000', 1, 4, '90 Lakeview ', 'Vacant', 'matthias-iordache-MVd4rDf4O2Q-unsplash.jpg', 'evangelos-mpikakis-_JAEIbT6KOM-unsplash.jpg'),
+(12, 'LTKEZ45971', 'Iyke Appartments', '9000', 3, 3, '127 Lakeview Strt', 'Leased', 'LTKEZ45971matthias-iordache-MVd4rDf4O2Q-unsplash.jpg', 'LTKEZ45971garrett-parker-xQWLtlQb7L0-unsplash.jpg'),
+(13, 'NLMYV06493', 'Apache Flatts', '15000', 3, 3, '127 Bronx New Yolk', 'Vacant', 'NLMYV06493sigmund-CwTfKH5edSk-unsplash.jpg', 'NLMYV06493asia-culturecenter-YjCY61CTRpE-unsplash.jpg');
 
 -- --------------------------------------------------------
 
@@ -164,7 +173,12 @@ INSERT INTO `property_leases` (`lease_id`, `lease_ref`, `lease_property_id`, `le
 (3, 'ZEPXO78652', 1, 10, '4', 'Paid', '13 Mar 2022 9:12am', 0),
 (4, 'LWBDX97310', 4, 10, '5', 'Pending', '15 Mar 2022 4:16am', 1),
 (6, 'QXZUS06129', 4, 2, '4', 'Paid', '15 Mar 2022 4:24am', 0),
-(7, 'LCZGP80519', 5, 2, '1', 'Paid', '15 Mar 2022 12:37pm', 0);
+(7, 'LCZGP80519', 5, 2, '1', 'Paid', '15 Mar 2022 12:37pm', 0),
+(8, 'CGMDH75462', 11, 2, '2', 'Pending', '24 Mar 2022 4:47pm', 1),
+(9, 'SUEZO27391', 13, 2, '1', 'Paid', '24 Mar 2022 5:04pm', 1),
+(10, 'WFIVU53769', 12, 2, '1', 'Pending', '24 Mar 2022 5:16pm', 1),
+(11, 'HWOKQ38421', 11, 2, '3', 'Pending', '24 Mar 2022 5:17pm', 1),
+(12, '', 12, 2, '4', 'Pending', '24 Mar 2022 5:32pm', 0);
 
 -- --------------------------------------------------------
 
@@ -259,7 +273,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `caretaker_assigns`
 --
 ALTER TABLE `caretaker_assigns`
-  MODIFY `assignment_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `assignment_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -277,19 +291,19 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `payment_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `property_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `property_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `property_leases`
 --
 ALTER TABLE `property_leases`
-  MODIFY `lease_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `lease_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
