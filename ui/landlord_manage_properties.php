@@ -34,6 +34,39 @@ if (isset($_POST['update_property'])) {
     }
 }
 
+/* Update Images */
+if (isset($_POST['update_images'])) {
+    $property_id = $_POST['property_id'];
+    $property_code  = $_POST['property_code'];
+    /* Process Image 1 */
+    $property_img_1 = $property_code . $_FILES['property_img_1']['name'];
+    $upload_directory = "../data/" . $property_img_1;
+    $temp_name = $_FILES["property_img_1"]["tmp_name"];
+    move_uploaded_file($temp_name, $upload_directory);
+
+    /* Process Image 2 */
+    $property_img_2 = $property_code . $_FILES['property_img_2']['name'];
+    $upload_directory_2 = "../data/" . $property_img_2;
+    $temp_name = $_FILES["property_img_2"]["tmp_name"];
+    move_uploaded_file($temp_name, $upload_directory_2);
+
+    /* Persist */
+    $sql = "UPDATE properties SET  property_img_1 =?, property_img_2 =? WHERE property_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sss',
+        $property_img_1,
+        $property_img_2,
+        $property_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Property Images Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
 /* Delete */
 if (isset($_POST['delete_property'])) {
     $property_id = $_POST['property_id'];
@@ -120,7 +153,9 @@ require_once('../app/partials/head.php');
                                                     <td><?php echo $properties->user_name; ?></td>
                                                     <td><?php echo $properties->property_address; ?></td>
                                                     <td>
+                                                        <a href="landlord_property?view=<?php echo $properties->property_id; ?>" class="badge badge-success"><i class="fas fa-eye"></i> View</a>
                                                         <a data-toggle="modal" href="#update_<?php echo $properties->property_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                                        <a data-toggle="modal" href="#image_<?php echo $properties->property_id; ?>" class="badge badge-warning"><i class="fas fa-image"></i> Update Images</a>
                                                         <a data-toggle="modal" href="#delete_<?php echo $properties->property_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
                                                     </td>
                                                     <!-- Update Modal -->
@@ -182,6 +217,49 @@ require_once('../app/partials/head.php');
                                                     </div>
                                                     <!-- End Modal -->
 
+                                                    <div class="modal fade fixed-right" id="image_<?php echo $properties->property_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog  modal-xl" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header align-items-center">
+                                                                    <div class="text-bold">
+                                                                        <h6 class="text-bold">Update mages</h6>
+                                                                    </div>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="exampleInputFile">Property Exterior Image</label>
+                                                                                <div class="input-group">
+                                                                                    <div class="custom-file">
+                                                                                        <input name="property_img_1" required accept=".png, jpeg, .jpg" type="file" class="custom-file-input">
+                                                                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                                                        <input type="hidden" value="<?php echo $properties->property_id; ?>" readonly required name="property_id" class="form-control">
+                                                                                        <input type="hidden" value="<?php echo $properties->property_code; ?>" readonly required name="property_code" class="form-control">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="exampleInputFile">Property Interior Image</label>
+                                                                                <div class="input-group">
+                                                                                    <div class="custom-file">
+                                                                                        <input name="property_img_2" required accept=".png, jpeg, .jpg" type="file" class="custom-file-input">
+                                                                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-right">
+                                                                            <button type="submit" name="update_images" class="btn btn-warning">Update Property Images</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <!-- Delete Modal -->
                                                     <div class="modal fade" id="delete_<?php echo $properties->property_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">

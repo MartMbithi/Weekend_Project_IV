@@ -12,6 +12,8 @@
 <script src="../assets/plugins/toastr/toastr.min.js"></script>
 <!-- Chart Js -->
 <script src="../assets/plugins/chart.js/Chart.min.js"></script>
+<!-- Custom File  -->
+<script src="../assets/app_js/bs-custom-file-input.min.js"></script>
 <!-- Data Tables CDN -->
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
@@ -39,7 +41,18 @@
         });
     });
 </script>
-
+<script>
+    /* Init Custom File Select */
+    $(document).ready(function() {
+        bsCustomFileInput.init();
+    });
+    /* Show Selected File Name */
+    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+        var fileName = document.getElementById("myInput").files[0].name;
+        var nextSibling = e.target.nextElementSibling
+        nextSibling.innerText = fileName
+    })
+</script>
 <!-- Init  Alerts -->
 <?php if (isset($success)) { ?>
     <!-- Pop Success Alert -->

@@ -3,7 +3,7 @@
 
 
 /* Stafss */
-$query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'staff' ";
+$query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'staff' || user_access_level ='admin' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($staffs);
@@ -101,4 +101,3 @@ $stmt->execute();
 $stmt->bind_result($expenses);
 $stmt->fetch();
 $stmt->close();
-

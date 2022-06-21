@@ -1,11 +1,11 @@
 <?php
-/* Register All Landlord Analytics Here */
+/* Register All Tenant Analytics Here */
 
 $user_id  = $_SESSION['user_id'];
 
 
 /* Vacant */
-$query = "SELECT COUNT(*)  FROM properties WHERE property_status = 'Vacant' AND property_landlord_id = '$user_id' ";
+$query = "SELECT COUNT(*)  FROM properties WHERE property_status = 'Vacant' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($properties_vacant);

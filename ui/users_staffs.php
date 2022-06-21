@@ -11,7 +11,7 @@ if (isset($_POST['add_staff'])) {
     $user_idno = $_POST['user_idno'];
     $user_phoneno = $_POST['user_phoneno'];
     $user_address = $_POST['user_address'];
-    $user_access_level = 'staff';
+    $user_access_level = $_POST['user_access_level'];
 
     /* Persist */
     $sql = "INSERT INTO users (user_name, user_email, user_password, user_idno, user_phoneno, user_address, user_access_level)
@@ -43,14 +43,17 @@ if (isset($_POST['update_staff'])) {
     $user_phoneno = $_POST['user_phoneno'];
     $user_address = $_POST['user_address'];
     $user_id = $_POST['user_id'];
+    $user_access_level = $_POST['user_access_level'];
+
 
     /* Persist */
-    $sql = "UPDATE  users  SET user_name =?, user_email =?, user_idno =?, user_phoneno =?, user_address =? WHERE user_id =?";
+    $sql = "UPDATE  users  SET user_name =?, user_email =?, user_access_level =?,  user_idno =?, user_phoneno =?, user_address =? WHERE user_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'ssssss',
+        'sssssss',
         $user_name,
         $user_email,
+        $user_access_level,
         $user_idno,
         $user_phoneno,
         $user_address,
@@ -145,11 +148,18 @@ require_once('../app/partials/head.php');
                                             <label for="">Phone Number</label>
                                             <input type="text" required name="user_phoneno" class="form-control" id="exampleInputEmail1">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
+                                            <label for="">Access Rights</label>
+                                            <select type="text" name="user_access_level" class="form-control" id="exampleInputEmail1">
+                                                <option value="staff">Staff</option>
+                                                <option value="admin">Administrator</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
                                             <label for="">Email Address</label>
                                             <input type="text" name="user_email" class="form-control" id="exampleInputEmail1">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label for="">Address</label>
                                             <input type="text" name="user_address" class="form-control" id="exampleInputEmail1">
                                         </div>
@@ -181,13 +191,14 @@ require_once('../app/partials/head.php');
                                                 <th>ID No</th>
                                                 <th>Email</th>
                                                 <th>Phone No</th>
+                                                <th>Access Level</th>
                                                 <th>Address</th>
                                                 <th>Manage</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ret = "SELECT * FROM users WHERE user_access_level = 'staff' ";
+                                            $ret = "SELECT * FROM users WHERE user_access_level = 'staff' || user_access_level = 'admin' ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
@@ -198,6 +209,13 @@ require_once('../app/partials/head.php');
                                                     <td><?php echo $staffs->user_idno; ?></td>
                                                     <td><?php echo $staffs->user_email; ?></td>
                                                     <td><?php echo $staffs->user_phoneno; ?></td>
+                                                    <td>
+                                                        <?php if ($staffs->user_access_level == 'staff') { ?>
+                                                            Staff
+                                                        <?php } else { ?>
+                                                            Administrator
+                                                        <?php } ?>
+                                                    </td>
                                                     <td><?php echo $staffs->user_address; ?></td>
                                                     <td>
                                                         <a data-toggle="modal" href="#update_<?php echo $staffs->user_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
@@ -229,7 +247,15 @@ require_once('../app/partials/head.php');
                                                                             </div>
                                                                             <div class="form-group col-md-4">
                                                                                 <label for="">Access Rights</label>
-                                                                                <input type="text" readonly required name="user_access_level" value="staff" class="form-control" id="exampleInputEmail1">
+                                                                                <select type="text" name="user_access_level" class="form-control" id="exampleInputEmail1">
+                                                                                    <?php if ($staffs->user_access_level == 'admin') { ?>
+                                                                                        <option value="admin">Administrator</option>
+                                                                                        <option value="staff">Staff</option>
+                                                                                    <?php } else { ?>
+                                                                                        <option value="staff">Staff</option>
+                                                                                        <option value="admin">Administrator</option>
+                                                                                    <?php } ?>
+                                                                                </select>
                                                                             </div>
                                                                             <div class="form-group col-md-4">
                                                                                 <label for="">Phone Number</label>
