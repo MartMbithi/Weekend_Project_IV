@@ -36,7 +36,7 @@ require_once('../app/partials/head.php');
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a href="">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="">Properties</a></li>
+                                    <li class="breadcrumb-item"><a href="">Houses</a></li>
                                     <li class="breadcrumb-item active">Details</li>
                                 </ol>
                             </div>
@@ -50,7 +50,7 @@ require_once('../app/partials/head.php');
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- Profile Image -->
-                                <div class="card card-warning card-outline card-body">
+                                <div class="card card-success card-outline card-body">
                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                         <ol class="carousel-indicators">
                                             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -70,59 +70,59 @@ require_once('../app/partials/head.php');
                             </div>
                             <!-- /.col -->
                             <div class="col-md-12">
-                                <div class="card card-warning card-outline">
+                                <div class="card card-success card-outline">
                                     <div class="card-header p-2">
-                                        <h5 class="text-center">Property Details</h5>
+                                        <h5 class="text-center">House Details</h5>
                                     </div><!-- /.card-header -->
                                     <div class="card-body">
                                         <div class="tab-content">
                                             <div class="active tab-pane" id="activity">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <fieldset class="border border-primary p-2">
-                                                            <legend class="w-auto text-primary font-weight-light">Rental Property Details </legend>
+                                                        <fieldset class="border border-success p-2">
+                                                            <legend class="w-auto text-success font-weight-light">House Details </legend>
                                                             <div class="card-body">
                                                                 <ul class="list-group list-group-unbordered mb-3">
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-tag text-warning"></i> Code: </b> <a class="float-right"><?php echo $property->property_code; ?></a>
+                                                                        <b><i class="fas fa-tag text-success"></i> Code: </b> <a class="float-right"><?php echo $property->property_code; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-check text-warning"></i> Name: </b> <a class="float-right"><?php echo $property->property_name; ?></a>
+                                                                        <b><i class="fas fa-check text-success"></i> Name: </b> <a class="float-right"><?php echo $property->property_name; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-list  text-warning"></i> Category: </b> <a class="float-right"><?php echo $property->category_name; ?></a>
+                                                                        <b><i class="fas fa-list  text-success"></i> Category: </b> <a class="float-right"><?php echo $property->category_name; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-map-pin text-warning"></i> Location: </b> <a class="float-right"><?php echo $property->property_address; ?></a>
+                                                                        <b><i class="fas fa-map-pin text-success"></i> Location: </b> <a class="float-right"><?php echo $property->property_address; ?></a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
                                                         </fieldset>
                                                     </div>
                                                     <div class="col-6">
-                                                        <fieldset class="border border-primary p-2">
-                                                            <legend class="w-auto text-primary font-weight-light">Property Owner Details </legend>
+                                                        <fieldset class="border border-success p-2">
+                                                            <legend class="w-auto text-success font-weight-light">House Owner Details </legend>
                                                             <div class="card-body">
                                                                 <ul class="list-group list-group-unbordered mb-3">
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-user-tie text-warning"></i> Names: </b> <a class="float-right"><?php echo $property->user_name; ?></a>
+                                                                        <b><i class="fas fa-user-tie text-success"></i> Names: </b> <a class="float-right"><?php echo $property->user_name; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-phone text-warning"></i> Contacts: </b> <a class="float-right"><?php echo $property->user_phoneno; ?></a>
+                                                                        <b><i class="fas fa-phone text-success"></i> Contacts: </b> <a class="float-right"><?php echo $property->user_phoneno; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-envelope text-warning"></i> Email: </b> <a class="float-right"><?php echo $property->user_email; ?></a>
+                                                                        <b><i class="fas fa-envelope text-success"></i> Email: </b> <a class="float-right"><?php echo $property->user_email; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-map-pin text-warning"></i> Address: </b> <a class="float-right"><?php echo $property->user_address; ?></a>
+                                                                        <b><i class="fas fa-map-pin text-success"></i> Address: </b> <a class="float-right"><?php echo $property->user_address; ?></a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
                                                         </fieldset>
                                                     </div>
                                                     <div class="col-6">
-                                                        <fieldset class="border border-primary p-2">
-                                                            <legend class="w-auto text-primary font-weight-light">Assigned Caretaker (s) Details </legend>
+                                                        <fieldset class="border border-success p-2">
+                                                            <legend class="w-auto text-success font-weight-light">Assigned Caretaker (s) Details </legend>
                                                             <?php
                                                             $ret = "SELECT * FROM caretaker_assigns ca 
                                                             INNER JOIN users u ON ca.assignment_caretaker_id = u.user_id
@@ -136,16 +136,16 @@ require_once('../app/partials/head.php');
                                                                 <div class="card-body">
                                                                     <ul class="list-group list-group-unbordered mb-3">
                                                                         <li class="list-group-item">
-                                                                            <b><i class="fas fa-user-tie text-warning"></i> Names: </b> <a class="float-right"><?php echo $assn->user_name; ?></a>
+                                                                            <b><i class="fas fa-user-tie text-success"></i> Names: </b> <a class="float-right"><?php echo $assn->user_name; ?></a>
                                                                         </li>
                                                                         <li class="list-group-item">
-                                                                            <b><i class="fas fa-phone text-warning"></i> Contacts: </b> <a class="float-right"><?php echo $assn->user_phoneno; ?></a>
+                                                                            <b><i class="fas fa-phone text-success"></i> Contacts: </b> <a class="float-right"><?php echo $assn->user_phoneno; ?></a>
                                                                         </li>
                                                                         <li class="list-group-item">
-                                                                            <b><i class="fas fa-envelope text-warning"></i> Email: </b> <a class="float-right"><?php echo $assn->user_email; ?></a>
+                                                                            <b><i class="fas fa-envelope text-success"></i> Email: </b> <a class="float-right"><?php echo $assn->user_email; ?></a>
                                                                         </li>
                                                                         <li class="list-group-item">
-                                                                            <b><i class="fas fa-map-pin text-warning"></i> Address: </b> <a class="float-right"><?php echo $assn->user_address; ?></a>
+                                                                            <b><i class="fas fa-map-pin text-success"></i> Address: </b> <a class="float-right"><?php echo $assn->user_address; ?></a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -153,8 +153,8 @@ require_once('../app/partials/head.php');
                                                         </fieldset>
                                                     </div>
                                                     <div class="col-6">
-                                                        <fieldset class="border border-primary p-2">
-                                                            <legend class="w-auto text-primary font-weight-light">Lease History </legend>
+                                                        <fieldset class="border border-success p-2">
+                                                            <legend class="w-auto text-success font-weight-light">Rental Agreement History </legend>
 
                                                             <div class="card-body">
                                                                 <div class="timeline">
@@ -176,7 +176,7 @@ require_once('../app/partials/head.php');
                                                                             <span class="bg-success"><?php echo $leases->lease_date_added; ?></span>
                                                                         </div>
                                                                         <div>
-                                                                            <i class="fas fa-user-tag bg-blue"></i>
+                                                                            <i class="fas fa-user-tag bg-success"></i>
                                                                             <div class="timeline-item">
                                                                                 <h3 class="timeline-header">Lease Details</h3>
                                                                                 <div class="timeline-body">
@@ -184,14 +184,15 @@ require_once('../app/partials/head.php');
                                                                                     <b>Tenant IDNO: </b> <?php echo $leases->user_idno; ?> <br>
                                                                                     <b>Tenant Phone No : </b> <?php echo $leases->user_phoneno; ?> <br>
                                                                                     <b>Tenant Email : </b> <?php echo $leases->user_email; ?> <br>
-                                                                                    <b>Lease REF: </b> <?php echo $leases->lease_ref; ?> <br>
-                                                                                    <b>Lease Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
-                                                                                    <b>Lease Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
+                                                                                    <b>Rental REF: </b> <?php echo $leases->lease_ref; ?> <br>
+                                                                                    <b>Rental Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
+                                                                                    <b>Rental Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     <?php } ?>
                                                                 </div>
+                                                            </div>
                                                         </fieldset>
                                                     </div>
                                                 </div>

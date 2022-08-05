@@ -36,7 +36,7 @@ require_once('../app/partials/head.php');
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a href="">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="">Properties</a></li>
+                                    <li class="breadcrumb-item"><a href="">Houses</a></li>
                                     <li class="breadcrumb-item active">Details</li>
                                 </ol>
                             </div>
@@ -72,7 +72,7 @@ require_once('../app/partials/head.php');
                             <div class="col-md-12">
                                 <div class="card card-warning card-outline">
                                     <div class="card-header p-2">
-                                        <h5 class="text-center">Property Details</h5>
+                                        <h5 class="text-center">House Details</h5>
                                     </div><!-- /.card-header -->
                                     <div class="card-body">
                                         <div class="tab-content">
@@ -80,7 +80,7 @@ require_once('../app/partials/head.php');
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <fieldset class="border border-primary p-2">
-                                                            <legend class="w-auto text-primary font-weight-light">Rental Property Details </legend>
+                                                            <legend class="w-auto text-primary font-weight-light">Rental House Details </legend>
                                                             <div class="card-body">
                                                                 <ul class="list-group list-group-unbordered mb-3">
                                                                     <li class="list-group-item">
@@ -101,7 +101,7 @@ require_once('../app/partials/head.php');
                                                     </div>
                                                     <div class="col-6">
                                                         <fieldset class="border border-primary p-2">
-                                                            <legend class="w-auto text-primary font-weight-light">Property Owner Details </legend>
+                                                            <legend class="w-auto text-primary font-weight-light">House Owner Details </legend>
                                                             <div class="card-body">
                                                                 <ul class="list-group list-group-unbordered mb-3">
                                                                     <li class="list-group-item">
@@ -154,7 +154,7 @@ require_once('../app/partials/head.php');
                                                     </div>
                                                     <div class="col-6">
                                                         <fieldset class="border border-primary p-2">
-                                                            <legend class="w-auto text-primary font-weight-light">Lease History </legend>
+                                                            <legend class="w-auto text-primary font-weight-light">Rental History </legend>
 
                                                             <div class="card-body">
                                                                 <div class="timeline">
@@ -184,14 +184,15 @@ require_once('../app/partials/head.php');
                                                                                     <b>Tenant IDNO: </b> <?php echo $leases->user_idno; ?> <br>
                                                                                     <b>Tenant Phone No : </b> <?php echo $leases->user_phoneno; ?> <br>
                                                                                     <b>Tenant Email : </b> <?php echo $leases->user_email; ?> <br>
-                                                                                    <b>Lease REF: </b> <?php echo $leases->lease_ref; ?> <br>
-                                                                                    <b>Lease Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
-                                                                                    <b>Lease Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
+                                                                                    <b>Rental REF: </b> <?php echo $leases->lease_ref; ?> <br>
+                                                                                    <b>Rental Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
+                                                                                    <b>Rental Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     <?php } ?>
                                                                 </div>
+                                                            </div>
                                                         </fieldset>
                                                     </div>
                                                 </div>

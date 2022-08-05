@@ -38,7 +38,7 @@ if (isset($_POST['add_lease'])) {
     $property_prepare->execute();
 
     if ($prepare  && $property_prepare) {
-        $success = "Tenant Lease Record Added";
+        $success = "Tenant Rental Record Added";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -62,12 +62,12 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-8">
-                            <h1 class="m-0 text-dark">Property Leases  - Add Lease</h1>
+                            <h1 class="m-0 text-dark">House Rentals - Add Rental Record</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-4">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                                <li class="breadcrumb-item"><a href="">Property Leases</a></li>
+                                <li class="breadcrumb-item"><a href="">House Rentals</a></li>
                                 <li class="breadcrumb-item active">Add</li>
                             </ol>
                         </div><!-- /.col -->
@@ -88,9 +88,9 @@ require_once('../app/partials/head.php');
                                     <form method="post" enctype="multipart/form-data" role="form">
                                         <div class="row">
                                             <div class="form-group col-md-12">
-                                                <label for="">Property Details</label>
+                                                <label for="">House Details</label>
                                                 <select class="form-control basic" name="lease_property_id">
-                                                    <option>Select Property</option>
+                                                    <option>Select House</option>
                                                     <?php
                                                     $ret = "SELECT * FROM properties p 
                                                     INNER JOIN categories c ON c.category_id  = p.property_category_id
@@ -123,7 +123,7 @@ require_once('../app/partials/head.php');
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="">Lease Duration (Months)</label>
+                                                <label for="">Rental Duration (Months)</label>
                                                 <select class="form-control basic" name="lease_duration">
                                                     <option>1</option>
                                                     <option>2</option>
@@ -141,7 +141,7 @@ require_once('../app/partials/head.php');
                                             </div>
                                         </div>
                                         <div class="text-right">
-                                            <button type="submit" name="add_lease" class="btn btn-warning">Lease Property</button>
+                                            <button type="submit" name="add_lease" class="btn btn-warning">Rent House</button>
                                         </div>
                                     </form>
                                 </div>

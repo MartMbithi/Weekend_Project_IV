@@ -23,13 +23,13 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-8">
-                            <h1 class="m-0 text-dark">Property Leases Reports</h1>
+                            <h1 class="m-0 text-dark">Rentals Reports</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-4">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="landlord_dashboard">Home</a></li>
                                 <li class="breadcrumb-item"><a href="">Reports</a></li>
-                                <li class="breadcrumb-item active">Leases</li>
+                                <li class="breadcrumb-item active">Rentals</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -44,14 +44,14 @@ require_once('../app/partials/head.php');
                     <!-- Info boxes -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-warning card-outline">
+                            <div class="card card-success card-outline">
                                 <div class="card-body">
                                     <table class="report_table">
                                         <thead>
                                             <tr>
-                                                <th>Property Details</th>
+                                                <th>House Details</th>
                                                 <th>Tenant Details</th>
-                                                <th>Lease Agreement Details</th>
+                                                <th>Rentals Agreement Details</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -85,7 +85,7 @@ require_once('../app/partials/head.php');
                                                         <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
                                                         <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
                                                         <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
-                                                        <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
+                                                        <b>Date: </b> <?php echo $leases->lease_date_added; ?>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

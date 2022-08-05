@@ -45,7 +45,7 @@ if (isset($_POST['update_lease'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "Lease Record Updated";
+        $success = "Rental Record Updated";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -70,7 +70,7 @@ if (isset($_POST['delete_lease'])) {
     $property_prepare->execute();
 
     if ($prepare && $property_prepare) {
-        $info = "Lease Record Deleted";
+        $info = "Rental Record Deleted";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -94,13 +94,14 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-8">
-                            <h1 class="m-0 text-dark">Property Leases Manage Leases</h1>
+                            <h1 class="m-0 text-dark">Manage House Rental Agreements
+                            </h1>
                         </div><!-- /.col -->
                         <div class="col-sm-4">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="landlord_dashboard">Home</a></li>
-                                <li class="breadcrumb-item"><a href="">Property Leases</a></li>
-                                <li class="breadcrumb-item active">Manage Leases</li>
+                                <li class="breadcrumb-item"><a href="">House Rentals</a></li>
+                                <li class="breadcrumb-item active">Manage Rentals</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -115,14 +116,14 @@ require_once('../app/partials/head.php');
                     <!-- Info boxes -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-warning card-outline">
+                            <div class="card card-success card-outline">
                                 <div class="card-body">
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Property Details</th>
+                                                <th>House Details</th>
                                                 <th>Tenant Details</th>
-                                                <th>Lease Agreement Details</th>
+                                                <th>Rental Agreement Details</th>
                                                 <th>Manage</th>
                                             </tr>
                                         </thead>
@@ -157,7 +158,7 @@ require_once('../app/partials/head.php');
                                                         <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
                                                         <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
                                                         <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
-                                                        <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
+                                                        <b>Date: </b> <?php echo $leases->lease_date_added; ?>
                                                     </td>
                                                     <td>
                                                         <a data-toggle="modal" href="#update_<?php echo $leases->lease_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a> <br>
@@ -180,7 +181,7 @@ require_once('../app/partials/head.php');
                                                                     <form method="post" enctype="multipart/form-data" role="form">
                                                                         <div class="row">
                                                                             <div class="form-group col-md-9">
-                                                                                <label for="">Property Details</label>
+                                                                                <label for="">House Details</label>
                                                                                 <!-- Hide This -->
                                                                                 <input type="hidden" required name="lease_id" value="<?php echo $leases->lease_id; ?>" class="form-control">
                                                                                 <select class="form-control basic" name="lease_property_id">
@@ -190,7 +191,7 @@ require_once('../app/partials/head.php');
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group col-md-3">
-                                                                                <label for="">Lease Duration (Months)</label>
+                                                                                <label for="">Rental Duration (Months)</label>
                                                                                 <select class="form-control basic" name="lease_duration">
                                                                                     <option><?php echo $leases->lease_duration; ?></option>
                                                                                     <option>1</option>
@@ -209,7 +210,7 @@ require_once('../app/partials/head.php');
                                                                             </div>
                                                                         </div>
                                                                         <div class="text-right">
-                                                                            <button type="submit" name="update_lease" class="btn btn-warning">Update Lease</button>
+                                                                            <button type="submit" name="update_lease" class="btn btn-success">Update</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
@@ -254,7 +255,7 @@ require_once('../app/partials/head.php');
                                                                 </div>
                                                                 <form method="POST">
                                                                     <div class="modal-body text-center text-danger">
-                                                                        <h4>Delete </h4>
+                                                                        <h4>Delete?</h4>
                                                                         <br>
                                                                         <!-- Hide This -->
                                                                         <input type="hidden" name="lease_id" value="<?php echo $leases->lease_id; ?>">

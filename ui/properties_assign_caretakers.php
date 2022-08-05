@@ -20,7 +20,7 @@ if (isset($_POST['assign_property'])) {
         if (
             $assigns['assignment_caretaker_id'] == $assignment_caretaker_id &&  $assigns['assignment_property_id'] == $assignment_property_id
         ) {
-            $err = "Property Already Assigned Caretaker";
+            $err = "House Already Assigned Caretaker";
         }
     } else {
         $sql = "INSERT INTO  caretaker_assigns(assignment_caretaker_id, assignment_property_id) VALUES(?,?)";
@@ -32,7 +32,7 @@ if (isset($_POST['assign_property'])) {
         );
         $prepare->execute();
         if ($prepare) {
-            $success = "Property Assigned Caretaker";
+            $success = "House Assigned Caretaker";
         } else {
             $err = "Failed!, Please Try Again Later!";
         }
@@ -56,7 +56,7 @@ if (isset($_POST['update_assign'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "Property Caretaker Assignment Updated";
+        $success = "House Caretaker Assignment Updated";
     } else {
         $err = "Failed!, Please Try Again Later!";
     }
@@ -72,7 +72,7 @@ if (isset($_POST['delete_assign'])) {
     $bind = $prepare->bind_param('s', $assignment_id);
     $prepare->execute();
     if ($prepare) {
-        $info = "Property Assignment Deleted";
+        $info = "House Assignment Deleted";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -96,12 +96,12 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-7">
-                            <h1 class="m-0 text-dark">Property Management - Assign Caretaker</h1>
+                            <h1 class="m-0 text-dark">House Management - Assign Caretaker</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-5">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                                <li class="breadcrumb-item"><a href="">Properties</a></li>
+                                <li class="breadcrumb-item"><a href="">House</a></li>
                                 <li class="breadcrumb-item active">Assign Caretaker</li>
                             </ol>
                         </div><!-- /.col -->
@@ -109,7 +109,7 @@ require_once('../app/partials/head.php');
                 </div><!-- /.container-fluid -->
                 <hr>
                 <div class="text-right">
-                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Assign Property Caretaker</button>
+                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-warning"> Assign House Caretaker</button>
                 </div>
                 <!-- Add Landlord Modal -->
                 <!-- Add Modal -->
@@ -118,7 +118,7 @@ require_once('../app/partials/head.php');
                         <div class="modal-content">
                             <div class="modal-header align-items-center">
                                 <div class="text-center">
-                                    <h6 class="mb-0 text-bold"> Assign Property Caretaker</h6>
+                                    <h6 class="mb-0 text-bold"> Assign House Caretaker</h6>
                                 </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -143,9 +143,9 @@ require_once('../app/partials/head.php');
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="">Property Details</label>
+                                            <label for="">House Details</label>
                                             <select class="form-control basic" name="assignment_property_id">
-                                                <option>Select Property</option>
+                                                <option>Select House</option>
                                                 <?php
                                                 $ret = "SELECT * FROM properties  ";
                                                 $stmt = $mysqli->prepare($ret);
@@ -158,7 +158,7 @@ require_once('../app/partials/head.php');
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button type="submit" name="assign_property" class="btn btn-warning">Assign Property</button>
+                                        <button type="submit" name="assign_property" class="btn btn-warning">Assign</button>
                                     </div>
                                 </form>
                             </div>
@@ -181,7 +181,7 @@ require_once('../app/partials/head.php');
                                         <thead>
                                             <tr>
                                                 <th>Caretaker Details</th>
-                                                <th>Property Details</th>
+                                                <th>House Details</th>
                                                 <th>Manage</th>
                                             </tr>
                                         </thead>
@@ -243,7 +243,7 @@ require_once('../app/partials/head.php');
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group col-md-6">
-                                                                                <label for="">Property Details</label>
+                                                                                <label for="">House Details</label>
                                                                                 <select class="form-control basic" name="assignment_property_id">
                                                                                     <option value="<?php echo $assn->assignment_property_id; ?>"><?php echo $assn->property_code . ' ' . $assn->property_name; ?></option>
                                                                                     <?php

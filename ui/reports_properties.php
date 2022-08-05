@@ -23,13 +23,13 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Property Reports</h1>
+                            <h1 class="m-0 text-dark">Houses Reports</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
                                 <li class="breadcrumb-item"><a href="">Reports</a></li>
-                                <li class="breadcrumb-item active">Properties</li>
+                                <li class="breadcrumb-item active">Houses</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -52,7 +52,7 @@ require_once('../app/partials/head.php');
                                                 <th>Code</th>
                                                 <th>Name</th>
                                                 <th>Category</th>
-                                                <th>Property Landlord</th>
+                                                <th>House Landlord</th>
                                                 <th>Location</th>
                                             </tr>
                                         </thead>

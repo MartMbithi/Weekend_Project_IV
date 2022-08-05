@@ -47,19 +47,19 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                                     <p>Tenants</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="users_staffs" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
                                     <p>Staffs</p>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a href="property_categories" class="nav-link">
                             <i class="nav-icon fas fa-sitemap"></i>
                             <p>
-                                Properties Categories
+                                Houses Categories
                             </p>
                         </a>
                     </li>
@@ -67,7 +67,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tree"></i>
                             <p>
-                                Properties
+                                Houses
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
@@ -75,7 +75,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                             <li class="nav-item">
                                 <a href="properties_add" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Add Property</p>
+                                    <p>Add Houses</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -87,7 +87,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                             <li class="nav-item">
                                 <a href="properties_manage" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Manage Properties</p>
+                                    <p>Manage Houses</p>
                                 </a>
                             </li>
                         </ul>
@@ -96,7 +96,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-edit"></i>
                             <p>
-                                Property Leases
+                                Rent House
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
@@ -104,13 +104,13 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                             <li class="nav-item">
                                 <a href="leases_add" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Add Lease</p>
+                                    <p>Add </p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="leases_manage" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Manage Leases</p>
+                                    <p>Manage </p>
                                 </a>
                             </li>
                         </ul>
@@ -138,36 +138,36 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="expenses" class="nav-link">
                             <i class="nav-icon fas fa-money-bill-alt"></i>
                             <p>
                                 Expenses
                             </p>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-header text-warning">Reports</li>
                     <li class="nav-item">
                         <a href="reports_revenue" class="nav-link">
                             <i class="nav-icon fas fa-funnel-dollar"></i>
                             <p>
-                                Revenue Reports
+                                Rent Payments Reports
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="reports_expenditures" class="nav-link">
                             <i class="nav-icon fas fa-money-check"></i>
                             <p>
                                 Expenditure Reports
                             </p>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a href="reports_properties" class="nav-link">
                             <i class="nav-icon fas fa-hotel"></i>
                             <p>
-                                Properties
+                                Houses
                             </p>
                         </a>
                     </li>
@@ -175,7 +175,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="reports_leases" class="nav-link">
                             <i class="nav-icon fas fa-handshake"></i>
                             <p>
-                                Leases
+                                Rentings
                             </p>
                         </a>
                     </li>
@@ -206,12 +206,12 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                                     <p>Tenants</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="user_reports?user=staff" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
                                     <p>Staffs</p>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                 </ul>
@@ -407,7 +407,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tree"></i>
                             <p>
-                                Properties
+                                Houses
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
@@ -415,7 +415,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                             <li class="nav-item">
                                 <a href="landlord_properties_add" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Add Property</p>
+                                    <p>Add House</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -427,7 +427,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                             <li class="nav-item">
                                 <a href="landlord_manage_properties" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Manage Properties</p>
+                                    <p>Manage Houses</p>
                                 </a>
                             </li>
                         </ul>
@@ -436,7 +436,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-edit"></i>
                             <p>
-                                Property Leases
+                                Rent House
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
@@ -444,13 +444,13 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                             <li class="nav-item">
                                 <a href="landlord_leases_add" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Add Lease</p>
+                                    <p>Add</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="landlord_leases_manage" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Manage Leases</p>
+                                    <p>Manage</p>
                                 </a>
                             </li>
                         </ul>
@@ -483,7 +483,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="landlord_reports_revenue" class="nav-link">
                             <i class="nav-icon fas fa-funnel-dollar"></i>
                             <p>
-                                Revenue Reports
+                                Rent Payments
                             </p>
                         </a>
                     </li>
@@ -491,7 +491,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="landlord_reports_properties" class="nav-link">
                             <i class="nav-icon fas fa-hotel"></i>
                             <p>
-                                Properties
+                                Houses
                             </p>
                         </a>
                     </li>
@@ -499,7 +499,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="landlord_reports_leases" class="nav-link">
                             <i class="nav-icon fas fa-handshake"></i>
                             <p>
-                                Leases
+                                Rentings
                             </p>
                         </a>
                     </li>
@@ -534,7 +534,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-edit"></i>
                             <p>
-                                Property Leases
+                                House Rentings
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
@@ -542,13 +542,13 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                             <li class="nav-item">
                                 <a href="tenant_leases_add" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Add Lease</p>
+                                    <p>Add</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="tenant_leases_manage" class="nav-link">
                                     <i class="fas fa-angle-right nav-icon"></i>
-                                    <p>Manage Leases</p>
+                                    <p>Manage</p>
                                 </a>
                             </li>
                         </ul>

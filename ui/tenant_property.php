@@ -36,7 +36,7 @@ if (isset($_POST['add_lease'])) {
     $property_prepare->execute();
 
     if ($prepare  && $property_prepare) {
-        $_SESSION['success'] = 'Tenant Lease Record Added';
+        $_SESSION['success'] = 'Rental Record Added';
         header('Location: tenant_leases_manage');
         exit;
     } else {
@@ -76,7 +76,7 @@ require_once('../app/partials/head.php');
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a href="">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="">Properties</a></li>
+                                    <li class="breadcrumb-item"><a href="">Houses</a></li>
                                     <li class="breadcrumb-item active">Details</li>
                                 </ol>
                             </div>
@@ -90,7 +90,7 @@ require_once('../app/partials/head.php');
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- Profile Image -->
-                                <div class="card card-warning card-outline card-body">
+                                <div class="card card-danger card-outline card-body">
                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                         <ol class="carousel-indicators">
                                             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -110,62 +110,62 @@ require_once('../app/partials/head.php');
                             </div>
                             <!-- /.col -->
                             <div class="col-md-12">
-                                <div class="card card-warning card-outline">
+                                <div class="card card-danger card-outline">
                                     <div class="card-header p-2">
-                                        <h5 class="text-center">Property Details</h5>
+                                        <h5 class="text-center">House Details</h5>
                                     </div><!-- /.card-header -->
                                     <div class="card-body">
                                         <div class="tab-content">
                                             <div class="active tab-pane" id="activity">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <fieldset class="border border-primary p-2">
-                                                            <legend class="w-auto text-primary font-weight-light">Rental Property Details </legend>
+                                                        <fieldset class="border border-danger p-2">
+                                                            <legend class="w-auto text-danger font-weight-light">Rental House Details </legend>
                                                             <div class="card-body">
                                                                 <ul class="list-group list-group-unbordered mb-3">
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-tag text-warning"></i> Code: </b> <a class="float-right"><?php echo $property->property_code; ?></a>
+                                                                        <b><i class="fas fa-tag text-danger"></i> Code: </b> <a class="float-right"><?php echo $property->property_code; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-check text-warning"></i> Name: </b> <a class="float-right"><?php echo $property->property_name; ?></a>
+                                                                        <b><i class="fas fa-check text-danger"></i> Name: </b> <a class="float-right"><?php echo $property->property_name; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-list  text-warning"></i> Category: </b> <a class="float-right"><?php echo $property->category_name; ?></a>
+                                                                        <b><i class="fas fa-list  text-danger"></i> Category: </b> <a class="float-right"><?php echo $property->category_name; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-money-bill  text-warning"></i> Monthly Rent: </b> <a class="float-right">Ksh <?php echo number_format($property->property_cost, 2); ?></a>
+                                                                        <b><i class="fas fa-money-bill  text-danger"></i> Monthly Rent: </b> <a class="float-right">Ksh <?php echo number_format($property->property_cost, 2); ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-map-pin text-warning"></i> Location: </b> <a class="float-right"><?php echo $property->property_address; ?></a>
+                                                                        <b><i class="fas fa-map-pin text-danger"></i> Location: </b> <a class="float-right"><?php echo $property->property_address; ?></a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
                                                         </fieldset>
                                                     </div>
                                                     <div class="col-6">
-                                                        <fieldset class="border border-primary p-2">
-                                                            <legend class="w-auto text-primary font-weight-light">Property Owner Details </legend>
+                                                        <fieldset class="border border-danger p-2">
+                                                            <legend class="w-auto text-danger font-weight-light">House Owner Details </legend>
                                                             <div class="card-body">
                                                                 <ul class="list-group list-group-unbordered mb-3">
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-user-tie text-warning"></i> Names: </b> <a class="float-right"><?php echo $property->user_name; ?></a>
+                                                                        <b><i class="fas fa-user-tie text-danger"></i> Names: </b> <a class="float-right"><?php echo $property->user_name; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-phone text-warning"></i> Contacts: </b> <a class="float-right"><?php echo $property->user_phoneno; ?></a>
+                                                                        <b><i class="fas fa-phone text-danger"></i> Contacts: </b> <a class="float-right"><?php echo $property->user_phoneno; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-envelope text-warning"></i> Email: </b> <a class="float-right"><?php echo $property->user_email; ?></a>
+                                                                        <b><i class="fas fa-envelope text-danger"></i> Email: </b> <a class="float-right"><?php echo $property->user_email; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-map-pin text-warning"></i> Address: </b> <a class="float-right"><?php echo $property->user_address; ?></a>
+                                                                        <b><i class="fas fa-map-pin text-danger"></i> Address: </b> <a class="float-right"><?php echo $property->user_address; ?></a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
                                                         </fieldset>
                                                     </div>
                                                     <div class="col-6">
-                                                        <fieldset class="border border-primary p-2">
-                                                            <legend class="w-auto text-primary font-weight-light">Assigned Caretaker (s) Details </legend>
+                                                        <fieldset class="border border-danger p-2">
+                                                            <legend class="w-auto text-danger font-weight-light">Assigned Caretaker (s) Details </legend>
                                                             <?php
                                                             $ret = "SELECT * FROM caretaker_assigns ca 
                                                             INNER JOIN users u ON ca.assignment_caretaker_id = u.user_id
@@ -196,9 +196,9 @@ require_once('../app/partials/head.php');
                                                         </fieldset>
                                                     </div>
                                                     <div class="col-6">
-                                                        <fieldset class="border border-primary p-2">
-                                                            <legend class="w-auto text-primary font-weight-light">Lease This Property</legend>
-                                                            <p class="text-muted">Interested by this property, you can go ahead and lease in</p>
+                                                        <fieldset class="border border-danger p-2">
+                                                            <legend class="w-auto text-danger font-weight-light">Rent This house</legend>
+                                                            <p class="text-muted">Interested by this house, you can go ahead and rent in</p>
                                                             <form method="post" enctype="multipart/form-data" role="form">
                                                                 <div class="row">
                                                                     <div class="form-group col-md-12">
@@ -221,7 +221,7 @@ require_once('../app/partials/head.php');
                                                                     </div>
                                                                 </div>
                                                                 <div class="text-right">
-                                                                    <button type="submit" name="add_lease" class="btn btn-warning">Lease Property</button>
+                                                                    <button type="submit" name="add_lease" class="btn btn-danger">Rent House</button>
                                                                 </div>
                                                             </form>
                                                         </fieldset>

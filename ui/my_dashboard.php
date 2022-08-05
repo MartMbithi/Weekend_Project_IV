@@ -44,9 +44,9 @@ require_once('../app/partials/head.php');
                         <div class="col-12 col-sm-6 col-md-4">
                             <a href="tenant_leases_add">
                                 <div class="info-box mb-3 text-dark">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
+                                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-home"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Vacant Properties</span>
+                                        <span class="info-box-text">Vacant Houses</span>
                                         <span class="info-box-number"><?php echo $properties_vacant; ?></span>
                                     </div>
                                 </div>
@@ -68,9 +68,9 @@ require_once('../app/partials/head.php');
                         <div class="col-12 col-sm-6 col-md-4">
                             <a href="tenant_reports_revenue">
                                 <div class="info-box mb-3 text-dark">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+                                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Overall Rent Payment Expenditures</span>
+                                        <span class="info-box-text">Overall Rent Payment</span>
                                         <span class="info-box-number">Ksh <?php echo number_format($payments, 2); ?></span>
                                     </div>
                                 </div>
@@ -79,9 +79,9 @@ require_once('../app/partials/head.php');
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-warning card-outline">
+                            <div class="card card-danger card-outline">
                                 <div class="card-header">
-                                    <h3 class="card-title text-bold">My Recent Property Leases</h3>
+                                    <h3 class="card-title text-bold">My Rental History</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -89,8 +89,8 @@ require_once('../app/partials/head.php');
                                         <thead>
                                             <tr>
                                                 <th>Landlord Details</th>
-                                                <th>Property Details</th>
-                                                <th>Lease Details</th>
+                                                <th>House Details</th>
+                                                <th>Rental Agreement Details</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -123,7 +123,7 @@ require_once('../app/partials/head.php');
                                                         <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
                                                         <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
                                                         <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
-                                                        <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
+                                                        <b>Date: </b> <?php echo $leases->lease_date_added; ?>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

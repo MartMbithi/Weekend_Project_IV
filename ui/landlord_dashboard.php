@@ -45,10 +45,10 @@ require_once('../app/partials/head.php');
                         <div class="col-12 col-sm-6 col-md-3">
                             <a href="landlord_manage_properties">
                                 <div class="info-box mb-3 text-dark">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hotel"></i></span>
+                                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-hotel"></i></span>
 
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Properties</span>
+                                        <span class="info-box-text">Houses</span>
                                         <span class="info-box-number"><?php echo $properties; ?></span>
                                     </div>
                                     <!-- /.info-box-content -->
@@ -63,9 +63,9 @@ require_once('../app/partials/head.php');
                         <div class="col-12 col-sm-6 col-md-3">
                             <a href="landlord_leases_manage">
                                 <div class="info-box mb-3 text-dark">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-edit"></i></span>
+                                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-edit"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Leased Properties</span>
+                                        <span class="info-box-text">Occupied Houses</span>
                                         <span class="info-box-number"><?php echo $properties_leased; ?></span>
                                     </div>
                                 </div>
@@ -74,9 +74,9 @@ require_once('../app/partials/head.php');
                         <div class="col-12 col-sm-6 col-md-3">
                             <a href="landlord_manage_properties">
                                 <div class="info-box mb-3 text-dark">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
+                                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-home"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Vacant Properties</span>
+                                        <span class="info-box-text">Vacant Houses</span>
                                         <span class="info-box-number"><?php echo $properties_vacant; ?></span>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@ require_once('../app/partials/head.php');
                         <div class="col-12 col-sm-6 col-md-3">
                             <a href="landlord_manage_properties">
                                 <div class="info-box mb-3 text-dark">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+                                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Total Rent Collections</span>
                                         <span class="info-box-number">kSH <?php echo number_format($payments, 2); ?></span>
@@ -98,9 +98,9 @@ require_once('../app/partials/head.php');
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-warning card-outline">
+                            <div class="card card-success card-outline">
                                 <div class="card-header">
-                                    <h3 class="card-title text-bold">Recent Property Leases</h3>
+                                    <h3 class="card-title text-bold">Recent Rentals Records</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -108,8 +108,8 @@ require_once('../app/partials/head.php');
                                         <thead>
                                             <tr>
                                                 <th>Tenant Details</th>
-                                                <th>Property Details</th>
-                                                <th>Lease Details</th>
+                                                <th>House Details</th>
+                                                <th>Rental Agreement Details</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -143,7 +143,7 @@ require_once('../app/partials/head.php');
                                                         <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
                                                         <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
                                                         <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
-                                                        <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
+                                                        <b>Date : </b> <?php echo $leases->lease_date_added; ?>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

@@ -30,7 +30,7 @@ require_once('../app/partials/head.php');
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="my_dashboard">Home</a></li>
                                 <li class="breadcrumb-item"><a href="">Reports</a></li>
-                                <li class="breadcrumb-item active">Revenue</li>
+                                <li class="breadcrumb-item active">Rent Payments</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -42,13 +42,13 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-warning card-outline">
+                            <div class="card card-danger card-outline">
                                 <div class="card-body">
                                     <table class="report_table">
                                         <thead>
                                             <tr>
-                                                <th>Lease Details</th>
-                                                <th>Property Details</th>
+                                                <th>Rental Agreement Details</th>
+                                                <th>House Details</th>
                                                 <th>Landlord Details</th>
                                                 <th>Payment Details</th>
                                             </tr>

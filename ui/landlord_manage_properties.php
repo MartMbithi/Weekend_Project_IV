@@ -28,7 +28,7 @@ if (isset($_POST['update_property'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "Rental Property Updated";
+        $success = "Rental House Updated";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -61,7 +61,7 @@ if (isset($_POST['update_images'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "Property Images Updated";
+        $success = "House Images Updated";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -77,7 +77,7 @@ if (isset($_POST['delete_property'])) {
     $bind = $prepare->bind_param('s', $property_id);
     $prepare->execute();
     if ($prepare) {
-        $success = "Property Deleted";
+        $success = "House Deleted";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -101,12 +101,12 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Manage Properties</h1>
+                            <h1 class="m-0 text-dark">Manage Houses</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="landlord_dashboard">Home</a></li>
-                                <li class="breadcrumb-item"><a href="">Properties</a></li>
+                                <li class="breadcrumb-item"><a href="">Houses</a></li>
                                 <li class="breadcrumb-item active">Manage</li>
                             </ol>
                         </div><!-- /.col -->
@@ -122,7 +122,7 @@ require_once('../app/partials/head.php');
                     <!-- Info boxes -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-warning card-outline">
+                            <div class="card card-success card-outline">
                                 <div class="card-body">
                                     <table class="table">
                                         <thead>
@@ -130,7 +130,7 @@ require_once('../app/partials/head.php');
                                                 <th>Code</th>
                                                 <th>Name</th>
                                                 <th>Category</th>
-                                                <th>Property Landlord</th>
+                                                <th>Landlord</th>
                                                 <th>Location</th>
                                                 <th>Manage</th>
                                             </tr>

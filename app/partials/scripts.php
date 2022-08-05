@@ -40,6 +40,25 @@
             ]
         });
     });
+
+    /* Print Contents Inside Div Tag */
+    function printContent(el) {
+        var restorepage = $('body').html();
+        var printcontent = $('#' + el).clone();
+        $('body').empty().html(printcontent);
+        window.print();
+        $('body').html(restorepage);
+    }
+
+    /* Only Add Active To Active Class */
+    jQuery(function($) {
+        var path = window.location.href;
+        $('ul a').each(function() {
+            if (this.href === path) {
+                $(this).addClass('active');
+            }
+        });
+    });
 </script>
 <script>
     /* Init Custom File Select */

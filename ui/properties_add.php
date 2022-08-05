@@ -43,7 +43,7 @@ if (isset($_POST['add_property'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "Rental Property Added";
+        $success = "Rental House Added";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -67,12 +67,12 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-8">
-                            <h1 class="m-0 text-dark">Register Property</h1>
+                            <h1 class="m-0 text-dark">Register Houses</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-4">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                                <li class="breadcrumb-item"><a href="">Properties</a></li>
+                                <li class="breadcrumb-item"><a href="">Houses</a></li>
                                 <li class="breadcrumb-item active">Register</li>
                             </ol>
                         </div><!-- /.col -->
@@ -92,14 +92,14 @@ require_once('../app/partials/head.php');
                                 <div class="card-body">
                                     <form method="post" enctype="multipart/form-data" role="form">
                                         <fieldset class="border border-primary p-2">
-                                            <legend class="w-auto text-primary font-weight-light">Rental Property Details </legend>
+                                            <legend class="w-auto text-primary font-weight-light">Rental House Details </legend>
                                             <div class="row">
                                                 <div class="form-group col-md-8">
-                                                    <label for="">Property Name</label>
+                                                    <label for="">House Name</label>
                                                     <input type="text" required name="property_name" class="form-control">
                                                 </div>
                                                 <div class="form-group col-md-2">
-                                                    <label for="">Property Code</label>
+                                                    <label for="">House Code</label>
                                                     <input type="text" readonly value="<?php echo $a . $b; ?>" required name="property_code" class="form-control">
                                                 </div>
                                                 <div class="form-group col-md-2">
@@ -107,7 +107,7 @@ require_once('../app/partials/head.php');
                                                     <input type="text" required name="property_cost" class="form-control">
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="">Property Category</label>
+                                                    <label for="">House Category</label>
                                                     <select class="form-control basic" name="property_category_id">
                                                         <option>Select Category</option>
                                                         <?php
@@ -122,9 +122,9 @@ require_once('../app/partials/head.php');
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="">Property Landlord / Manager</label>
+                                                    <label for="">House Landlord / Manager</label>
                                                     <select class="form-control basic" name="property_landlord_id">
-                                                        <option>Select Landlord / Manager</option>
+                                                        <option>Select House / Manager</option>
                                                         <?php
                                                         $ret = "SELECT * FROM users WHERE user_access_level  = 'landlord'  ";
                                                         $stmt = $mysqli->prepare($ret);
@@ -137,17 +137,17 @@ require_once('../app/partials/head.php');
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label for="">Property Address</label>
+                                                    <label for="">House Address</label>
                                                     <textarea type="text" name="property_address" class="form-control"></textarea>
                                                 </div>
                                             </div>
                                         </fieldset>
                                         <br>
                                         <fieldset class="border border-primary p-2">
-                                            <legend class="w-auto text-primary font-weight-light">Rental Property Images</legend>
+                                            <legend class="w-auto text-primary font-weight-light">Rental House Images</legend>
                                             <div class="row">
                                                 <div class="form-group col-md-6">
-                                                    <label for="exampleInputFile">Property Exterior Image</label>
+                                                    <label for="exampleInputFile">House Exterior Image</label>
                                                     <div class="input-group">
                                                         <div class="custom-file">
                                                             <input required name="property_img_1" accept=".png, jpeg, .jpg" type="file" class="custom-file-input">
@@ -156,7 +156,7 @@ require_once('../app/partials/head.php');
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="exampleInputFile">Property Interior Image</label>
+                                                    <label for="exampleInputFile">House Interior Image</label>
                                                     <div class="input-group">
                                                         <div class="custom-file">
                                                             <input required name="property_img_2" accept=".png, jpeg, .jpg" type="file" class="custom-file-input">
@@ -168,7 +168,7 @@ require_once('../app/partials/head.php');
                                         </fieldset>
                                         <br>
                                         <div class="text-right">
-                                            <button type="submit" name="add_property" class="btn btn-warning">Add Property</button>
+                                            <button type="submit" name="add_property" class="btn btn-warning">Add House</button>
                                         </div>
                                     </form>
                                 </div>
