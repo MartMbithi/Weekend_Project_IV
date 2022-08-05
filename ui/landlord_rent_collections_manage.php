@@ -85,13 +85,13 @@ require_once('../app/partials/head.php');
                     <!-- Info boxes -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-warning card-outline">
+                            <div class="card card-success card-outline">
                                 <div class="card-body">
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Lease Details</th>
-                                                <th>Property Details</th>
+                                                <th>Rental Agreement Details</th>
+                                                <th>House Details</th>
                                                 <th>Tenant Details</th>
                                                 <th>Payment Details</th>
                                                 <th>Manage</th>
@@ -157,7 +157,7 @@ require_once('../app/partials/head.php');
                                                                 <div class="modal-body">
                                                                     <div id="print_receipt">
                                                                         <div class="text-center text-bold">
-                                                                            Lease Ref #<?php echo $leases->lease_ref; ?> Payment Receipt
+                                                                            Rental Agreement Ref #<?php echo $leases->lease_ref; ?> Payment Receipt
                                                                         </div>
                                                                         <hr>
                                                                         <div class="row">
@@ -190,7 +190,7 @@ require_once('../app/partials/head.php');
                                                                                     <div class="card-header">
                                                                                         <h3 class="card-title">
                                                                                             <i class="fas fa-hotel"></i>
-                                                                                            Property Details
+                                                                                            House Details
                                                                                         </h3>
                                                                                     </div>
                                                                                     <!-- /.card-header -->
@@ -214,7 +214,7 @@ require_once('../app/partials/head.php');
                                                                                     <div class="card-header">
                                                                                         <h3 class="card-title">
                                                                                             <i class="fas fa-edit"></i>
-                                                                                            Lease Details
+                                                                                            Rental Details
                                                                                         </h3>
                                                                                     </div>
                                                                                     <!-- /.card-header -->

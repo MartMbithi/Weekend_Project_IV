@@ -483,7 +483,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="landlord_reports_revenue" class="nav-link">
                             <i class="nav-icon fas fa-funnel-dollar"></i>
                             <p>
-                                Revenue Reports
+                                Rent Payments
                             </p>
                         </a>
                     </li>
@@ -499,7 +499,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="landlord_reports_leases" class="nav-link">
                             <i class="nav-icon fas fa-handshake"></i>
                             <p>
-                                House Rentings
+                                Rentings
                             </p>
                         </a>
                     </li>
