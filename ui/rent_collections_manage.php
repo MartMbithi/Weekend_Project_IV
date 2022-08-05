@@ -90,8 +90,8 @@ require_once('../app/partials/head.php');
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Lease Details</th>
-                                                <th>Property Details</th>
+                                                <th>Rental Agreement Details</th>
+                                                <th>House Details</th>
                                                 <th>Tenant Details</th>
                                                 <th>Payment Details</th>
                                                 <th>Manage</th>
@@ -116,7 +116,7 @@ require_once('../app/partials/head.php');
                                                         <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
                                                         <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
                                                         <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
-                                                        <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
+                                                        <b>Date: </b> <?php echo $leases->lease_date_added; ?>
                                                     </td>
                                                     <td>
                                                         <b>Code: </b> <?php echo $leases->property_code; ?> <br>
@@ -156,7 +156,7 @@ require_once('../app/partials/head.php');
                                                                 <div class="modal-body">
                                                                     <div id="print_receipt">
                                                                         <div class="text-center text-bold">
-                                                                            Lease Ref #<?php echo $leases->lease_ref; ?> Payment Receipt
+                                                                            Rental Agreement Ref #<?php echo $leases->lease_ref; ?> Payment Receipt
                                                                         </div>
                                                                         <hr>
                                                                         <div class="row">
@@ -189,7 +189,7 @@ require_once('../app/partials/head.php');
                                                                                     <div class="card-header">
                                                                                         <h3 class="card-title">
                                                                                             <i class="fas fa-hotel"></i>
-                                                                                            Property Details
+                                                                                            House Details
                                                                                         </h3>
                                                                                     </div>
                                                                                     <!-- /.card-header -->
@@ -213,7 +213,7 @@ require_once('../app/partials/head.php');
                                                                                     <div class="card-header">
                                                                                         <h3 class="card-title">
                                                                                             <i class="fas fa-edit"></i>
-                                                                                            Lease Details
+                                                                                            Rental Agreement Details
                                                                                         </h3>
                                                                                     </div>
                                                                                     <!-- /.card-header -->
@@ -221,11 +221,11 @@ require_once('../app/partials/head.php');
                                                                                         <dl class="row">
                                                                                             <dt class="col-sm-4">REF</dt>
                                                                                             <dd class="col-sm-8"><?php echo $leases->lease_ref; ?></dd>
-                                                                                            <dt class="col-sm-4">Leased Duration</dt>
+                                                                                            <dt class="col-sm-4">Duration</dt>
                                                                                             <dd class="col-sm-8"><?php echo $leases->lease_duration; ?> Months</dd>
                                                                                             <dt class="col-sm-4">Payment Status</dt>
                                                                                             <dd class="col-sm-8"><?php echo $leases->lease_payment_status; ?></dd>
-                                                                                            <dt class="col-sm-4">Date Leased</dt>
+                                                                                            <dt class="col-sm-4">Date</dt>
                                                                                             <dd class="col-sm-8"><?php echo $leases->lease_date_added; ?></dd>
                                                                                         </dl>
                                                                                     </div>
