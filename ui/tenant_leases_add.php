@@ -38,7 +38,7 @@ if (isset($_POST['add_lease'])) {
     $property_prepare->execute();
 
     if ($prepare  && $property_prepare) {
-        $success = "Tenant Lease Record Added";
+        $success = "Rental Record Added";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -62,12 +62,12 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-8">
-                            <h1 class="m-0 text-dark">Property Leases - Add Lease</h1>
+                            <h1 class="m-0 text-dark">Add Rental Record</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-4">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="my_dashboard">Home</a></li>
-                                <li class="breadcrumb-item"><a href="">Property Leases</a></li>
+                                <li class="breadcrumb-item"><a href="">Houses</a></li>
                                 <li class="breadcrumb-item active">Add</li>
                             </ol>
                         </div><!-- /.col -->
@@ -83,7 +83,7 @@ require_once('../app/partials/head.php');
                     <!-- Info boxes -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-warning card-outline">
+                            <div class="card card-danger card-outline">
                                 <div class="card-body">
                                     <table class="table">
                                         <thead>
@@ -91,7 +91,7 @@ require_once('../app/partials/head.php');
                                                 <th>Code</th>
                                                 <th>Name</th>
                                                 <th>Category</th>
-                                                <th>Property Landlord</th>
+                                                <th>House Landlord</th>
                                                 <th>Location</th>
                                                 <th>Manage</th>
                                             </tr>
@@ -115,7 +115,7 @@ require_once('../app/partials/head.php');
                                                     <td><?php echo $properties->property_address; ?></td>
                                                     <td>
                                                         <a href="tenant_property?view=<?php echo $properties->property_id; ?>" class="badge badge-success"><i class="fas fa-eye"></i> View</a>
-                                                        <a data-toggle="modal" href="#update_<?php echo $properties->property_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Lease Property</a>
+                                                        <a data-toggle="modal" href="#update_<?php echo $properties->property_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Rent Property</a>
                                                     </td>
                                                     <!-- Update Modal -->
                                                     <div class="modal fade fixed-right" id="update_<?php echo $properties->property_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -123,7 +123,7 @@ require_once('../app/partials/head.php');
                                                             <div class="modal-content">
                                                                 <div class="modal-header align-items-center">
                                                                     <div class="text-bold">
-                                                                        <h6 class="text-bold">Lease This Property </h6>
+                                                                        <h6 class="text-bold">Rent This Property </h6>
                                                                     </div>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
@@ -133,7 +133,7 @@ require_once('../app/partials/head.php');
                                                                     <form method="post" enctype="multipart/form-data" role="form">
                                                                         <div class="row">
                                                                             <div class="form-group col-md-12">
-                                                                                <label for="">Lease Duration (Months)</label>
+                                                                                <label for="">Rental Duration (Months)</label>
                                                                                 <input type="hidden" name="lease_property_id" value="<?php echo $properties->property_id; ?>">
                                                                                 <select class="form-control basic" name="lease_duration">
                                                                                     <option>1</option>
@@ -152,7 +152,7 @@ require_once('../app/partials/head.php');
                                                                             </div>
                                                                         </div>
                                                                         <div class="text-right">
-                                                                            <button type="submit" name="add_lease" class="btn btn-warning">Lease Property</button>
+                                                                            <button type="submit" name="add_lease" class="btn btn-danger">Rent This Property</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
