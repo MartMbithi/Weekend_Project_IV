@@ -20,7 +20,7 @@ if (isset($_POST['add_category'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "Property Category Added";
+        $success = "House Category Added";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -37,7 +37,7 @@ if (isset($_POST['update_category'])) {
     $bind = $prepare->bind_param('ss', $category_name, $category_id);
     $prepare->execute();
     if ($prepare) {
-        $success = "Property Category Added";
+        $success = "House Category Updated";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -53,7 +53,7 @@ if (isset($_POST['delete_category'])) {
     $bind = $prepare->bind_param('s', $category_id);
     $prepare->execute();
     if ($prepare) {
-        $info = "Property Category Deleted";
+        $info = "House Category Deleted";
     } else {
         $err = "Failed, Please Try Again";
     }
@@ -77,12 +77,12 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Property Categories</h1>
+                            <h1 class="m-0 text-dark">House Categories</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                                <li class="breadcrumb-item active">Property Categories</li>
+                                <li class="breadcrumb-item active">House Categories</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -141,7 +141,7 @@ require_once('../app/partials/head.php');
                                             <tr>
                                                 <th>Code</th>
                                                 <th>Name</th>
-                                                <th>Number Of Properties</th>
+                                                <th>Number Of Houses</th>
                                                 <th>Manage</th>
                                             </tr>
                                         </thead>

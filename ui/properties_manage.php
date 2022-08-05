@@ -28,7 +28,7 @@ if (isset($_POST['update_property'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "Rental Property Updated";
+        $success = "House Updated";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -61,7 +61,7 @@ if (isset($_POST['update_images'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "Property Images Updated";
+        $success = "House Images Updated";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -77,7 +77,7 @@ if (isset($_POST['delete_property'])) {
     $bind = $prepare->bind_param('s', $property_id);
     $prepare->execute();
     if ($prepare) {
-        $success = "Property Deleted";
+        $success = "House Deleted";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -101,12 +101,12 @@ require_once('../app/partials/head.php');
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Manage Properties</h1>
+                            <h1 class="m-0 text-dark">Manage Houses</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                                <li class="breadcrumb-item"><a href="">Properties</a></li>
+                                <li class="breadcrumb-item"><a href="">Houses</a></li>
                                 <li class="breadcrumb-item active">Manage</li>
                             </ol>
                         </div><!-- /.col -->
@@ -163,7 +163,7 @@ require_once('../app/partials/head.php');
                                                             <div class="modal-content">
                                                                 <div class="modal-header align-items-center">
                                                                     <div class="text-bold">
-                                                                        <h6 class="text-bold">Update </h6>
+                                                                        <h6 class="text-bold">Update House Details </h6>
                                                                     </div>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
@@ -173,7 +173,7 @@ require_once('../app/partials/head.php');
                                                                     <form method="post" enctype="multipart/form-data" role="form">
                                                                         <div class="row">
                                                                             <div class="form-group col-md-4">
-                                                                                <label for="">Property Code</label>
+                                                                                <label for="">House Code</label>
                                                                                 <input type="text" value="<?php echo $properties->property_code; ?>" readonly required name="property_code" class="form-control">
                                                                                 <input type="hidden" value="<?php echo $properties->property_id; ?>" readonly required name="property_id" class="form-control">
                                                                             </div>
@@ -182,12 +182,12 @@ require_once('../app/partials/head.php');
                                                                                 <input type="text" required value="<?php echo $properties->property_cost; ?>" name="property_cost" class="form-control">
                                                                             </div>
                                                                             <div class="form-group col-md-6">
-                                                                                <label for="">Property Name</label>
+                                                                                <label for="">House Name</label>
                                                                                 <input type="text" value="<?php echo $properties->property_name; ?>" required name="property_name" class="form-control">
                                                                             </div>
 
                                                                             <div class="form-group col-md-6">
-                                                                                <label for="">Property Category</label>
+                                                                                <label for="">House Category</label>
                                                                                 <select class="form-control basic" name="property_category_id">
                                                                                     <option value="<?php echo $properties->property_category_id; ?>"><?php echo $properties->category_code . ' - ' . $properties->category_name; ?></option>
                                                                                     <?php
@@ -202,7 +202,7 @@ require_once('../app/partials/head.php');
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group col-md-6">
-                                                                                <label for="">Property Landlord / Manager</label>
+                                                                                <label for="">House Landlord / Manager</label>
                                                                                 <select class="form-control basic" name="property_landlord_id">
                                                                                     <option value="<?php echo $properties->property_landlord_id; ?>"><?php echo $properties->user_idno . ' - ' . $properties->user_name; ?></option>
                                                                                     <?php
@@ -217,12 +217,12 @@ require_once('../app/partials/head.php');
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group col-md-12">
-                                                                                <label for="">Property Address</label>
+                                                                                <label for="">House Address</label>
                                                                                 <textarea type="text" name="property_address" class="form-control"><?php echo $properties->property_address; ?></textarea>
                                                                             </div>
                                                                         </div>
                                                                         <div class="text-right">
-                                                                            <button type="submit" name="update_property" class="btn btn-warning">Update Property</button>
+                                                                            <button type="submit" name="update_property" class="btn btn-warning">Update House</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
@@ -236,7 +236,7 @@ require_once('../app/partials/head.php');
                                                             <div class="modal-content">
                                                                 <div class="modal-header align-items-center">
                                                                     <div class="text-bold">
-                                                                        <h6 class="text-bold">Update mages</h6>
+                                                                        <h6 class="text-bold">Update House Images</h6>
                                                                     </div>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
@@ -246,7 +246,7 @@ require_once('../app/partials/head.php');
                                                                     <form method="post" enctype="multipart/form-data" role="form">
                                                                         <div class="row">
                                                                             <div class="form-group col-md-6">
-                                                                                <label for="exampleInputFile">Property Exterior Image</label>
+                                                                                <label for="exampleInputFile">House Exterior Image</label>
                                                                                 <div class="input-group">
                                                                                     <div class="custom-file">
                                                                                         <input name="property_img_1" required accept=".png, jpeg, .jpg" type="file" class="custom-file-input">
@@ -257,7 +257,7 @@ require_once('../app/partials/head.php');
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group col-md-6">
-                                                                                <label for="exampleInputFile">Property Interior Image</label>
+                                                                                <label for="exampleInputFile">House Interior Image</label>
                                                                                 <div class="input-group">
                                                                                     <div class="custom-file">
                                                                                         <input name="property_img_2" required accept=".png, jpeg, .jpg" type="file" class="custom-file-input">
@@ -267,7 +267,7 @@ require_once('../app/partials/head.php');
                                                                             </div>
                                                                         </div>
                                                                         <div class="text-right">
-                                                                            <button type="submit" name="update_images" class="btn btn-warning">Update Property Images</button>
+                                                                            <button type="submit" name="update_images" class="btn btn-warning">Update House Images</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
