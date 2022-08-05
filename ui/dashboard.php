@@ -108,7 +108,7 @@ require_once('../app/partials/head.php');
                                 </div>
                             </a>
                         </div> -->
-                        <div class="col-12 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-md-3">
                             <a href="users_landlords">
                                 <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tag"></i></span>
@@ -119,7 +119,7 @@ require_once('../app/partials/head.php');
                                 </div>
                             </a>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-md-3">
                             <a href="users_caretakers">
                                 <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-cog"></i></span>
@@ -130,7 +130,7 @@ require_once('../app/partials/head.php');
                                 </div>
                             </a>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-md-3">
                             <a href="users_tenants">
                                 <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
@@ -142,82 +142,20 @@ require_once('../app/partials/head.php');
                                 </div>
                             </a>
                         </div>
-                    </div>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <a href="rent_collections_manage">
+                                <div class="info-box mb-3 text-dark">
+                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
 
-                    <?php
-                    /* Show This To Admin Only */
-                    if ($_SESSION['user_access_level'] == "admin") { ?>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card card-warning card-outline">
-                                    <div class="card-header">
-                                        <h5 class="card-title text-bold">
-                                            Tenant Rent Payments
-                                        </h5>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="chart">
-                                                    <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 100%; max-width: 100%;"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-                                    <div class="card-footer">
-                                        <div class="row">
-                                            <div class="col-sm-4 col-6">
-                                                <div class="description-block border-right">
-                                                    <h5 class="description-header">KSH <?php echo number_format($payments, 2); ?></h5>
-                                                    <span class="description-text">Rent Collections</span>
-                                                </div>
-                                                <!-- /.description-block -->
-                                            </div>
-                                            <!-- /.col -->
-                                            <div class="col-sm-4 col-6">
-                                                <div class="description-block border-right">
-                                                    <h5 class="description-header"><?php echo number_format($expenses, 2); ?></h5>
-                                                    <span class="description-text">Expenses</span>
-                                                </div>
-                                                <!-- /.description-block -->
-                                            </div>
-                                            <!-- /.col -->
-                                            <?php
-                                            if ($payments >= $expenses) {
-                                                $pl = $payments - $expenses;
-                                            ?>
-                                                <div class="col-sm-4 col-6 text-success">
-                                                    <div class="description-block border-right">
-                                                        <h5 class="description-header">Ksh <?php echo number_format($pl, 2); ?></h5>
-                                                        <span class="description-text">Profit</span>
-                                                    </div>
-                                                    <!-- /.description-block -->
-                                                </div>
-                                                <!-- /.col -->
-                                            <?php } else {
-                                                $pl =  $expenses - $payments;
-                                            ?>
-                                                <div class="col-sm-4 col-6 text-danger">
-                                                    <div class="description-block border-right">
-                                                        <h5 class="description-header">Ksh <?php echo number_format($pl, 2); ?></h5>
-                                                        <span class="description-text">Loss</span>
-                                                    </div>
-                                                    <!-- /.description-block -->
-                                                </div>
-                                            <?php } ?>
-
-                                        </div>
-                                        <!-- /.row -->
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Rent Collections</span>
+                                        <span class="info-box-number">KSH <?php echo number_format($payments, 2); ?></span>
                                     </div>
                                 </div>
-                                <!-- /.card -->
-                            </div>
-                            <!-- /.col -->
-                            <!-- /.card -->
+                            </a>
                         </div>
-                    <?php } ?>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-warning card-outline">

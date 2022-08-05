@@ -138,14 +138,14 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="expenses" class="nav-link">
                             <i class="nav-icon fas fa-money-bill-alt"></i>
                             <p>
                                 Expenses
                             </p>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-header text-warning">Reports</li>
                     <li class="nav-item">
                         <a href="reports_revenue" class="nav-link">
@@ -155,14 +155,14 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="reports_expenditures" class="nav-link">
                             <i class="nav-icon fas fa-money-check"></i>
                             <p>
                                 Expenditure Reports
                             </p>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a href="reports_properties" class="nav-link">
                             <i class="nav-icon fas fa-hotel"></i>
