@@ -151,7 +151,7 @@ if ($_SESSION['user_access_level'] == "admin") { ?>
                         <a href="reports_revenue" class="nav-link">
                             <i class="nav-icon fas fa-funnel-dollar"></i>
                             <p>
-                                Revenue Reports
+                                Rent Payments Reports
                             </p>
                         </a>
                     </li>
