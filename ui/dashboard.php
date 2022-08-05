@@ -47,7 +47,7 @@ require_once('../app/partials/head.php');
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-sitemap"></i></span>
 
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Property Categories</span>
+                                        <span class="info-box-text">House Categories</span>
                                         <span class="info-box-number">
                                             <?php echo $categories; ?>
                                         </span>
@@ -63,7 +63,7 @@ require_once('../app/partials/head.php');
                                 <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hotel"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Properties</span>
+                                        <span class="info-box-text">Rental Houses</span>
                                         <span class="info-box-number"><?php echo $properties; ?></span>
                                     </div>
                                     <!-- /.info-box-content -->
@@ -80,7 +80,7 @@ require_once('../app/partials/head.php');
                                 <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-edit"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Leased Properties</span>
+                                        <span class="info-box-text">Rented Houses</span>
                                         <span class="info-box-number"><?php echo $properties_leased; ?></span>
                                     </div>
                                 </div>
@@ -91,13 +91,13 @@ require_once('../app/partials/head.php');
                                 <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-home"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Vacant Properties</span>
+                                        <span class="info-box-text">Vacant Houses</span>
                                         <span class="info-box-number"><?php echo $properties_vacant; ?></span>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3">
+                        <!-- <div class="col-12 col-sm-6 col-md-3">
                             <a href="users_staffs">
                                 <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tie"></i></span>
@@ -107,8 +107,8 @@ require_once('../app/partials/head.php');
                                     </div>
                                 </div>
                             </a>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3">
+                        </div> -->
+                        <div class="col-12 col-sm-6 col-md-4">
                             <a href="users_landlords">
                                 <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tag"></i></span>
@@ -119,7 +119,7 @@ require_once('../app/partials/head.php');
                                 </div>
                             </a>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3">
+                        <div class="col-12 col-sm-6 col-md-4">
                             <a href="users_caretakers">
                                 <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-cog"></i></span>
@@ -130,7 +130,7 @@ require_once('../app/partials/head.php');
                                 </div>
                             </a>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3">
+                        <div class="col-12 col-sm-6 col-md-4">
                             <a href="users_tenants">
                                 <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
@@ -152,7 +152,7 @@ require_once('../app/partials/head.php');
                                 <div class="card card-warning card-outline">
                                     <div class="card-header">
                                         <h5 class="card-title text-bold">
-                                            Overall Income Statements Recap Report
+                                            Tenant Rent Payments
                                         </h5>
                                     </div>
                                     <!-- /.card-header -->
@@ -171,7 +171,7 @@ require_once('../app/partials/head.php');
                                             <div class="col-sm-4 col-6">
                                                 <div class="description-block border-right">
                                                     <h5 class="description-header">KSH <?php echo number_format($payments, 2); ?></h5>
-                                                    <span class="description-text">Total Rent Collections</span>
+                                                    <span class="description-text">Rent Collections</span>
                                                 </div>
                                                 <!-- /.description-block -->
                                             </div>
@@ -191,7 +191,7 @@ require_once('../app/partials/head.php');
                                                 <div class="col-sm-4 col-6 text-success">
                                                     <div class="description-block border-right">
                                                         <h5 class="description-header">Ksh <?php echo number_format($pl, 2); ?></h5>
-                                                        <span class="description-text">Total Profit</span>
+                                                        <span class="description-text">Profit</span>
                                                     </div>
                                                     <!-- /.description-block -->
                                                 </div>
@@ -202,7 +202,7 @@ require_once('../app/partials/head.php');
                                                 <div class="col-sm-4 col-6 text-danger">
                                                     <div class="description-block border-right">
                                                         <h5 class="description-header">Ksh <?php echo number_format($pl, 2); ?></h5>
-                                                        <span class="description-text">Total Loss</span>
+                                                        <span class="description-text">Loss</span>
                                                     </div>
                                                     <!-- /.description-block -->
                                                 </div>
@@ -222,7 +222,7 @@ require_once('../app/partials/head.php');
                         <div class="col-md-12">
                             <div class="card card-warning card-outline">
                                 <div class="card-header">
-                                    <h3 class="card-title text-bold">Recent Property Leases</h3>
+                                    <h3 class="card-title text-bold">Recent House Rentings</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -230,8 +230,8 @@ require_once('../app/partials/head.php');
                                         <thead>
                                             <tr>
                                                 <th>Tenant Details</th>
-                                                <th>Property Details</th>
-                                                <th>Lease Details</th>
+                                                <th>House Details</th>
+                                                <th>Renting Details</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -264,7 +264,7 @@ require_once('../app/partials/head.php');
                                                         <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
                                                         <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
                                                         <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
-                                                        <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
+                                                        <b>Rental Date: </b> <?php echo $leases->lease_date_added; ?>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

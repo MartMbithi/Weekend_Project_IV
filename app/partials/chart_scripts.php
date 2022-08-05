@@ -10,8 +10,8 @@
         var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
         var donutData = {
             labels: [
-                'Overall Expenses',
-                'Overall Rent Revenue',
+                'Expenses',
+                'Rent Collections',
             ],
             datasets: [{
                 data: [<?php echo $expenses; ?>, <?php echo $payments; ?>],
