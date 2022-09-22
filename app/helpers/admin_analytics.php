@@ -45,7 +45,7 @@ $stmt->fetch();
 $stmt->close();
 
 /* Properties */
-$query = "SELECT COUNT(*)  FROM properties ";
+$query = "SELECT COUNT(*)  FROM houses ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($properties);
@@ -53,7 +53,7 @@ $stmt->fetch();
 $stmt->close();
 
 /* Leased */
-$query = "SELECT COUNT(*)  FROM properties WHERE property_status = 'Leased' ";
+$query = "SELECT COUNT(*)  FROM houses WHERE house_status = 'Leased' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($properties_leased);
@@ -61,7 +61,7 @@ $stmt->fetch();
 $stmt->close();
 
 /* Vacant */
-$query = "SELECT COUNT(*)  FROM properties WHERE property_status = 'Vacant' ";
+$query = "SELECT COUNT(*)  FROM houses WHERE house_status = 'Vacant' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($properties_vacant);
@@ -93,11 +93,3 @@ while ($payments = $res->fetch_object()) {
         $stmt->close();
     }
 } */
-
-/* Expenses */
-$query = "SELECT SUM(expense_amount)  FROM expenses  ";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($expenses);
-$stmt->fetch();
-$stmt->close();
