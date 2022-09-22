@@ -58,20 +58,20 @@ require_once('../app/partials/head.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ret = "SELECT * FROM properties p 
-                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                            INNER JOIN users u ON u.user_id = p.property_landlord_id";
+                                            $ret = "SELECT * FROM houses h
+                                            INNER JOIN categories c ON c.category_id  = h.house_category_id
+                                            INNER JOIN users u ON u.user_id = h.house_landlord_id";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
                                             while ($properties = $res->fetch_object()) {
                                             ?>
                                                 <tr>
-                                                    <td><?php echo $properties->property_code; ?></td>
-                                                    <td><?php echo $properties->property_name; ?></td>
-                                                    <td><?php echo $properties->category_name; ?></td>
+                                                    <td><?php echo $properties->house_code; ?></td>
+                                                    <td><?php echo $properties->house_name; ?></td>
+                                                    <td><?php echo $properties->house_name; ?></td>
                                                     <td><?php echo $properties->user_name; ?></td>
-                                                    <td><?php echo $properties->property_address; ?></td>
+                                                    <td><?php echo $properties->house_address; ?></td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>

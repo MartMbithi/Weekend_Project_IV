@@ -83,12 +83,12 @@ require_once('../app/partials/head.php');
                                                 <?php
                                                 $start_date = date('d M Y g:ia', strtotime($_POST['start_date']));
                                                 $end_date = date('d M Y g:ia', strtotime($_POST['end_date']));
-                                                $ret = "SELECT * FROM property_leases pl
-                                                INNER JOIN  properties p on p.property_id = pl.lease_property_id
-                                                INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                                INNER JOIN users u ON u.user_id = pl.lease_tenant_id 
-                                                INNER JOIN payments pa ON pa.payment_lease_id = pl.lease_id 
-                                                WHERE pl.lease_eviction_status = '0' AND
+                                                $ret = "SELECT * FROM house_rentals hr
+                                                INNER JOIN  houses h on h.house_id = hr.rental_house_id
+                                                INNER JOIN categories c ON c.category_id  = h.house_category_id
+                                                INNER JOIN users u ON u.user_id = hr.rental_tenant_id 
+                                                INNER JOIN payments pa ON pa.payment_rental_id = hr.rental_id 
+                                                WHERE hr.rental_eviction_status = '0' AND
                                                 pa.payment_date BETWEEN '$start_date' AND '$end_date'
                                                 ";
                                                 $stmt = $mysqli->prepare($ret);
@@ -98,16 +98,16 @@ require_once('../app/partials/head.php');
                                                 ?>
                                                     <tr>
                                                         <td>
-                                                            <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
-                                                            <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
-                                                            <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
-                                                            <b>Date Leased: </b> <?php echo $leases->lease_date_added; ?>
+                                                            <b>REF: </b> <?php echo $leases->rental_ref; ?> <br>
+                                                            <b>Duration: </b> <?php echo $leases->rental_duration; ?> Months <br>
+                                                            <b>Payment Status: </b> <?php echo $leases->rental_payment_status; ?> <br>
+                                                            <b>Date Leased: </b> <?php echo $leases->rental_date_added; ?>
                                                         </td>
                                                         <td>
-                                                            <b>Code: </b> <?php echo $leases->property_code; ?> <br>
-                                                            <b>Name: </b> <?php echo $leases->property_name; ?> <br>
-                                                            <b>Category: </b> <?php echo $leases->category_name; ?> <br>
-                                                            <b>Location : </b> <?php echo $leases->property_address; ?>
+                                                            <b>Code: </b> <?php echo $leases->house_code; ?> <br>
+                                                            <b>Name: </b> <?php echo $leases->house_name; ?> <br>
+                                                            <b>Category: </b> <?php echo $leases->house_name; ?> <br>
+                                                            <b>Location : </b> <?php echo $leases->house_address; ?>
                                                         </td>
                                                         <td>
                                                             <b>Name: </b> <?php echo $leases->user_name; ?> <br>
