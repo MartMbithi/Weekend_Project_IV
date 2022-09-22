@@ -154,7 +154,7 @@ require_once('../app/partials/head.php');
                                             while ($cat = $res->fetch_object()) {
                                                 $category_id = $cat->category_id;
                                                 /* Number Of Properties Per Category */
-                                                $query = "SELECT COUNT(*)  FROM properties WHERE property_category_id  = '$category_id' ";
+                                                $query = "SELECT COUNT(*)  FROM houses WHERE house_category_id  = '$category_id' ";
                                                 $stmt = $mysqli->prepare($query);
                                                 $stmt->execute();
                                                 $stmt->bind_result($registered_properties);

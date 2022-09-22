@@ -12,18 +12,18 @@ if (isset($_POST['assign_property'])) {
 
     /* Prevent Double Entries */
     $sql = "SELECT * FROM  caretaker_assigns WHERE assignment_caretaker_id = '$assignment_caretaker_id' 
-    AND assignment_property_id = '$assignment_property_id'";
+    AND assignment_house_id = '$assignment_property_id'";
     $res = mysqli_query($mysqli, $sql);
     if (mysqli_num_rows($res) > 0) {
         $assigns = mysqli_fetch_assoc($res);
         /* Check If Assign Exists */
         if (
-            $assigns['assignment_caretaker_id'] == $assignment_caretaker_id &&  $assigns['assignment_property_id'] == $assignment_property_id
+            $assigns['assignment_caretaker_id'] == $assignment_caretaker_id &&  $assigns['assignment_house_id'] == $assignment_property_id
         ) {
             $err = "House Already Assigned Caretaker";
         }
     } else {
-        $sql = "INSERT INTO  caretaker_assigns(assignment_caretaker_id, assignment_property_id) VALUES(?,?)";
+        $sql = "INSERT INTO  caretaker_assigns(assignment_caretaker_id, assignment_house_id) VALUES(?,?)";
         $prepare = $mysqli->prepare($sql);
         $bind = $prepare->bind_param(
             'ss',
@@ -46,7 +46,7 @@ if (isset($_POST['update_assign'])) {
     $assignment_id = $_POST['assignment_id'];
 
 
-    $sql = "UPDATE  caretaker_assigns SET assignment_caretaker_id =?, assignment_property_id =? WHERE assignment_id =?";
+    $sql = "UPDATE  caretaker_assigns SET assignment_caretaker_id =?, assignment_house_id =? WHERE assignment_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
         'sss',
@@ -147,12 +147,12 @@ require_once('../app/partials/head.php');
                                             <select class="form-control basic" name="assignment_property_id">
                                                 <option>Select House</option>
                                                 <?php
-                                                $ret = "SELECT * FROM properties  ";
+                                                $ret = "SELECT * FROM houses  ";
                                                 $stmt = $mysqli->prepare($ret);
                                                 $stmt->execute(); //ok
                                                 $res = $stmt->get_result();
                                                 while ($cat = $res->fetch_object()) { ?>
-                                                    <option value="<?php echo $cat->property_id; ?>"><?php echo $cat->property_code . ' ' . $cat->property_name; ?></option>
+                                                    <option value="<?php echo $cat->house_id; ?>"><?php echo $cat->house_code . ' ' . $cat->house_name; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -189,7 +189,7 @@ require_once('../app/partials/head.php');
                                             <?php
                                             $ret = "SELECT * FROM caretaker_assigns ca 
                                             INNER JOIN users u ON ca.assignment_caretaker_id = u.user_id
-                                            INNER JOIN properties p ON p.property_id = ca.assignment_property_id  ";
+                                            INNER JOIN houses h ON h.house_id = ca.assignment_house_id  ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
@@ -202,9 +202,9 @@ require_once('../app/partials/head.php');
                                                         <b>Email: </b> <?php echo $assn->user_email; ?>
                                                     </td>
                                                     <td>
-                                                        <b>Code: </b> <?php echo $assn->property_code; ?><br>
-                                                        <b>Name: </b> <?php echo $assn->property_name; ?><br>
-                                                        <b>Location: </b> <?php echo $assn->property_address ?>
+                                                        <b>Code: </b> <?php echo $assn->house_code; ?><br>
+                                                        <b>Name: </b> <?php echo $assn->house_name; ?><br>
+                                                        <b>Location: </b> <?php echo $assn->house_address ?>
                                                     </td>
                                                     <td>
                                                         <a data-toggle="modal" href="#update_<?php echo $assn->assignment_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
@@ -232,7 +232,7 @@ require_once('../app/partials/head.php');
                                                                                 <select class="form-control basic" name="assignment_caretaker_id">
                                                                                     <option value="<?php echo $assn->assignment_caretaker_id; ?>"><?php echo $assn->user_idno . ' ' . $assn->user_name; ?></option>
                                                                                     <?php
-                                                                                    $caretaker_ret = "SELECT * FROM users WHERE user_access_level = 'caretaker'  ";
+                                                                                    $caretaker_ret = "SELECT * FROM users WHERE user_access_level = 'caretaker'";
                                                                                     $caretaker_stmt = $mysqli->prepare($caretaker_ret);
                                                                                     $caretaker_stmt->execute(); //ok
                                                                                     $caretaker_res = $caretaker_stmt->get_result();
@@ -245,14 +245,14 @@ require_once('../app/partials/head.php');
                                                                             <div class="form-group col-md-6">
                                                                                 <label for="">House Details</label>
                                                                                 <select class="form-control basic" name="assignment_property_id">
-                                                                                    <option value="<?php echo $assn->assignment_property_id; ?>"><?php echo $assn->property_code . ' ' . $assn->property_name; ?></option>
+                                                                                    <option value="<?php echo $assn->assignment_property_id; ?>"><?php echo $assn->house_code . ' ' . $assn->house_name; ?></option>
                                                                                     <?php
-                                                                                    $properties_ret = "SELECT * FROM properties  ";
+                                                                                    $properties_ret = "SELECT * FROM houses WHERE house_id != '$assn->assignment_property_id'  ";
                                                                                     $properties_stmt = $mysqli->prepare($properties_ret);
                                                                                     $properties_stmt->execute(); //ok
                                                                                     $properties_res = $properties_stmt->get_result();
                                                                                     while ($properties_cat = $properties_res->fetch_object()) { ?>
-                                                                                        <option value="<?php echo $properties_cat->property_id; ?>"><?php echo $properties_cat->property_code . ' ' . $properties_cat->property_name; ?></option>
+                                                                                        <option value="<?php echo $properties_cat->house_id; ?>"><?php echo $properties_cat->house_code . ' ' . $properties_cat->house_name; ?></option>
                                                                                     <?php } ?>
                                                                                 </select>
                                                                             </div>
@@ -279,7 +279,7 @@ require_once('../app/partials/head.php');
                                                                 </div>
                                                                 <form method="POST">
                                                                     <div class="modal-body text-center text-danger">
-                                                                        <h4>Delete <?php echo $assn->user_name . '' . $assn->property_name; ?> Allocation </h4>
+                                                                        <h4>Delete <?php echo $assn->user_name . '' . $assn->house_name; ?> Allocation </h4>
                                                                         <br>
                                                                         <!-- Hide This -->
                                                                         <input type="hidden" name="assignment_id" value="<?php echo $assn->assignment_id; ?>">

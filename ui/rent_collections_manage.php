@@ -29,7 +29,7 @@ if (isset($_POST['delete_payment'])) {
 
     /* Persist */
     $sql = "DELETE FROM payments WHERE payment_id =?";
-    $lease_sql = "UPDATE property_leases SET lease_payment_status ='Pending' WHERE lease_id = '$payment_lease_id'";
+    $lease_sql = "UPDATE house_rentals SET rental_payment_status ='Pending' WHERE rental_id = '$payment_lease_id'";
 
     $prepare = $mysqli->prepare($sql);
     $lease_prepare = $mysqli->prepare($lease_sql);
@@ -99,12 +99,12 @@ require_once('../app/partials/head.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ret = "SELECT * FROM property_leases pl
-                                            INNER JOIN  properties p on p.property_id = pl.lease_property_id
-                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                            INNER JOIN users u ON u.user_id = pl.lease_tenant_id 
-                                            INNER JOIN payments pa ON pa.payment_lease_id = pl.lease_id 
-                                            WHERE pl.lease_eviction_status = '0'
+                                            $ret = "SELECT * FROM house_rentals hr
+                                            INNER JOIN  houses h on h.house_id = hr.rental_house_id
+                                            INNER JOIN categories c ON c.category_id  = h.house_category_id
+                                            INNER JOIN users u ON u.user_id = hr.rental_tenant_id 
+                                            INNER JOIN payments pa ON pa.payment_rental_id = hr.rental_id 
+                                            WHERE hr.rental_eviction_status = '0'
                                             ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
@@ -113,16 +113,16 @@ require_once('../app/partials/head.php');
                                             ?>
                                                 <tr>
                                                     <td>
-                                                        <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
-                                                        <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
-                                                        <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
-                                                        <b>Date: </b> <?php echo $leases->lease_date_added; ?>
+                                                        <b>REF: </b> <?php echo $leases->rental_ref; ?> <br>
+                                                        <b>Duration: </b> <?php echo $leases->rental_duration; ?> Months <br>
+                                                        <b>Payment Status: </b> <?php echo $leases->rental_payment_status; ?> <br>
+                                                        <b>Date: </b> <?php echo $leases->rental_date_added; ?>
                                                     </td>
                                                     <td>
-                                                        <b>Code: </b> <?php echo $leases->property_code; ?> <br>
-                                                        <b>Name: </b> <?php echo $leases->property_name; ?> <br>
-                                                        <b>Category: </b> <?php echo $leases->category_name; ?> <br>
-                                                        <b>Location : </b> <?php echo $leases->property_address; ?>
+                                                        <b>Code: </b> <?php echo $leases->house_code; ?> <br>
+                                                        <b>Name: </b> <?php echo $leases->house_name; ?> <br>
+                                                        <b>Category: </b> <?php echo $leases->house_name; ?> <br>
+                                                        <b>Location : </b> <?php echo $leases->house_address; ?>
                                                     </td>
                                                     <td>
                                                         <b>Name: </b> <?php echo $leases->user_name; ?> <br>
@@ -156,7 +156,7 @@ require_once('../app/partials/head.php');
                                                                 <div class="modal-body">
                                                                     <div id="print_receipt">
                                                                         <div class="text-center text-bold">
-                                                                            Rental Agreement Ref #<?php echo $leases->lease_ref; ?> Payment Receipt
+                                                                            Rental Agreement Ref #<?php echo $leases->rental_ref; ?> Payment Receipt
                                                                         </div>
                                                                         <hr>
                                                                         <div class="row">
@@ -196,13 +196,13 @@ require_once('../app/partials/head.php');
                                                                                     <div class="card-body">
                                                                                         <dl class="row">
                                                                                             <dt class="col-sm-4">Code</dt>
-                                                                                            <dd class="col-sm-8"><?php echo $leases->property_code; ?></dd>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->house_code; ?></dd>
                                                                                             <dt class="col-sm-4">Name</dt>
-                                                                                            <dd class="col-sm-8"><?php echo $leases->property_name; ?></dd>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->house_name; ?></dd>
                                                                                             <dt class="col-sm-4">Category</dt>
                                                                                             <dd class="col-sm-8"><?php echo $leases->category_name; ?></dd>
                                                                                             <dt class="col-sm-4">Location</dt>
-                                                                                            <dd class="col-sm-8"><?php echo $leases->property_address; ?></dd>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->house_address; ?></dd>
                                                                                         </dl>
                                                                                     </div>
                                                                                     <!-- /.card-body -->
@@ -220,13 +220,13 @@ require_once('../app/partials/head.php');
                                                                                     <div class="card-body">
                                                                                         <dl class="row">
                                                                                             <dt class="col-sm-4">REF</dt>
-                                                                                            <dd class="col-sm-8"><?php echo $leases->lease_ref; ?></dd>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->rental_ref; ?></dd>
                                                                                             <dt class="col-sm-4">Duration</dt>
-                                                                                            <dd class="col-sm-8"><?php echo $leases->lease_duration; ?> Months</dd>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->rental_duration; ?> Months</dd>
                                                                                             <dt class="col-sm-4">Payment Status</dt>
-                                                                                            <dd class="col-sm-8"><?php echo $leases->lease_payment_status; ?></dd>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->rental_payment_status; ?></dd>
                                                                                             <dt class="col-sm-4">Date</dt>
-                                                                                            <dd class="col-sm-8"><?php echo $leases->lease_date_added; ?></dd>
+                                                                                            <dd class="col-sm-8"><?php echo $leases->rental_date_added; ?></dd>
                                                                                         </dl>
                                                                                     </div>
                                                                                     <!-- /.card-body -->
@@ -327,7 +327,7 @@ require_once('../app/partials/head.php');
                                                                         <br>
                                                                         <!-- Hide This -->
                                                                         <input type="hidden" name="payment_id" value="<?php echo $leases->payment_id; ?>">
-                                                                        <input type="hidden" name="lease_id" value="<?php echo $leases->lease_id; ?>">
+                                                                        <input type="hidden" name="lease_id" value="<?php echo $leases->rental_id; ?>">
                                                                         <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
                                                                         <input type="submit" name="delete_payment" value="Delete" class="text-center btn btn-danger">
                                                                     </div>

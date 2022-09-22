@@ -97,17 +97,6 @@ require_once('../app/partials/head.php');
                                 </div>
                             </a>
                         </div>
-                        <!-- <div class="col-12 col-sm-6 col-md-3">
-                            <a href="users_staffs">
-                                <div class="info-box mb-3 text-dark">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-tie"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Staffs</span>
-                                        <span class="info-box-number"><?php echo $staffs; ?></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div> -->
                         <div class="col-12 col-sm-6 col-md-3">
                             <a href="users_landlords">
                                 <div class="info-box mb-3 text-dark">
@@ -174,11 +163,11 @@ require_once('../app/partials/head.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ret = "SELECT * FROM property_leases pl
-                                            INNER JOIN  properties p on p.property_id = pl.lease_property_id
-                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                            INNER JOIN users u ON u.user_id = pl.lease_tenant_id
-                                            WHERE pl.lease_eviction_status = '0'";
+                                            $ret = "SELECT * FROM house_rentals hr
+                                            INNER JOIN  houses h on h.house_id = hr.rental_house_id
+                                            INNER JOIN categories c ON c.category_id  = h.house_category_id
+                                            INNER JOIN users u ON u.user_id = hr.rental_tenant_id
+                                            WHERE hr.rental_eviction_status = '0'";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
@@ -193,16 +182,16 @@ require_once('../app/partials/head.php');
 
                                                     </td>
                                                     <td>
-                                                        <b>Code: </b> <?php echo $leases->property_code; ?> <br>
-                                                        <b>Name: </b> <?php echo $leases->property_name; ?> <br>
+                                                        <b>Code: </b> <?php echo $leases->house_code; ?> <br>
+                                                        <b>Name: </b> <?php echo $leases->house_name; ?> <br>
                                                         <b>Category: </b> <?php echo $leases->category_name; ?> <br>
-                                                        <b>Location : </b> <?php echo $leases->property_address; ?>
+                                                        <b>Location : </b> <?php echo $leases->house_address; ?>
                                                     </td>
                                                     <td>
-                                                        <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
-                                                        <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
-                                                        <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
-                                                        <b>Rental Date: </b> <?php echo $leases->lease_date_added; ?>
+                                                        <b>REF: </b> <?php echo $leases->rental_ref; ?> <br>
+                                                        <b>Duration: </b> <?php echo $leases->rental_duration; ?> Months <br>
+                                                        <b>Payment Status: </b> <?php echo $leases->rental_payment_status; ?> <br>
+                                                        <b>Rental Date: </b> <?php echo $leases->rental_date_added; ?>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
