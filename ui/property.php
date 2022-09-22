@@ -15,10 +15,10 @@ require_once('../app/partials/head.php');
         <!-- Main Sidebar Container -->
         <?php require_once('../app/partials/aside.php');
         $view = $_GET['view'];
-        $ret = "SELECT * FROM properties p 
-        INNER JOIN categories c ON c.category_id  = p.property_category_id
-        INNER JOIN users u ON u.user_id = p.property_landlord_id
-        WHERE property_id = '$view' ";
+        $ret = "SELECT * FROM houses h
+        INNER JOIN categories c ON c.category_id  = h.house_category_id
+        INNER JOIN users u ON u.user_id = h.house_landlord_id
+        WHERE h.house_id = '$view' ";
         $stmt = $mysqli->prepare($ret);
         $stmt->execute(); //ok
         $res = $stmt->get_result();
@@ -31,7 +31,7 @@ require_once('../app/partials/head.php');
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1><?php echo $property->property_name; ?></h1>
+                                <h1><?php echo $property->house_name; ?></h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -58,10 +58,10 @@ require_once('../app/partials/head.php');
                                         </ol>
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
-                                                <img src="../data/<?php echo $property->property_img_1; ?>" class="d-block w-100" alt="...">
+                                                <img src="../data/<?php echo $property->house_img_1; ?>" class="d-block w-100" alt="...">
                                             </div>
                                             <div class="carousel-item">
-                                                <img src="../data/<?php echo $property->property_img_2; ?>" class="d-block w-100" alt="...">
+                                                <img src="../data/<?php echo $property->house_img_2; ?>" class="d-block w-100" alt="...">
                                             </div>
                                         </div>
                                     </div>
@@ -84,16 +84,16 @@ require_once('../app/partials/head.php');
                                                             <div class="card-body">
                                                                 <ul class="list-group list-group-unbordered mb-3">
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-tag text-warning"></i> Code: </b> <a class="float-right"><?php echo $property->property_code; ?></a>
+                                                                        <b><i class="fas fa-tag text-warning"></i> Code: </b> <a class="float-right"><?php echo $property->house_code; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-check text-warning"></i> Name: </b> <a class="float-right"><?php echo $property->property_name; ?></a>
+                                                                        <b><i class="fas fa-check text-warning"></i> Name: </b> <a class="float-right"><?php echo $property->house_name; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
                                                                         <b><i class="fas fa-list  text-warning"></i> Category: </b> <a class="float-right"><?php echo $property->category_name; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-map-pin text-warning"></i> Location: </b> <a class="float-right"><?php echo $property->property_address; ?></a>
+                                                                        <b><i class="fas fa-map-pin text-warning"></i> Location: </b> <a class="float-right"><?php echo $property->house_address; ?></a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -126,8 +126,8 @@ require_once('../app/partials/head.php');
                                                             <?php
                                                             $ret = "SELECT * FROM caretaker_assigns ca 
                                                             INNER JOIN users u ON ca.assignment_caretaker_id = u.user_id
-                                                            INNER JOIN properties p ON p.property_id = ca.assignment_property_id 
-                                                            WHERE property_id = '$view'";
+                                                            INNER JOIN houses h ON h.house_id = ca.assignment_house_id 
+                                                            WHERE h.house_id = '$view'";
                                                             $stmt = $mysqli->prepare($ret);
                                                             $stmt->execute(); //ok
                                                             $res = $stmt->get_result();
@@ -159,12 +159,12 @@ require_once('../app/partials/head.php');
                                                             <div class="card-body">
                                                                 <div class="timeline">
                                                                     <?php
-                                                                    $ret = "SELECT * FROM property_leases pl
-                                                                    INNER JOIN  properties p on p.property_id = pl.lease_property_id
-                                                                    INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                                                    INNER JOIN users u ON u.user_id = pl.lease_tenant_id 
-                                                                    WHERE pl.lease_eviction_status = '0'  AND  p.property_id = '$view'
-                                                                    ORDER BY pl.lease_date_added  ASC LIMIT 5
+                                                                    $ret = "SELECT * FROM house_rentals hr
+                                                                    INNER JOIN  houses h on h.house_id = hr.rental_house_id
+                                                                    INNER JOIN categories c ON c.category_id  = h.house_category_id
+                                                                    INNER JOIN users u ON u.user_id = hr.rental_tenant_id 
+                                                                    WHERE hr.rental_eviction_status = '0'  AND  h.house_id = '$view'
+                                                                    ORDER BY hr.rental_date_added  ASC LIMIT 5
                                                                     ";
                                                                     $stmt = $mysqli->prepare($ret);
                                                                     $stmt->execute(); //ok
@@ -173,7 +173,7 @@ require_once('../app/partials/head.php');
                                                                     ?>
                                                                         <!-- timeline time label -->
                                                                         <div class="time-label">
-                                                                            <span class="bg-success"><?php echo $leases->lease_date_added; ?></span>
+                                                                            <span class="bg-success"><?php echo $leases->rental_date_added; ?></span>
                                                                         </div>
                                                                         <div>
                                                                             <i class="fas fa-user-tag bg-blue"></i>
@@ -184,9 +184,9 @@ require_once('../app/partials/head.php');
                                                                                     <b>Tenant IDNO: </b> <?php echo $leases->user_idno; ?> <br>
                                                                                     <b>Tenant Phone No : </b> <?php echo $leases->user_phoneno; ?> <br>
                                                                                     <b>Tenant Email : </b> <?php echo $leases->user_email; ?> <br>
-                                                                                    <b>Rental REF: </b> <?php echo $leases->lease_ref; ?> <br>
-                                                                                    <b>Rental Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
-                                                                                    <b>Rental Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
+                                                                                    <b>Rental REF: </b> <?php echo $leases->rental_ref; ?> <br>
+                                                                                    <b>Rental Duration: </b> <?php echo $leases->rental_duration; ?> Months <br>
+                                                                                    <b>Rental Payment Status: </b> <?php echo $leases->rental_payment_status; ?> <br>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

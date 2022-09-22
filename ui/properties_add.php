@@ -27,7 +27,7 @@ if (isset($_POST['add_property'])) {
     move_uploaded_file($temp_name, $upload_directory_2);
 
     /* Perisist */
-    $sql = "INSERT INTO  properties (property_code, property_name, property_cost, property_category_id, property_landlord_id, property_img_1, property_img_2, property_address)
+    $sql = "INSERT INTO  houses (house_code, house_name, house_cost, house_category_id, house_landlord_id, house_img_1, house_img_2, house_address)
     VALUES(?,?,?,?,?,?,?,?)";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
