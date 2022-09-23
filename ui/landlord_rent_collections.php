@@ -14,9 +14,9 @@ if (isset($_POST['pay_lease'])) {
     $lease_payment_status = 'Paid';
 
     /* Persist */
-    $sql = "INSERT INTO payments (payment_ref, payment_lease_id, payment_amount, payment_mode, payment_date) 
+    $sql = "INSERT INTO payments (payment_ref, payment_rental_id, payment_amount, payment_mode, payment_date) 
     VALUES(?,?,?,?, ?)";
-    $lease_sql = "UPDATE property_leases SET lease_payment_status =? WHERE lease_id =?";
+    $lease_sql = "UPDATE house_rentals SET rental_payment_status =? WHERE rental_id =?";
 
     $prepare = $mysqli->prepare($sql);
     $lease_prepare = $mysqli->prepare($lease_sql);
@@ -97,24 +97,24 @@ require_once('../app/partials/head.php');
                                         <tbody>
                                             <?php
                                             $user_id = $_SESSION['user_id'];
-                                            $ret = "SELECT * FROM property_leases pl
-                                            INNER JOIN  properties p on p.property_id = pl.lease_property_id
-                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                            INNER JOIN users u ON u.user_id = pl.lease_tenant_id 
-                                            WHERE pl.lease_eviction_status = '0' AND p.property_landlord_id = '$user_id'
+                                            $ret = "SELECT * FROM house_rentals hr
+                                            INNER JOIN  houses h on h.house_id = hr.rental_house_id
+                                            INNER JOIN categories c ON c.category_id  = h.house_category_id
+                                            INNER JOIN users u ON u.user_id = hr.rental_tenant_id 
+                                            WHERE hr.rental_eviction_status = '0' AND h.house_landlord_id = '$user_id'
                                             ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
                                             while ($leases = $res->fetch_object()) {
-                                                $payable_rent = $leases->lease_duration * $leases->property_cost;
+                                                $payable_rent = $leases->rental_duration * $leases->house_cost;
                                             ?>
                                                 <tr>
                                                     <td>
-                                                        <b>Code: </b> <?php echo $leases->property_code; ?> <br>
-                                                        <b>Name: </b> <?php echo $leases->property_name; ?> <br>
+                                                        <b>Code: </b> <?php echo $leases->house_code; ?> <br>
+                                                        <b>Name: </b> <?php echo $leases->house_name; ?> <br>
                                                         <b>Category: </b> <?php echo $leases->category_name; ?> <br>
-                                                        <b>Location : </b> <?php echo $leases->property_address; ?>
+                                                        <b>Location : </b> <?php echo $leases->house_address; ?>
                                                     </td>
                                                     <td>
                                                         <b>Name: </b> <?php echo $leases->user_name; ?> <br>
@@ -123,21 +123,21 @@ require_once('../app/partials/head.php');
                                                         <b>Email : </b> <?php echo $leases->user_email; ?>
                                                     </td>
                                                     <td>
-                                                        <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
-                                                        <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
-                                                        <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
-                                                        <b>Date: </b> <?php echo $leases->lease_date_added; ?>
+                                                        <b>REF: </b> <?php echo $leases->rental_ref; ?> <br>
+                                                        <b>Duration: </b> <?php echo $leases->rental_duration; ?> Months <br>
+                                                        <b>Payment Status: </b> <?php echo $leases->rental_payment_status; ?> <br>
+                                                        <b>Date: </b> <?php echo $leases->rental_date_added; ?>
                                                     </td>
                                                     <td>
                                                         <?php
-                                                        if ($leases->lease_payment_status != 'Paid') { ?>
-                                                            <a data-toggle="modal" href="#update_<?php echo $leases->lease_id; ?>" class="badge badge-primary"><i class="fas fa-hand-holding-usd"></i> Collect Rent</a>
+                                                        if ($leases->rental_payment_status != 'Paid') { ?>
+                                                            <a data-toggle="modal" href="#update_<?php echo $leases->rental_id; ?>" class="badge badge-primary"><i class="fas fa-hand-holding-usd"></i> Collect Rent</a>
                                                         <?php  } else { ?>
                                                             <span class="badge badge-success"><i class="fas fa-check"></i> Already Paid</span>
                                                         <?php } ?>
                                                     </td>
                                                     <!-- Update Modal -->
-                                                    <div class="modal fade fixed-right" id="update_<?php echo $leases->lease_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal fade fixed-right" id="update_<?php echo $leases->rental_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog  modal-xl" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header align-items-center">
@@ -155,8 +155,8 @@ require_once('../app/partials/head.php');
                                                                                 <label for="">Payment Ref Code</label>
                                                                                 <input type="text" required value="<?php echo $paycode; ?>" name="payment_ref" readonly class="form-control">
                                                                                 <!-- Hidden Values -->
-                                                                                <input type="hidden" required name="payment_lease_id" value="<?php echo $leases->lease_id; ?>" readonly class="form-control">
-                                                                                <input type="hidden" required name="lease_property_id" value="<?php echo $leases->lease_property_id; ?>" readonly class="form-control">
+                                                                                <input type="hidden" required name="payment_lease_id" value="<?php echo $leases->rental_id; ?>" readonly class="form-control">
+                                                                                <input type="hidden" required name="lease_property_id" value="<?php echo $leases->rental_house_id; ?>" readonly class="form-control">
 
                                                                             </div>
                                                                             <div class="form-group col-md-4">
@@ -173,7 +173,7 @@ require_once('../app/partials/head.php');
                                                                             </div>
                                                                         </div>
                                                                         <div class="text-right">
-                                                                            <button type="submit" name="pay_lease" class="btn btn-success">Add Payment</button>
+                                                                            <button type="submit" name="pay_lease" class="btn btn-warning">Add Payment</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>

@@ -14,9 +14,9 @@ if (isset($_POST['add_lease'])) {
     $lease_date_added = date('d M Y g:ia');
 
     /* Persist */
-    $sql = "INSERT INTO property_leases (lease_ref, lease_property_id, lease_tenant_id, lease_duration, lease_date_added)
+    $sql = "INSERT INTO house_rentals (rental_ref, rental_house_id, rental_tenant_id, rental_duration, rental_date_added)
     VALUES(?,?,?,?,?)";
-    $property_sql = "UPDATE properties SET property_status = 'Leased' WHERE property_id =?";
+    $property_sql = "UPDATE houses SET house_status = 'Leased' WHERE house_id =?";
 
     $prepare = $mysqli->prepare($sql);
     $property_prepare  = $mysqli->prepare($property_sql);
@@ -93,16 +93,16 @@ require_once('../app/partials/head.php');
                                                     <option>Select House</option>
                                                     <?php
                                                     $user_id = $_SESSION['user_id'];
-                                                    $ret = "SELECT * FROM properties p 
-                                                    INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                                    INNER JOIN users u ON u.user_id = p.property_landlord_id
-                                                    WHERE p.property_status = 'Vacant' AND p.property_landlord_id = '$user_id'";
+                                                    $ret = "SELECT * FROM houses h 
+                                                    INNER JOIN categories c ON c.category_id  = h.house_category_id
+                                                    INNER JOIN users u ON u.user_id = h.house_landlord_id
+                                                    WHERE h.house_status = 'Vacant' AND h.house_landlord_id = '$user_id'";
                                                     $stmt = $mysqli->prepare($ret);
                                                     $stmt->execute(); //ok
                                                     $res = $stmt->get_result();
                                                     while ($properties = $res->fetch_object()) { ?>
-                                                        <option value="<?php echo $properties->property_id; ?>">
-                                                            Code: <?php echo $properties->property_code . ', Name: ' . $properties->property_name . ', Location: ' . $properties->property_address; ?>
+                                                        <option value="<?php echo $properties->house_id; ?>">
+                                                            Code: <?php echo $properties->house_code . ', Name: ' . $properties->house_name . ', Location: ' . $properties->house_address; ?>
                                                         </option>
                                                     <?php } ?>
                                                 </select>

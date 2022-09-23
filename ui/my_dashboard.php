@@ -96,11 +96,11 @@ require_once('../app/partials/head.php');
                                         <tbody>
                                             <?php
                                             $user_id = $_SESSION['user_id'];
-                                            $ret = "SELECT * FROM property_leases pl
-                                            INNER JOIN  properties p on p.property_id = pl.lease_property_id
-                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                            INNER JOIN users u ON u.user_id = p.property_landlord_id
-                                            WHERE pl.lease_eviction_status = '0' AND pl.lease_tenant_id = '$user_id'";
+                                            $ret = "SELECT * FROM house_rentals hr
+                                            INNER JOIN  houses h on h.house_id = hr.rental_house_id
+                                            INNER JOIN categories c ON c.category_id  = h.house_category_id
+                                            INNER JOIN users u ON u.user_id = h.house_landlord_id
+                                            WHERE hr.rental_eviction_status = '0' AND hr.rental_tenant_id = '$user_id'";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
@@ -114,16 +114,16 @@ require_once('../app/partials/head.php');
                                                         <b>Email : </b> <?php echo $leases->user_email; ?>
                                                     </td>
                                                     <td>
-                                                        <b>Code: </b> <?php echo $leases->property_code; ?> <br>
-                                                        <b>Name: </b> <?php echo $leases->property_name; ?> <br>
+                                                        <b>Code: </b> <?php echo $leases->house_code; ?> <br>
+                                                        <b>Name: </b> <?php echo $leases->house_name; ?> <br>
                                                         <b>Category: </b> <?php echo $leases->category_name; ?> <br>
-                                                        <b>Location : </b> <?php echo $leases->property_address; ?>
+                                                        <b>Location : </b> <?php echo $leases->house_address; ?>
                                                     </td>
                                                     <td>
-                                                        <b>REF: </b> <?php echo $leases->lease_ref; ?> <br>
-                                                        <b>Duration: </b> <?php echo $leases->lease_duration; ?> Months <br>
-                                                        <b>Payment Status: </b> <?php echo $leases->lease_payment_status; ?> <br>
-                                                        <b>Date: </b> <?php echo $leases->lease_date_added; ?>
+                                                        <b>REF: </b> <?php echo $leases->rental_ref; ?> <br>
+                                                        <b>Duration: </b> <?php echo $leases->rental_duration; ?> Months <br>
+                                                        <b>Payment Status: </b> <?php echo $leases->rental_payment_status; ?> <br>
+                                                        <b>Date: </b> <?php echo $leases->rental_date_added; ?>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

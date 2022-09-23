@@ -33,5 +33,5 @@ $stmt = $mysqli->prepare($ret);
 $stmt->execute(); //ok
 $res = $stmt->get_result();
 while ($leases = $res->fetch_object()) {
-    $payable_rent = $leases->lease_duration * $leases->property_cost;
+    $payable_rent = $leases->rental_duration * $leases->house_cost;
 }
