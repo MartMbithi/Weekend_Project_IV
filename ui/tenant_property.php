@@ -12,9 +12,9 @@ if (isset($_POST['add_lease'])) {
     $lease_date_added = date('d M Y g:ia');
 
     /* Persist */
-    $sql = "INSERT INTO property_leases (lease_ref, lease_property_id, lease_tenant_id, lease_duration, lease_date_added)
+    $sql = "INSERT INTO house_rentals (rental_ref, rental_house_id, rental_tenant_id, rental_duration, rental_date_added)
     VALUES(?,?,?,?,?)";
-    $property_sql = "UPDATE properties SET property_status = 'Leased' WHERE property_id =?";
+    $property_sql = "UPDATE houses SET house_status = 'Leased' WHERE house_id =?";
 
     $prepare = $mysqli->prepare($sql);
     $property_prepare  = $mysqli->prepare($property_sql);
@@ -55,10 +55,10 @@ require_once('../app/partials/head.php');
         <!-- Main Sidebar Container -->
         <?php require_once('../app/partials/aside.php');
         $view = $_GET['view'];
-        $ret = "SELECT * FROM properties p 
-        INNER JOIN categories c ON c.category_id  = p.property_category_id
-        INNER JOIN users u ON u.user_id = p.property_landlord_id
-        WHERE property_id = '$view' ";
+        $ret = "SELECT * FROM houses h 
+        INNER JOIN categories c ON c.category_id  = h.house_category_id
+        INNER JOIN users u ON u.user_id = h.house_landlord_id
+        WHERE house_id = '$view' ";
         $stmt = $mysqli->prepare($ret);
         $stmt->execute(); //ok
         $res = $stmt->get_result();
@@ -71,7 +71,7 @@ require_once('../app/partials/head.php');
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1><?php echo $property->property_name; ?></h1>
+                                <h1><?php echo $property->house_name; ?></h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -98,10 +98,10 @@ require_once('../app/partials/head.php');
                                         </ol>
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
-                                                <img src="../data/<?php echo $property->property_img_1; ?>" class="d-block w-100" alt="...">
+                                                <img src="../data/<?php echo $property->house_img_1; ?>" class="d-block w-100" alt="...">
                                             </div>
                                             <div class="carousel-item">
-                                                <img src="../data/<?php echo $property->property_img_2; ?>" class="d-block w-100" alt="...">
+                                                <img src="../data/<?php echo $property->house_img_2; ?>" class="d-block w-100" alt="...">
                                             </div>
                                         </div>
                                     </div>
@@ -124,19 +124,19 @@ require_once('../app/partials/head.php');
                                                             <div class="card-body">
                                                                 <ul class="list-group list-group-unbordered mb-3">
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-tag text-danger"></i> Code: </b> <a class="float-right"><?php echo $property->property_code; ?></a>
+                                                                        <b><i class="fas fa-tag text-danger"></i> Code: </b> <a class="float-right"><?php echo $property->house_code; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-check text-danger"></i> Name: </b> <a class="float-right"><?php echo $property->property_name; ?></a>
+                                                                        <b><i class="fas fa-check text-danger"></i> Name: </b> <a class="float-right"><?php echo $property->house_name; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-list  text-danger"></i> Category: </b> <a class="float-right"><?php echo $property->category_name; ?></a>
+                                                                        <b><i class="fas fa-list  text-danger"></i> Category: </b> <a class="float-right"><?php echo $property->house_name; ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-money-bill  text-danger"></i> Monthly Rent: </b> <a class="float-right">Ksh <?php echo number_format($property->property_cost, 2); ?></a>
+                                                                        <b><i class="fas fa-money-bill  text-danger"></i> Monthly Rent: </b> <a class="float-right">Ksh <?php echo number_format($property->house_cost, 2); ?></a>
                                                                     </li>
                                                                     <li class="list-group-item">
-                                                                        <b><i class="fas fa-map-pin text-danger"></i> Location: </b> <a class="float-right"><?php echo $property->property_address; ?></a>
+                                                                        <b><i class="fas fa-map-pin text-danger"></i> Location: </b> <a class="float-right"><?php echo $property->house_address; ?></a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -169,8 +169,8 @@ require_once('../app/partials/head.php');
                                                             <?php
                                                             $ret = "SELECT * FROM caretaker_assigns ca 
                                                             INNER JOIN users u ON ca.assignment_caretaker_id = u.user_id
-                                                            INNER JOIN properties p ON p.property_id = ca.assignment_property_id 
-                                                            WHERE property_id = '$view'";
+                                                            INNER JOIN houses h ON h.house_id = ca.assignment_house_id 
+                                                            WHERE house_id = '$view'";
                                                             $stmt = $mysqli->prepare($ret);
                                                             $stmt->execute(); //ok
                                                             $res = $stmt->get_result();

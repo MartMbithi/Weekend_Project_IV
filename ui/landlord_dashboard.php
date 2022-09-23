@@ -84,7 +84,7 @@ require_once('../app/partials/head.php');
                         </div>
 
                         <div class="col-12 col-sm-6 col-md-3">
-                            <a href="landlord_manage_properties">
+                            <a href="landlord_reports_revenue">
                                 <div class="info-box mb-3 text-dark">
                                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
                                     <div class="info-box-content">

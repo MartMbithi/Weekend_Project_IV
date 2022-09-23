@@ -14,9 +14,9 @@ if (isset($_POST['add_lease'])) {
     $lease_date_added = date('d M Y g:ia');
 
     /* Persist */
-    $sql = "INSERT INTO property_leases (lease_ref, lease_property_id, lease_tenant_id, lease_duration, lease_date_added)
+    $sql = "INSERT INTO house_rentals (rental_ref, rental_house_id, rental_tenant_id, rental_duration, rental_date_added)
     VALUES(?,?,?,?,?)";
-    $property_sql = "UPDATE properties SET property_status = 'Leased' WHERE property_id =?";
+    $property_sql = "UPDATE houses SET house_status = 'Leased' WHERE house_id =?";
 
     $prepare = $mysqli->prepare($sql);
     $property_prepare  = $mysqli->prepare($property_sql);
@@ -98,32 +98,32 @@ require_once('../app/partials/head.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ret = "SELECT * FROM properties p 
-                                            INNER JOIN categories c ON c.category_id  = p.property_category_id
-                                            INNER JOIN users u ON u.user_id = p.property_landlord_id
-                                            WHERE p.property_status ='Vacant'";
+                                            $ret = "SELECT * FROM houses h 
+                                            INNER JOIN categories c ON c.category_id  = h.house_category_id
+                                            INNER JOIN users u ON u.user_id = h.house_landlord_id
+                                            WHERE h.house_status ='Vacant'";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
                                             while ($properties = $res->fetch_object()) {
                                             ?>
                                                 <tr>
-                                                    <td><?php echo $properties->property_code; ?></td>
-                                                    <td><?php echo $properties->property_name; ?></td>
+                                                    <td><?php echo $properties->house_code; ?></td>
+                                                    <td><?php echo $properties->house_name; ?></td>
                                                     <td><?php echo $properties->category_name; ?></td>
                                                     <td><?php echo $properties->user_name; ?></td>
-                                                    <td><?php echo $properties->property_address; ?></td>
+                                                    <td><?php echo $properties->house_address; ?></td>
                                                     <td>
-                                                        <a href="tenant_property?view=<?php echo $properties->property_id; ?>" class="badge badge-success"><i class="fas fa-eye"></i> View</a>
-                                                        <a data-toggle="modal" href="#update_<?php echo $properties->property_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Rent Property</a>
+                                                        <a href="tenant_property?view=<?php echo $properties->house_id; ?>" class="badge badge-success"><i class="fas fa-eye"></i> View</a>
+                                                        <a data-toggle="modal" href="#update_<?php echo $properties->house_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Rent Property</a>
                                                     </td>
                                                     <!-- Update Modal -->
-                                                    <div class="modal fade fixed-right" id="update_<?php echo $properties->property_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal fade fixed-right" id="update_<?php echo $properties->house_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog  modal-xl" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header align-items-center">
                                                                     <div class="text-bold">
-                                                                        <h6 class="text-bold">Rent This Property </h6>
+                                                                        <h6 class="text-bold">Rent This House </h6>
                                                                     </div>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
@@ -134,7 +134,7 @@ require_once('../app/partials/head.php');
                                                                         <div class="row">
                                                                             <div class="form-group col-md-12">
                                                                                 <label for="">Rental Duration (Months)</label>
-                                                                                <input type="hidden" name="lease_property_id" value="<?php echo $properties->property_id; ?>">
+                                                                                <input type="hidden" name="lease_property_id" value="<?php echo $properties->house_id; ?>">
                                                                                 <select class="form-control basic" name="lease_duration">
                                                                                     <option>1</option>
                                                                                     <option>2</option>
@@ -152,7 +152,7 @@ require_once('../app/partials/head.php');
                                                                             </div>
                                                                         </div>
                                                                         <div class="text-right">
-                                                                            <button type="submit" name="add_lease" class="btn btn-danger">Rent This Property</button>
+                                                                            <button type="submit" name="add_lease" class="btn btn-danger">Rent This House</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
